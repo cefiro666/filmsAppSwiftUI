@@ -55,16 +55,14 @@ struct FilmsListView: View {
             }.eraseToAnyView()
             
         case .filmsLoaded(let sections):
-            return VStack {
-                self.genres
-                self.getFilmsList(sections)
-            }.eraseToAnyView()
+            return self.getFilmsList(sections).eraseToAnyView()
         }
     }
     
 // MARK: - Methods
     private func getFilmsList(_ sections: [SectionModel]) -> some View {
         List {
+            self.genres
             ForEach(sections) { section in
                 Section(header: YearHeaderView(yearString: section.header?.title)) {
                     ForEach(section.elements) { element in
@@ -86,7 +84,6 @@ struct FilmsListView: View {
     private var genres: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                Spacer(minLength: 15.0)
                 ForEach(self.viewModel.genres, id: \.hashValue) { genre in
                     Button(action: {
                         self.viewModel.onClickGenre(genre)
@@ -100,10 +97,8 @@ struct FilmsListView: View {
                         .cornerRadius(10.0)
                     }
                 }
-                Spacer(minLength: 15.0)
             }
-            
-        }.padding(.vertical)
+        }
     }
     
 }
