@@ -43,6 +43,7 @@ struct FilmDetailsView: View {
                 
                 Text(self.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
+                    .padding(.bottom)
             }
             
             .padding(.top)
