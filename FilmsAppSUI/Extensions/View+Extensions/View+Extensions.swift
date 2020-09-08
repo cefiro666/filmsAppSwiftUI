@@ -10,5 +10,5 @@ import SwiftUI
 
 extension View {
     
-    func eraseToAnyView() -> AnyView { AnyView(self) }
+    @inlinable public func eraseToAnyView() -> AnyView { AnyView(self) }
 }

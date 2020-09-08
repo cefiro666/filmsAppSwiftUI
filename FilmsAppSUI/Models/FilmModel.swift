@@ -41,4 +41,16 @@ class FilmModel: RowModel {
         self.genres = genres
     }
     
+//MARK: - placeholder
+    static var placeholder: FilmModel {
+        return FilmModel(id: String(Film.placeholder.id),
+                         localizedName: Film.placeholder.localizedName,
+                         year: Film.placeholder.year,
+                         name: Film.placeholder.name,
+                         rating: Film.placeholder.rating,
+                         imageURL: Film.placeholder.imageURL,
+                         filmDescription: Film.placeholder.filmDescription,
+                         genres: Film.placeholder.genres)
+    }
+    
 }

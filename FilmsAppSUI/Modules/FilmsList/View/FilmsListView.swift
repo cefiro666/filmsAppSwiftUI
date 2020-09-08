@@ -6,87 +6,65 @@
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import ImageViewerRemote
 import SwiftUI
+
+// MARK: - IFilmsListView
+protocol IFilmsListView: IInputView, Modellable {
+    
+    var output: IFilmsListInteractor? { get set }
+}
 
 // MARK: - FilmsListView
 struct FilmsListView: View {
     
-// MARK: - View model
-    @ObservedObject var viewModel = FilmsListViewModel()
-    
 // MARK: - Properties
-    @State var needShowViewer: Bool = false
-    @State var urlString: String = "https://i.pinimg.com/originals/2d/dc/25/2ddc25914e2ae0db5311ffa41781dda1.jpg"
+    var output: IFilmsListInteractor?
+    var container: IContainer?
     
-// MARK: - body
+// MARK: - Model
+    @ObservedObject var model = FilmsListViewModel()
+    
+// MARK: - Body
     var body: some View {
-        
-        NavigationView {
-            self.content
-                .navigationBarTitle(Text("films"), displayMode: .large)
-            
-        }.overlay(ImageViewerRemote(imageURL: self.$urlString, viewerShown: self.$needShowViewer))
-            
-        .onAppear {
-            UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
-            UITableView.appearance().separatorStyle = .none
-            UITableView.appearance().allowsSelection = false
-            UITableViewCell.appearance().selectionStyle = .none
-            self.viewModel.onAppear()
-        }
-        
-        .onDisappear {
-            UITableView.appearance().separatorStyle = .singleLine
-            UITableView.appearance().allowsSelection = true
-            UITableViewCell.appearance().selectionStyle = .default
-        }
-    }
-    
-// MARK: - content
-    private var content: some View {
-        switch self.viewModel.state {
-        case .loading:
-            return SpinnerView(isAnimating: true, style: .large).eraseToAnyView()
-            
-        case .error(let error):
-            return ErrorView(error: error) {
-                self.viewModel.onAppear()
-            }.eraseToAnyView()
-            
-        case .filmsLoaded(let sections):
-            return self.getFilmsList(sections).eraseToAnyView()
-        }
-    }
-    
-// MARK: - Methods
-    private func getFilmsList(_ sections: [SectionModel]) -> some View {
         List {
             self.genres
-            ForEach(sections) { section in
+            
+            ForEach(self.model.sections) { section in
                 Section(header: YearHeaderView(yearString: section.header?.title)) {
-                    ForEach(section.elements) { element in
+                    ForEach(section.elements.compactMap { $0 as? FilmModel }) { filmModel in
                         ZStack {
-                            FilmCellView(filmModel: element as! FilmModel)
-                            NavigationLink(destination: FilmDetailsView(filmModel: element as! FilmModel,
-                                                                        needShowViewer: self.$needShowViewer,
-                                                                        urlString: self.$urlString)) {
-                                EmptyView()
+                            FilmCellView(filmModel: filmModel).onTapGesture {
+                                Navigator.shared.push(screen: FilmDetailsView.self,
+                                                      data: self.output?.getFilmWithId(filmModel.id))
                             }
                         }
                     }
                 }
             }
+        }.navigationBarTitle(Text("films"))
+        
+        .onAppear {
+            UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().allowsSelection = false
+            UITableViewCell.appearance().selectionStyle = .none
+            
+            self.output?.getFilms()
         }
-    }
+
+        .onDisappear {
+            UITableView.appearance().separatorStyle = .singleLine
+            UITableView.appearance().allowsSelection = true
+            UITableViewCell.appearance().selectionStyle = .default
+        }    }
     
 // MARK: - genres
     private var genres: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(self.viewModel.genres, id: \.hashValue) { genre in
+                ForEach(self.model.genres, id: \.hashValue) { genre in
                     Button(action: {
-                        self.viewModel.onClickGenre(genre)
+                        self.output?.onClickGenre(genre)
                     }) {
                         Text(genre.capitalized(with: nil))
                         .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
@@ -100,13 +78,22 @@ struct FilmsListView: View {
             }
         }
     }
+}
+
+// MARK: - IFilmsListView
+extension FilmsListView: IFilmsListView {
     
+    var viewModel: IViewModel? { self.model }
+    
+    func updateModel(data: Any?) {
+        self.model.update(data: data)
+    }
 }
 
 // MARK: - PreviewProvider
 struct FilmsListView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        FilmsListView(viewModel: FilmsListViewModel())
+        FilmsListView()
     }
 }

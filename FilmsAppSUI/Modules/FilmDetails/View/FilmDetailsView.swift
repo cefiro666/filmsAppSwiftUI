@@ -8,81 +8,84 @@
 
 import SwiftUI
 
+// MARK: - IFilmDetailsView
+protocol IFilmDetailsView: IInputView, Modellable {
+    
+    var output: IFilmDetailsInteractor? { get set }
+}
+
+// MARK: - FilmDetailsView
 struct FilmDetailsView: View {
     
-// MARK: -  Model
-    var filmModel: FilmModel
+// MARK: - Properties
+    var output: IFilmDetailsInteractor?
+    var container: IContainer?
     
-// MARK: -  Properties
-    @Binding var needShowViewer: Bool
-    @Binding var urlString: String
-    
+// MARK: - Model
+    @ObservedObject var model = FilmDetailsViewModel()
+
 // MARK: -  body
     var body: some View {
-        self.content
-    }
-    
-// MARK: -  content
-    var content: some View {
-        
         ScrollView {
-            
             VStack(alignment: .leading) {
-                
                 HStack(spacing: 20.0) {
-                    
                     self.filmImage
                     self.filmInfo
-                    
                 }
-                
                 .padding(.horizontal)
                 .frame(minWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
                 self.genres
                 
-                Text(self.filmModel.filmDescription ?? "Описание отсутствует")
+                Text(self.model.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }
-            
             .padding(.top)
             
-        }.navigationBarTitle(Text(self.filmModel.localizedName ?? ""), displayMode: .large)
+        }
+        .navigationBarTitle(Text(self.model.filmModel.localizedName ?? ""), displayMode: .large)
+            
+        .onAppear() {
+            self.output?.onAppear()
+        }
     }
     
+// MARK: - filmImage
     private var filmImage: some View {
-        NetworkImage(urlString: self.filmModel.imageURL)
+        NetworkImage(urlString: self.model.filmModel.imageURL)
             .frame(width: UIScreen.main.bounds.width / 2.5,
                    height: 170,
                    alignment: .center).onTapGesture {
                 
-            if URL(string: self.filmModel.imageURL ?? "") == nil { return }
-            self.urlString = self.filmModel.imageURL ?? ""
-            self.needShowViewer.toggle()
+//            if URL(string: self.model.filmModel.imageURL ?? "") == nil { return }
+//            self.urlString = self.model.filmModel.imageURL ?? ""
+//            self.needShowViewer.toggle()
         }
     }
     
+// MARK: - filmInfo
     private var filmInfo: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             
-            Text(self.filmModel.name ?? "")
-                .id(filmModel.name.hashValue)
+            Text(self.model.filmModel.name ?? "")
+                .id(self.model.filmModel.name.hashValue)
             
-            Text("Год: \(String(self.filmModel.year ?? 0))")
+            Text("Год: \(String(self.model.filmModel.year ?? 0))")
             
             HStack(spacing: .zero) {
                 Text("Рейтинг: ")
-                Text.fromRaiting(self.filmModel.rating)
+                Text.fromRaiting(self.model.filmModel.rating)
             }
         }
     }
     
+// MARK: - genres
     private var genres: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Spacer(minLength: 15.0)
-                ForEach(self.filmModel.genres, id: \.hashValue) { genre in
+                ForEach(self.model.filmModel.genres, id: \.hashValue) { genre in
                     Text(genre.capitalized(with: nil))
                         .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                         .font(.subheadline)
@@ -96,21 +99,24 @@ struct FilmDetailsView: View {
             
         }.padding(.vertical)
     }
+    
+}
+
+// MARK: - IFilmDetailsView
+extension FilmDetailsView: IFilmDetailsView {
+    
+    var viewModel: IViewModel? { self.model }
+    
+    func updateModel(data: Any?) {
+        self.model.update(data: data)
+    }
 }
 
 // MARK: - PreviewProvider
 struct FilmDetailCell_Previews: PreviewProvider {
+    
     static var previews: some View {
-        FilmDetailsView(filmModel: FilmModel(id: String(Film.placeholder.id),
-                                             localizedName: Film.placeholder.localizedName,
-                                             year: Film.placeholder.year,
-                                             name: Film.placeholder.name,
-                                             rating: Film.placeholder.rating,
-                                             imageURL: Film.placeholder.imageURL,
-                                             filmDescription: Film.placeholder.filmDescription,
-                                             genres: Film.placeholder.genres),
-                        needShowViewer: Binding(get: { return false }, set: { _ in }),
-                        urlString: Binding(get: { return "" }, set: { _ in }))
+        FilmDetailsView()
     }
+    
 }
-

@@ -36,7 +36,7 @@ struct Film: Codable {
         case filmDescription = "description"
     }
     
-//MARK: - CodingKeys
+//MARK: - placeholder
     static var placeholder: Self {
         return Film(id: 0,
                     localizedName: "Film localized name",
