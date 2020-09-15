@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-//import ImageViewerRemote
 
 // MARK: - IContainer
 protocol IContainer {
@@ -23,9 +22,6 @@ struct ContainerView<Content: View&Presentable>: View {
     @ObservedObject var presenter = ContainerPresenter()
     private var content: Content
     
-//    @State var needShowViewer: Bool = false
-//    @State var urlString: String = "https://i.pinimg.com/originals/2d/dc/25/2ddc25914e2ae0db5311ffa41781dda1.jpg"
-    
 // MARK: - Inits
     init(content: Content) {
         self.content = content
@@ -36,9 +32,8 @@ struct ContainerView<Content: View&Presentable>: View {
     var body: some View {
         ZStack {
             self.content
-            if self.presenter.isLoading {
-                SpinnerView(isAnimating: true, style: .large)
-            }
+            SpinnerView(isAnimating: self.presenter.isLoading, style: .large)
+
         }.alert(isPresented: self.$presenter.hasError) {
             Alert(title: Text(""),
                   message: Text(self.presenter.errorMessage),
@@ -47,7 +42,6 @@ struct ContainerView<Content: View&Presentable>: View {
                 self.content.iPresenter?.onClickError()
             })
         }
-//        }.overlay(ImageViewerRemote(imageURL: self.$urlString, viewerShown: self.$needShowViewer))
     }
     
 }

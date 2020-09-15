@@ -19,7 +19,7 @@ class FilmsListRouter: IFilmsListRouter {
     
 // MARK: - Methods
     func pushFilmDetailsScreen(film: Film) {
-        Navigator.shared.push(screen: FilmDetailsView.self, data: film)
+        Navigator.shared.push(screen: FilmDetailsView.self, title: film.localizedName, data: film)
     }
     
 }

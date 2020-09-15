@@ -39,14 +39,16 @@ class Navigator {
         self.view = view
     }
     
-    func push<Content: View>(screen: Content.Type, data: Any? = nil) {
+    func push<Content: View>(screen: Content.Type, title: String, data: Any? = nil) {
         if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
+            viewController.title = title
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
-    func present<Content: View>(screen: Content.Type, data: Any? = nil) {
+    func present<Content: View>(screen: Content.Type, title: String, data: Any? = nil) {
         if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
+            viewController.title = title
             self.navigationController?.present(UINavigationController(rootViewController: viewController),
                                                animated: true,
                                                completion: nil)

@@ -11,7 +11,6 @@
 		9A08BCD0250266A600268128 /* FilmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCF250266A600268128 /* FilmDetailsView.swift */; };
 		9A08BCD2250266E800268128 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCD1250266E800268128 /* NetworkImage.swift */; };
 		9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCD4250268CE00268128 /* KingfisherSwiftUI */; };
-		9A08BCE12503AFD200268128 /* ImageViewerRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCE02503AFD200268128 /* ImageViewerRemote */; };
 		9A08BCE82506030E00268128 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCE72506030E00268128 /* SpinnerView.swift */; };
 		9A08BCEE250621E600268128 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCED250621E600268128 /* View+Extensions.swift */; };
 		9A08BCF725065DCA00268128 /* ModuleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCF625065DCA00268128 /* ModuleConfig.swift */; };
@@ -88,7 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A08BCE12503AFD200268128 /* ImageViewerRemote in Frameworks */,
 				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
 				9A08BD16250744BB00268128 /* Moya in Frameworks */,
 			);
@@ -460,7 +458,6 @@
 			name = FilmsAppSUI;
 			packageProductDependencies = (
 				9A08BCD4250268CE00268128 /* KingfisherSwiftUI */,
-				9A08BCE02503AFD200268128 /* ImageViewerRemote */,
 				9A08BD15250744BB00268128 /* Moya */,
 			);
 			productName = FilmsAppSUI;
@@ -493,7 +490,6 @@
 			mainGroup = 9A4AABCB24F9325D009E1817;
 			packageReferences = (
 				9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				9A08BCDF2503AFD200268128 /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */,
 				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
@@ -758,14 +754,6 @@
 				minimumVersion = 5.15.0;
 			};
 		};
-		9A08BCDF2503AFD200268128 /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Jake-Short/swiftui-image-viewer.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.25;
-			};
-		};
 		9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -781,11 +769,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = KingfisherSwiftUI;
-		};
-		9A08BCE02503AFD200268128 /* ImageViewerRemote */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9A08BCDF2503AFD200268128 /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */;
-			productName = ImageViewerRemote;
 		};
 		9A08BD15250744BB00268128 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
