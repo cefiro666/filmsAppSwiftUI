@@ -11,21 +11,17 @@ import UIKit
 
 // MARK: - FilmsListConfigurator
 final class FilmsListConfigurator: IConfigurator {
-    
-// MARK: - shared
-    static let shared = FilmsListConfigurator()
-    private init() {}
-    
+
 // MARK: - Methods
     func createScreen(_ data: Any?) -> UIViewController {
         var view = FilmsListView()
-        let presenter = FilmsListPresenter()
-        let interactor = FilmsListInteractor()
+        let router = FilmsListRouter()
+
+        view.presenter = view.presenter
             .setUseCase(GetFilmsUseCaseImpl())
         
-        interactor.output = presenter
-        presenter.output = view
-        view.output = interactor
+        view.presenter.router = router
+        view.presenter.view = view
         
         return UIHostingController<ContainerView<FilmsListView>>(rootView: ContainerView(content: view))
     }

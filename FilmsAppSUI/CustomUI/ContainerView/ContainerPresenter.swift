@@ -1,5 +1,5 @@
 //
-//  ContainerModel.swift
+//  ContainerPresenter.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 08.09.2020.
@@ -9,7 +9,7 @@
 import SwiftUI
 
 // MARK: - ContainerModel
-class ContainerModel: ObservableObject {
+final class ContainerPresenter: ObservableObject {
     
 // MARK: - Properties
     @Published var isLoading: Bool = false

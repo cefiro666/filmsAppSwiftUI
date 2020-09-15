@@ -11,42 +11,30 @@ import Foundation
 // MARK: - IFilmDetailsPresenter
 protocol IFilmDetailsPresenter: IPresenter {
     
-    var output: IFilmDetailsView? { get set }
-    func setData(data: FilmDetailsData?)
+    var view: IFilmDetailsView? { get set }
+    var router: IFilmDetailsRouter? { get set }
+    var data: FilmDetailsData { get }
+    
+    func setFilm(_ film: Film?)
 }
 
 // MARK: - FilmDetailsPresenter
-class FilmDetailsPresenter: IFilmDetailsPresenter {
+final class FilmDetailsPresenter: ObservableObject, IFilmDetailsPresenter {
     
-// MARK: - Output
-    lazy var output: IFilmDetailsView? = nil
+// MARK: - Properties
+    lazy var view: IFilmDetailsView? = nil
+    var router: IFilmDetailsRouter?
+
+    var listener: IContainer?
     
-// MARK: - setData
-    func setData(data: FilmDetailsData?) {
-        guard let film = data?.film else { return }
-        let filmModel = self.getModelFromFilm(film)
-        self.output?.updateModel(data: filmModel)
-    }
-    
-// MARK: - showErrorMessage
-    func showErrorMessage(_ message: String?) {
-        self.output?.showErrorMessage(message)
-    }
-    
-// MARK: - setLoadingVisible
-    func setLoadingVisible(_ visible: Bool) {
-        self.output?.setLoadingVisible(visible)
-    }
-    
+// MARK: - Data
+    @Published var data = FilmDetailsData()
+        
 // MARK: - Methods
-    private func getModelFromFilm(_ film: Film) -> FilmModel {
-        return FilmModel(id: String(film.id),
-                         localizedName: film.localizedName,
-                         year: film.year,
-                         name: film.name,
-                         rating: film.rating,
-                         imageURL: film.imageURL,
-                         filmDescription: film.filmDescription,
-                         genres: film.genres)
+    func setFilm(_ film: Film?) {
+        if let film = film {
+            self.data.film = film
+        }
     }
+    
 }

@@ -12,18 +12,14 @@ import SwiftUI
 // MARK: - ModuleConfig
 class ModuleConfig {
 
-// MARK: - shared
-    static let shared = ModuleConfig()
-    private init() {}
-    
 // MARK: - Methods
-    func config<Content: View>(screen: Content.Type) -> IConfigurator? {
+    static func config<Content: View>(screen: Content.Type) -> IConfigurator? {
         switch screen {
         case is FilmsListView.Type:
-            return FilmsListConfigurator.shared
+            return FilmsListConfigurator()
 
         case is FilmDetailsView.Type:
-            return FilmDetailsConfigurator.shared
+            return FilmDetailsConfigurator()
 
         default:
             return nil

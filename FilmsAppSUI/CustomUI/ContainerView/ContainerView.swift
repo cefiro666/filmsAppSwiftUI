@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import ImageViewerRemote
+//import ImageViewerRemote
 
 // MARK: - IContainer
 protocol IContainer {
@@ -17,10 +17,10 @@ protocol IContainer {
 }
 
 // MARK: - ContainerView
-struct ContainerView<Content: View&Modellable>: IContainer, View {
+struct ContainerView<Content: View&Presentable>: View {
     
 // MARK: - Properties
-    @ObservedObject var containerModel = ContainerModel()
+    @ObservedObject var presenter = ContainerPresenter()
     private var content: Content
     
 //    @State var needShowViewer: Bool = false
@@ -29,32 +29,37 @@ struct ContainerView<Content: View&Modellable>: IContainer, View {
 // MARK: - Inits
     init(content: Content) {
         self.content = content
-        self.content.viewModel?.listener = self
+        self.content.iPresenter?.listener = self
     }
     
 // MARK: - body
     var body: some View {
         ZStack {
             self.content
-            if self.containerModel.isLoading {
-                Text("load")
+            if self.presenter.isLoading {
+                SpinnerView(isAnimating: true, style: .large)
             }
-        }.alert(isPresented: self.$containerModel.hasError) {
+        }.alert(isPresented: self.$presenter.hasError) {
             Alert(title: Text(""),
-                  message: Text(self.containerModel.errorMessage),
-                  dismissButton: .default(Text("OK")) {
+                  message: Text(self.presenter.errorMessage),
+                  dismissButton: .default(Text("repeat")) {
                     
+                self.content.iPresenter?.onClickError()
             })
         }
 //        }.overlay(ImageViewerRemote(imageURL: self.$urlString, viewerShown: self.$needShowViewer))
     }
     
+}
+
+// MARK: - IContainer
+extension ContainerView: IContainer {
+    
     func showErrorMessage(_ message: String?) {
-        self.containerModel.showErrorMessage(message)
+        self.presenter.showErrorMessage(message)
     }
     
     func setLoadingVisible(_ visible: Bool) {
-        self.containerModel.setLoadinVisible(visible)
+        self.presenter.setLoadinVisible(visible)
     }
-    
 }

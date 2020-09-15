@@ -9,20 +9,15 @@
 import SwiftUI
 
 // MARK: - IFilmDetailsView
-protocol IFilmDetailsView: IInputView, Modellable {
+protocol IFilmDetailsView: Presentable {
     
-    var output: IFilmDetailsInteractor? { get set }
 }
 
 // MARK: - FilmDetailsView
 struct FilmDetailsView: View {
     
 // MARK: - Properties
-    var output: IFilmDetailsInteractor?
-    var container: IContainer?
-    
-// MARK: - Model
-    @ObservedObject var model = FilmDetailsViewModel()
+    @ObservedObject var presenter = FilmDetailsPresenter()
 
 // MARK: -  body
     var body: some View {
@@ -37,23 +32,19 @@ struct FilmDetailsView: View {
                 
                 self.genres
                 
-                Text(self.model.filmModel.filmDescription ?? "Описание отсутствует")
+                Text(self.getModelFromFilm(self.presenter.data.film).filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }
             .padding(.top)
             
-        }
-        .navigationBarTitle(Text(self.model.filmModel.localizedName ?? ""), displayMode: .large)
-            
-        .onAppear() {
-            self.output?.onAppear()
-        }
+        }.navigationBarTitle(Text(self.getModelFromFilm(self.presenter.data.film).localizedName ?? ""),
+                             displayMode: .large)
     }
     
 // MARK: - filmImage
     private var filmImage: some View {
-        NetworkImage(urlString: self.model.filmModel.imageURL)
+        NetworkImage(urlString: self.getModelFromFilm(self.presenter.data.film).imageURL)
             .frame(width: UIScreen.main.bounds.width / 2.5,
                    height: 170,
                    alignment: .center).onTapGesture {
@@ -68,14 +59,14 @@ struct FilmDetailsView: View {
     private var filmInfo: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             
-            Text(self.model.filmModel.name ?? "")
-                .id(self.model.filmModel.name.hashValue)
+            Text(self.getModelFromFilm(self.presenter.data.film).name ?? "")
+                .id(self.getModelFromFilm(self.presenter.data.film).name.hashValue)
             
-            Text("Год: \(String(self.model.filmModel.year ?? 0))")
+            Text("Год: \(String(self.getModelFromFilm(self.presenter.data.film).year ?? 0))")
             
             HStack(spacing: .zero) {
                 Text("Рейтинг: ")
-                Text.fromRaiting(self.model.filmModel.rating)
+                Text.fromRaiting(self.getModelFromFilm(self.presenter.data.film).rating)
             }
         }
     }
@@ -85,7 +76,7 @@ struct FilmDetailsView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Spacer(minLength: 15.0)
-                ForEach(self.model.filmModel.genres, id: \.hashValue) { genre in
+                ForEach(self.getModelFromFilm(self.presenter.data.film).genres, id: \.hashValue) { genre in
                     Text(genre.capitalized(with: nil))
                         .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                         .font(.subheadline)
@@ -105,11 +96,23 @@ struct FilmDetailsView: View {
 // MARK: - IFilmDetailsView
 extension FilmDetailsView: IFilmDetailsView {
     
-    var viewModel: IViewModel? { self.model }
+    var iPresenter: IPresenter? { self.presenter }
+}
+
+// MARK: - getModelFromFilm
+extension FilmDetailsView {
     
-    func updateModel(data: Any?) {
-        self.model.update(data: data)
+    private func getModelFromFilm(_ film: Film) -> FilmModel {
+        return FilmModel(id: String(film.id),
+                         localizedName: film.localizedName,
+                         year: film.year,
+                         name: film.name,
+                         rating: film.rating,
+                         imageURL: film.imageURL,
+                         filmDescription: film.filmDescription,
+                         genres: film.genres)
     }
+    
 }
 
 // MARK: - PreviewProvider

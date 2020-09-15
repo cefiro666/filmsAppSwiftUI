@@ -63,4 +63,5 @@ struct NetworkImage_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
         NetworkImage(urlString: "https://www.apple.com/favicon.ico")
     }
+    
 }

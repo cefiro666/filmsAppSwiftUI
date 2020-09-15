@@ -12,14 +12,12 @@ import SwiftUI
 struct YearHeaderView: View {
 
 // MARK: - Properties
-    var yearString: String?
+    var yearString: String
     
 // MARK: - body
     var body: some View {
-        
         VStack {
-            
-            Text(self.yearString ?? "")
+            Text(self.yearString)
                 .font(.title)
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
@@ -42,4 +40,5 @@ struct YearHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         YearHeaderView(yearString: "1996")
     }
+    
 }

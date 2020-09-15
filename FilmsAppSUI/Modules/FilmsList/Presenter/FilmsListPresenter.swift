@@ -6,7 +6,7 @@
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - Constants
 fileprivate struct Constants {
@@ -17,64 +17,86 @@ fileprivate struct Constants {
 // MARK: - IFilmsListPresenter
 protocol IFilmsListPresenter: IPresenter {
     
-    var output: IFilmsListView? { get set }
-    func setData(data: FilmsListData?)
+    var view: IFilmsListView? { get set }
+    var router: IFilmsListRouter? { get set }
+    var data: FilmsListData { get }
+    
+    func viewOnAppear()
+    func onClickGenre(_ genre: String)
+    func onClickFilmWithId(_ id: String)
 }
 
 // MARK: - FilmsListPresenter
-class FilmsListPresenter: IFilmsListPresenter {
+final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
     
-// MARK: - Output
-    lazy var output: IFilmsListView? = nil
+// MARK: - Properties
+    lazy var view: IFilmsListView? = nil
+    var router: IFilmsListRouter?
+
+    var listener: IContainer?
     
-// MARK: - setData
-    func setData(data: FilmsListData?) {
-        guard let data = data else { return }
+// MARK: - Data
+    @Published var data = FilmsListData()
     
-        let sections = self.getSectionsFrom(data.isFilter ? data.filteredFilms : data.films)
-        self.output?.updateModel(data: sections)
+// MARK: - UseCases
+    private var getFilmsUseCase: GetFilmsUseCase?
+    
+    func setUseCase(_ useCase: Any?) -> Self {
+        switch useCase {
+        case is GetFilmsUseCase:
+            self.getFilmsUseCase = useCase as? GetFilmsUseCase
+            
+        default:
+            break
+        }
         
-        var genres = Array(Set(data.films.flatMap { $0.genres })).sorted()
-        genres.insert(Constants.kAllGenres, at: .zero)
-        self.output?.updateModel(data: genres)
-    }
-    
-// MARK: - showErrorMessage
-    func showErrorMessage(_ message: String?) {
-        self.output?.showErrorMessage(message)
-    }
-    
-// MARK: - setLoadingVisible
-    func setLoadingVisible(_ visible: Bool) {
-        self.output?.setLoadingVisible(visible)
+        return self
     }
     
 // MARK: - Methods
-    private func getSectionsFrom(_ films: [Film]) -> [SectionModel] {
-        var secions = [SectionModel]()
-        let yearsSet = Set<Int>(films.compactMap { $0.year }).sorted().reversed()
-        for year in yearsSet {
-            let stringYear = String(year)
-            let sameYearsSection = SectionModel(id: stringYear)
-            sameYearsSection.header = HeaderModel(id: stringYear, title: stringYear)
-            sameYearsSection.elements = films
-                .filter { $0.year == year }
-                .map { film in
-
-                    FilmModel(id: String(film.id),
-                              localizedName: film.localizedName,
-                              year: film.year,
-                              name: film.name,
-                              rating: film.rating,
-                              imageURL: film.imageURL,
-                              filmDescription: film.filmDescription,
-                              genres: film.genres)
-            }
-
-            secions.append(sameYearsSection)
+    func viewOnAppear() {
+        if self.data.sourceFilms.isEmpty {
+            self.getFilms()
+        }
+    }
+    
+    func onClickGenre(_ genre: String) {
+        if genre == Constants.kAllGenres {
+            self.data.films = self.data.sourceFilms
+            return
         }
         
-        return secions
+        self.data.films = self.data.sourceFilms.filter { $0.genres.contains(genre) }
+    }
+    
+    func onClickFilmWithId(_ id: String) {
+        guard let film = self.data.films.first(where: { $0.id == Int(id) }) else { return }
+        self.router?.pushFilmDetailsScreen(film: film)
+    }
+    
+    func onClickError() {
+        self.getFilms()
+    }
+    
+    private func getFilms() {
+        self.view?.setLoadingVisible(true)
+        self.getFilmsUseCase?.execute(completion: { [weak self] (success, films, errorMessage) in
+            self?.view?.setLoadingVisible(false)
+            if !success {
+                self?.view?.showErrorMessage("Похоже, что-то пошло не так. Попробуйте снова.")
+                return
+            }
+            
+            self?.data.sourceFilms = films
+            self?.data.films = films
+            self?.configureGenres()
+        })
+    }
+    
+    private func configureGenres() {
+        var genres = Array(Set(self.data.films.flatMap { $0.genres })).sorted()
+        genres.insert(Constants.kAllGenres, at: .zero)
+        self.data.genres = genres
     }
     
 }

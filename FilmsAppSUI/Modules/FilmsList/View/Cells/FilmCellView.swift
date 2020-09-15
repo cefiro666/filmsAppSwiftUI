@@ -17,9 +17,7 @@ struct FilmCellView: View {
 // MARK: - body
     var body: some View {
         HStack(alignment: .top) {
-            
             VStack(alignment: .leading, spacing: 6.0) {
-                
                 Text(self.filmModel.localizedName ?? "")
                     .foregroundColor(.black)
                     .font(.system(size: 16))

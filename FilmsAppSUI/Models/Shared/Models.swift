@@ -20,6 +20,7 @@ class HeaderModel: Identifiable {
         self.id = id
         self.title = title
     }
+    
 }
 
 // MARK: - RowModel
@@ -32,6 +33,7 @@ class RowModel: Identifiable {
     required init(id: String) {
         self.id = id
     }
+    
 }
 
 // MARK: - SectionModel
@@ -46,4 +48,5 @@ class SectionModel: Identifiable {
     required init(id: String) {
         self.id = id
     }
+    
 }

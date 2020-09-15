@@ -8,51 +8,41 @@
 
 import UIKit
 
-// MARK: - IViewModel
-protocol IViewModel: class {
+// MARK: - IPresenter
+protocol IPresenter: class {
     
     var listener: IContainer? { get set }
     
-    func update(data: Any?)
+    func onClickError()
 }
 
-// MARK: - Modellable
-protocol Modellable {
+extension IPresenter {
     
-    var viewModel: IViewModel? { get }
+    func onClickError() {}
+}
+
+// MARK: - Presentable
+protocol Presentable {
+    
+    var iPresenter: IPresenter? { get }
     
     func showErrorMessage(_ message: String?)
-    
     func setLoadingVisible(_ visible: Bool)
 }
 
-extension Modellable {
+extension Presentable {
     
     func showErrorMessage(_ message: String?) {
-        self.viewModel?.listener?.showErrorMessage(message)
+        self.iPresenter?.listener?.showErrorMessage(message)
     }
     
     func setLoadingVisible(_ visible: Bool) {
-        self.viewModel?.listener?.setLoadingVisible(visible)
+        self.iPresenter?.listener?.setLoadingVisible(visible)
     }
-
 }
 
 // MARK: - IConfigurator
 protocol IConfigurator: class {
     
     func createScreen(_ data: Any?) -> UIViewController
-}
-
-// MARK: - IPresenter
-protocol IPresenter: class {
-    
-    func showErrorMessage(_ message: String?)
-    func setLoadingVisible(_ state: Bool)
-}
-
-// MARK: - IInputView
-protocol IInputView {
-    
-    func updateModel(data: Any?)
 }

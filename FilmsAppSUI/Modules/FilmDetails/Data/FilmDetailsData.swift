@@ -2,16 +2,16 @@
 //  FilmDetailsData.swift
 //  FilmsAppSUI
 //
-//  Created by Виталий Баник on 08.09.2020.
+//  Created by Виталий Баник on 15.09.2020.
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - FilmDetailsData
-class FilmDetailsData {
+struct FilmDetailsData {
     
-// MARK: - Properties
-    var film: Film?
-
+// MARK: - Published
+    var film = Film.placeholder
+    
 }

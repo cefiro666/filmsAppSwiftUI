@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Navigator
 class Navigator {
     
-// MARK: - shared
+// MARK: - Singletone
     static let shared = Navigator()
     private init() {}
     
@@ -40,13 +40,13 @@ class Navigator {
     }
     
     func push<Content: View>(screen: Content.Type, data: Any? = nil) {
-        if let viewController = ModuleConfig.shared.config(screen: screen)?.createScreen(data) {
+        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
     func present<Content: View>(screen: Content.Type, data: Any? = nil) {
-        if let viewController = ModuleConfig.shared.config(screen: screen)?.createScreen(data) {
+        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
             self.navigationController?.present(UINavigationController(rootViewController: viewController),
                                                animated: true,
                                                completion: nil)
@@ -54,11 +54,11 @@ class Navigator {
     }
     
     func get<Content: View>(screen: Content.Type, data: Any? = nil) -> UIViewController? {
-        return ModuleConfig.shared.config(screen: screen)?.createScreen(data)
+        return ModuleConfig.config(screen: screen)?.createScreen(data)
     }
     
     func setRootController<Content:View>(screen: Content.Type, data: Any? = nil) {
-        if let viewController = ModuleConfig.shared.config(screen: screen)?.createScreen(data) {
+        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
             let navigationController = UINavigationController(rootViewController: viewController)
             navigationController.isNavigationBarHidden = true
             navigationController.navigationBar.prefersLargeTitles = true

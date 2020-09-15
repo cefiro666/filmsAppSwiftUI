@@ -11,21 +11,15 @@ import UIKit
 
 // MARK: - FilmDetailsConfigurator
 final class FilmDetailsConfigurator: IConfigurator {
-    
-// MARK: - shared
-    static let shared = FilmDetailsConfigurator()
-    private init() {}
-    
+        
 // MARK: - Methods
     func createScreen(_ data: Any?) -> UIViewController {
-        var view = FilmDetailsView()
-        let presenter = FilmDetailsPresenter()
-        let interactor = FilmDetailsInteractor()
+        let view = FilmDetailsView()
+        let router = FilmDetailsRouter()
         
-        interactor.setFilm(data as? Film)
-        interactor.output = presenter
-        presenter.output = view
-        view.output = interactor
+        view.presenter.setFilm(data as? Film)
+        view.presenter.router = router
+        view.presenter.view = view
         
         return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: view))
     }
