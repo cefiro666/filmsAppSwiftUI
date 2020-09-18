@@ -46,14 +46,7 @@ struct FilmCellView: View {
 struct FilmCellView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FilmCellView(filmModel: FilmModel(id: String(Film.placeholder.id),
-                                          localizedName: Film.placeholder.localizedName,
-                                          year: Film.placeholder.year,
-                                          name: Film.placeholder.name,
-                                          rating: Film.placeholder.rating,
-                                          imageURL: Film.placeholder.imageURL,
-                                          filmDescription: Film.placeholder.filmDescription,
-                                          genres: Film.placeholder.genres))
+        FilmCellView(filmModel: FilmModel(film: Film.placeholder))
     }
     
 }

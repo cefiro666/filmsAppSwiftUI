@@ -13,10 +13,9 @@ struct FilmsListData {
     
 // MARK: - Published
     var genres: [String] = []
-    var films: [Film] = []
+    var filmsModels: [FilmModel] = []
     
+#warning("норм ли хранить в одном классе данные для отображения во вью и сырые, которые не для отображения")
 // MARK: - Properties
-    var sourceFilms: [Film] = []
+    var films: [Film] = []
 }
-
-// норм ли хранить в одном классе данные для отображения во вью и сырые, которые не для отображения

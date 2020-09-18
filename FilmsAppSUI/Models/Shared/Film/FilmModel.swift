@@ -21,36 +21,21 @@ class FilmModel: RowModel {
     var genres: [String] = []
     
 // MARK: - Inits
-    convenience init(id: String,
-                     localizedName: String?,
-                     year: Int?,
-                     name: String?,
-                     rating: Float?,
-                     imageURL: String?,
-                     filmDescription: String?,
-                     genres: [String]) {
+    convenience init(film: Film) {
+        self.init(id: String(film.id))
         
-        self.init(id: id)
-        
-        self.localizedName = localizedName
-        self.year = year
-        self.name = name
-        self.rating = rating
-        self.imageURL = imageURL
-        self.filmDescription = filmDescription
-        self.genres = genres
+        self.localizedName = film.localizedName
+        self.year = film.year
+        self.name = film.name
+        self.rating = film.rating
+        self.imageURL = film.imageURL
+        self.filmDescription = film.filmDescription
+        self.genres = film.genres
     }
     
 //MARK: - placeholder
     static var placeholder: FilmModel {
-        return FilmModel(id: String(Film.placeholder.id),
-                         localizedName: Film.placeholder.localizedName,
-                         year: Film.placeholder.year,
-                         name: Film.placeholder.name,
-                         rating: Film.placeholder.rating,
-                         imageURL: Film.placeholder.imageURL,
-                         filmDescription: Film.placeholder.filmDescription,
-                         genres: Film.placeholder.genres)
+        return FilmModel(film: Film.placeholder)
     }
     
 }

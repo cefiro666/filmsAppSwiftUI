@@ -53,18 +53,18 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
     
 // MARK: - Methods
     func viewOnAppear() {
-        if self.data.sourceFilms.isEmpty {
+        if self.data.films.isEmpty {
             self.getFilms()
         }
     }
     
     func onClickGenre(_ genre: String) {
         if genre == Constants.kAllGenres {
-            self.data.films = self.data.sourceFilms
+            self.data.filmsModels = self.data.films.map { FilmModel(film: $0) }
             return
         }
         
-        self.data.films = self.data.sourceFilms.filter { $0.genres.contains(genre) }
+        self.data.filmsModels = self.data.films.map { FilmModel(film: $0) }.filter { $0.genres.contains(genre) }
     }
     
     func onClickFilmWithId(_ id: String) {
@@ -85,14 +85,14 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
                 return
             }
             
-            self?.data.sourceFilms = films
             self?.data.films = films
+            self?.data.filmsModels = films.map { FilmModel(film: $0) }
             self?.configureGenres()
             
 #warning("Check change async fileds for Film object")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 withAnimation {
-                    self?.data.films[3] = Film.placeholder
+                    self?.data.filmsModels[3].name = "asdadadsad"
                 }
             }
         })

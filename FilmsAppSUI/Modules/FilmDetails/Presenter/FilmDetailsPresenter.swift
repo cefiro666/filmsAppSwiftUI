@@ -33,19 +33,8 @@ final class FilmDetailsPresenter: ObservableObject, IFilmDetailsPresenter {
 // MARK: - Methods
     func setFilm(_ film: Film?) {
         if let film = film {
-            self.data.filmModel = getModelFromFilm(film)
+            self.data.filmModel = FilmModel(film: film)
         }
-    }
-    
-    private func getModelFromFilm(_ film: Film) -> FilmModel {
-        return FilmModel(id: String(film.id),
-                         localizedName: film.localizedName,
-                         year: film.year,
-                         name: film.name,
-                         rating: film.rating,
-                         imageURL: film.imageURL,
-                         filmDescription: film.filmDescription,
-                         genres: film.genres)
     }
     
 }
