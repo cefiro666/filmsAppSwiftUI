@@ -14,7 +14,7 @@ import UIKit
 public struct NetworkImage: SwiftUI.View {
     
 // MARK: - Properties
-    public let urlString: String?
+    public let urlString: String
     public let placeholderImage: UIImage?
     public let failureImage: UIImage?
     
@@ -22,7 +22,7 @@ public struct NetworkImage: SwiftUI.View {
     private let defaultImage = UIImage(named: "defaultImage") ?? UIImage()
     
 // MARK: - Inits
-    init(urlString: String?,
+    init(urlString: String,
          placeholderImage: UIImage? = nil,
          failureImage: UIImage? = nil) {
         
@@ -42,7 +42,11 @@ public struct NetworkImage: SwiftUI.View {
     
 // MARK: - Methods
     private func loadImage() {
-        guard let imageURL = URL(string: self.urlString ?? ""), self.image == nil else { return }
+        guard let imageURL = URL(string: self.urlString), self.image == nil else {
+            self.image = self.failureImage ?? self.defaultImage
+            return
+        }
+        
         KingfisherManager.shared.retrieveImage(with: imageURL,
                                                options: [.cacheOriginalImage]) { result in
             switch result {

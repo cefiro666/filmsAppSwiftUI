@@ -14,11 +14,10 @@ final class FilmsListConfigurator: IConfigurator {
 
 // MARK: - Methods
     func createScreen(_ data: Any?) -> UIViewController {
-        var view = FilmsListView()
+        let view = FilmsListView()
         let router = FilmsListRouter()
 
-        view.presenter = view.presenter
-            .setUseCase(GetFilmsUseCaseImpl())
+        view.presenter.setUseCase(GetFilmsUseCaseImpl())
         
         view.presenter.router = router
         view.presenter.view = view

@@ -11,7 +11,7 @@ import Foundation
 // MARK: - IFilmDetailsPresenter
 protocol IFilmDetailsPresenter: IPresenter {
     
-    var view: IFilmDetailsView? { get set }
+    var view: Presentable? { get set }
     var router: IFilmDetailsRouter? { get set }
     var data: FilmDetailsData { get }
     
@@ -22,7 +22,7 @@ protocol IFilmDetailsPresenter: IPresenter {
 final class FilmDetailsPresenter: ObservableObject, IFilmDetailsPresenter {
     
 // MARK: - Properties
-    lazy var view: IFilmDetailsView? = nil
+    lazy var view: Presentable? = nil
     var router: IFilmDetailsRouter?
 
     var listener: IContainer?
@@ -33,8 +33,19 @@ final class FilmDetailsPresenter: ObservableObject, IFilmDetailsPresenter {
 // MARK: - Methods
     func setFilm(_ film: Film?) {
         if let film = film {
-            self.data.film = film
+            self.data.filmModel = getModelFromFilm(film)
         }
+    }
+    
+    private func getModelFromFilm(_ film: Film) -> FilmModel {
+        return FilmModel(id: String(film.id),
+                         localizedName: film.localizedName,
+                         year: film.year,
+                         name: film.name,
+                         rating: film.rating,
+                         imageURL: film.imageURL,
+                         filmDescription: film.filmDescription,
+                         genres: film.genres)
     }
     
 }

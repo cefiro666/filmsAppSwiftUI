@@ -18,6 +18,7 @@ final class FilmDetailsConfigurator: IConfigurator {
         let router = FilmDetailsRouter()
         
         view.presenter.setFilm(data as? Film)
+        
         view.presenter.router = router
         view.presenter.view = view
         

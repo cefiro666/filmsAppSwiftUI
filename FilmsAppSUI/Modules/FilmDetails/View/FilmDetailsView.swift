@@ -8,15 +8,10 @@
 
 import SwiftUI
 
-// MARK: - IFilmDetailsView
-protocol IFilmDetailsView: Presentable {
-    
-}
-
 // MARK: - FilmDetailsView
 struct FilmDetailsView: View {
     
-// MARK: - Properties
+// MARK: - Presenter
     @ObservedObject var presenter = FilmDetailsPresenter()
 
 // MARK: -  body
@@ -24,95 +19,32 @@ struct FilmDetailsView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(spacing: 20.0) {
-                    self.filmImage
-                    self.filmInfo
+                    FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "")
+                    FilmInfoView(name: self.presenter.data.filmModel.name ?? "",
+                                 year: self.presenter.data.filmModel.year ?? 0,
+                                 rating: self.presenter.data.filmModel.rating ?? 0)
                 }
                 .padding(.horizontal)
                 .frame(minWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
-                self.genres
+                FilmGenresView(genres: self.presenter.data.filmModel.genres)
                 
-                Text(self.getModelFromFilm(self.presenter.data.film).filmDescription ?? "Описание отсутствует")
+                Text(self.presenter.data.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }
             .padding(.top)
             
-        }.navigationBarTitle(Text(self.getModelFromFilm(self.presenter.data.film).localizedName ?? ""),
+        }.navigationBarTitle(Text(self.presenter.data.filmModel.localizedName ?? ""),
                              displayMode: .large)
-    }
-    
-// MARK: - filmImage
-    private var filmImage: some View {
-        NetworkImage(urlString: self.getModelFromFilm(self.presenter.data.film).imageURL)
-            .frame(width: UIScreen.main.bounds.width / 2.5,
-                   height: 170,
-                   alignment: .center).onTapGesture {
-                
-//            if URL(string: self.model.filmModel.imageURL ?? "") == nil { return }
-//            self.urlString = self.model.filmModel.imageURL ?? ""
-//            self.needShowViewer.toggle()
-        }
-    }
-    
-// MARK: - filmInfo
-    private var filmInfo: some View {
-        VStack(alignment: .leading, spacing: 8.0) {
-            
-            Text(self.getModelFromFilm(self.presenter.data.film).name ?? "")
-                .id(self.getModelFromFilm(self.presenter.data.film).name.hashValue)
-            
-            Text("Год: \(String(self.getModelFromFilm(self.presenter.data.film).year ?? 0))")
-            
-            HStack(spacing: .zero) {
-                Text("Рейтинг: ")
-                Text.fromRaiting(self.getModelFromFilm(self.presenter.data.film).rating)
-            }
-        }
-    }
-    
-// MARK: - genres
-    private var genres: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                Spacer(minLength: 15.0)
-                ForEach(self.getModelFromFilm(self.presenter.data.film).genres, id: \.hashValue) { genre in
-                    Text(genre.capitalized(with: nil))
-                        .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                        .font(.subheadline)
-                        .padding(5.0)
-                        .eraseToAnyView()
-                        .background(Color(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)))
-                        .cornerRadius(10.0)
-                }
-                Spacer(minLength: 15.0)
-            }
-            
-        }.padding(.vertical)
     }
     
 }
 
 // MARK: - IFilmDetailsView
-extension FilmDetailsView: IFilmDetailsView {
+extension FilmDetailsView: Presentable {
     
     var iPresenter: IPresenter? { self.presenter }
-}
-
-// MARK: - getModelFromFilm
-extension FilmDetailsView {
-    
-    private func getModelFromFilm(_ film: Film) -> FilmModel {
-        return FilmModel(id: String(film.id),
-                         localizedName: film.localizedName,
-                         year: film.year,
-                         name: film.name,
-                         rating: film.rating,
-                         imageURL: film.imageURL,
-                         filmDescription: film.filmDescription,
-                         genres: film.genres)
-    }
-    
 }
 
 // MARK: - PreviewProvider

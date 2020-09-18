@@ -17,7 +17,7 @@ fileprivate struct Constants {
 // MARK: - IFilmsListPresenter
 protocol IFilmsListPresenter: IPresenter {
     
-    var view: IFilmsListView? { get set }
+    var view: Presentable? { get set }
     var router: IFilmsListRouter? { get set }
     var data: FilmsListData { get }
     
@@ -30,7 +30,7 @@ protocol IFilmsListPresenter: IPresenter {
 final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
     
 // MARK: - Properties
-    lazy var view: IFilmsListView? = nil
+    lazy var view: Presentable? = nil
     var router: IFilmsListRouter?
 
     var listener: IContainer?
@@ -41,7 +41,7 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
 // MARK: - UseCases
     private var getFilmsUseCase: GetFilmsUseCase?
     
-    func setUseCase(_ useCase: Any?) -> Self {
+    func setUseCase(_ useCase: Any?) {
         switch useCase {
         case is GetFilmsUseCase:
             self.getFilmsUseCase = useCase as? GetFilmsUseCase
@@ -49,8 +49,6 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
         default:
             break
         }
-        
-        return self
     }
     
 // MARK: - Methods
@@ -90,6 +88,13 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
             self?.data.sourceFilms = films
             self?.data.films = films
             self?.configureGenres()
+            
+#warning("Check change async fileds for Film object")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                withAnimation {
+                    self?.data.films[3] = Film.placeholder
+                }
+            }
         })
     }
     

@@ -18,8 +18,10 @@ protocol IContainer {
 // MARK: - ContainerView
 struct ContainerView<Content: View&Presentable>: View {
     
-// MARK: - Properties
+// MARK: - Presenter
     @ObservedObject var presenter = ContainerPresenter()
+    
+// MARK: - Content
     private var content: Content
     
 // MARK: - Inits
@@ -41,6 +43,13 @@ struct ContainerView<Content: View&Presentable>: View {
                     
                 self.content.iPresenter?.onClickError()
             })
+        }
+        
+        .onAppear {
+            UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().allowsSelection = false
+            UITableViewCell.appearance().selectionStyle = .none
         }
     }
     

@@ -12,9 +12,9 @@ import SwiftUI
 final class ContainerPresenter: ObservableObject {
     
 // MARK: - Properties
-    @Published var isLoading: Bool = false
-    @Published var hasError: Bool = false
-    @Published var errorMessage: String = ""
+    @Published var isLoading = false
+    @Published var hasError = false
+    @Published var errorMessage = ""
     
 // MARK: - Methods
     func showErrorMessage(_ message: String?) {
