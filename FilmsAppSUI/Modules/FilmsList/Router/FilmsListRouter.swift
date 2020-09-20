@@ -8,18 +8,19 @@
 
 import Foundation
 
-// MARK: - IFilmsListRouter
-protocol IFilmsListRouter {
+// MARK: - FilmsListRouter
+protocol FilmsListRouter {
     
     func pushFilmDetailsScreen(film: Film)
 }
 
-// MARK: - FilmsListRouter
-class FilmsListRouter: IFilmsListRouter {
+// MARK: - FilmsListRouterImpl
+class FilmsListRouterImpl: FilmsListRouter {
     
 // MARK: - Methods
     func pushFilmDetailsScreen(film: Film) {
-        Navigator.shared.push(screen: FilmDetailsView.self, title: film.localizedName, data: film)
+        Navigator.shared.push(view: FilmDetailsView(presenter: FilmDetailsPresenterImpl()),
+                              title: film.localizedName)
     }
     
 }

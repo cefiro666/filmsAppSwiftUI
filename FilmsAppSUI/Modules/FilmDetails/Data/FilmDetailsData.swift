@@ -12,5 +12,5 @@ import SwiftUI
 struct FilmDetailsData {
     
 // MARK: - Published
-    var filmModel = FilmModel(film: Film.placeholder)
+    var filmModel = FilmModel.placeholder
 }

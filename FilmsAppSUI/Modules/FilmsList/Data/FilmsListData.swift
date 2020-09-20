@@ -11,11 +11,9 @@ import SwiftUI
 // MARK: - FilmsListData
 struct FilmsListData {
     
-// MARK: - Published
+// MARK: - Properties
     var genres: [String] = []
     var filmsModels: [FilmModel] = []
-    
-#warning("норм ли хранить в одном классе данные для отображения во вью и сырые, которые не для отображения")
-// MARK: - Properties
+
     var films: [Film] = []
 }

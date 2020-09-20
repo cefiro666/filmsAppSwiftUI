@@ -47,8 +47,7 @@ public struct NetworkImage: SwiftUI.View {
             return
         }
         
-        KingfisherManager.shared.retrieveImage(with: imageURL,
-                                               options: [.cacheOriginalImage]) { result in
+        KingfisherManager.shared.retrieveImage(with: imageURL, options: [.cacheOriginalImage]) { result in
             switch result {
             case .success(let imageResult):
                 self.image = imageResult.image

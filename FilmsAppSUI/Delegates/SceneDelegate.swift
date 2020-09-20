@@ -9,11 +9,14 @@
 import UIKit
 import SwiftUI
 
+// MARK: SceneDelegate
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+// MARK: Properties
     var window: UIWindow?
-    private static var _window:UIWindow?
+    private static var currentWindow: UIWindow?
 
+// MARK: Methods
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
@@ -22,15 +25,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
 
             self.window = window
-            SceneDelegate._window = self.window
+            SceneDelegate.currentWindow = self.window
             window.makeKeyAndVisible()
         }
         
-        Navigator.shared.setRootController(screen: FilmsListView.self)
+        Navigator.shared.setRootController(view: FilmsListView(presenter: FilmsListPresenterImpl()))
     }
     
     static func setupRoot(viewController: UIViewController) {
-        _window?.rootViewController = viewController
+        SceneDelegate.currentWindow?.rootViewController = viewController
     }
 
 }

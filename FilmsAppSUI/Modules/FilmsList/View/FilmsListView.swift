@@ -9,15 +9,17 @@
 import SwiftUI
 
 // MARK: - FilmsListView
-struct FilmsListView: View {
+struct FilmsListView<Presenter>: View where Presenter: FilmsListPresenter {
     
 // MARK: - Presenter
-    @ObservedObject var presenter = FilmsListPresenter()
+    @ObservedObject var presenter: Presenter
     
 // MARK: - Body
     var body: some View {
         List {
-            FilmsListGenresView(genres: self.presenter.data.genres) { self.presenter.onClickGenre($0) }
+            GenresView(genres: self.presenter.data.genres, clickHandler: { genre in
+                self.presenter.onClickGenre(genre)
+            })
             
             ForEach(self.getSectionsFromData(self.presenter.data.filmsModels)) { section in
                 Section(header: YearHeaderView(yearString: section.header?.title ?? "")) {
@@ -41,23 +43,26 @@ struct FilmsListView: View {
 }
 
 // MARK: - IFilmsListView
-extension FilmsListView: Presentable {
-
-    var iPresenter: IPresenter? { self.presenter }
+extension FilmsListView: Presentable, Configurable {
+    
+    var configurator: Configurator { FilmsListConfigurator() }
 }
 
-// MARK: - getSectionsFrom
+// MARK: - getSectionsFromData
 extension FilmsListView {
     
-#warning("Подумать как унифицировать метод")
     private func getSectionsFromData(_ data: [FilmModel]) -> [SectionModel] {
         var secions = [SectionModel]()
-        let yearsSet = Set<Int>(data.compactMap { $0.year }).sorted().reversed()
+        let yearsSet = Set<Int>(data.compactMap { $0.year })
+            .sorted()
+            .reversed()
+        
         for year in yearsSet {
             let stringYear = String(year)
             let sameYearsSection = SectionModel(id: stringYear)
             sameYearsSection.header = HeaderModel(id: stringYear, title: stringYear)
-            sameYearsSection.elements = data.filter { $0.year == year }
+            sameYearsSection.elements = data
+                .filter { $0.year == year }
 
             secions.append(sameYearsSection)
         }
@@ -70,6 +75,6 @@ extension FilmsListView {
 struct FilmsListView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FilmsListView()
+        FilmsListView(presenter: FilmsListPresenterImpl())
     }
 }

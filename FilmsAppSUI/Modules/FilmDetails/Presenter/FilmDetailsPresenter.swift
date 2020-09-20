@@ -8,33 +8,35 @@
 
 import Foundation
 
-// MARK: - IFilmDetailsPresenter
-protocol IFilmDetailsPresenter: IPresenter {
+// MARK: - FilmDetailsPresenter
+protocol FilmDetailsPresenter: Presenter {
     
-    var view: Presentable? { get set }
-    var router: IFilmDetailsRouter? { get set }
+    associatedtype ViewType: Presentable
+    
+    var view: ViewType? { get set }
+    var router: FilmDetailsRouter? { get set }
     var data: FilmDetailsData { get }
     
     func setFilm(_ film: Film?)
 }
 
-// MARK: - FilmDetailsPresenter
-final class FilmDetailsPresenter: ObservableObject, IFilmDetailsPresenter {
+// MARK: - FilmDetailsPresenterImpl
+final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
+    
+    typealias ViewType = FilmDetailsView
     
 // MARK: - Properties
-    lazy var view: Presentable? = nil
-    var router: IFilmDetailsRouter?
+    var view: FilmDetailsView<FilmDetailsPresenterImpl>?
+    var router: FilmDetailsRouter?
 
-    var listener: IContainer?
+    var container: Container?
     
 // MARK: - Data
     @Published var data = FilmDetailsData()
         
 // MARK: - Methods
     func setFilm(_ film: Film?) {
-        if let film = film {
-            self.data.filmModel = FilmModel(film: film)
-        }
+        self.data.filmModel = FilmModel(film: film ?? Film.placeholder)
     }
     
 }

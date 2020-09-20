@@ -11,6 +11,7 @@ import Moya
 // MARK: - GetFilmsUseCase
 protocol GetFilmsUseCase {
     
+// MARK: - Methods
     func execute(completion: @escaping (_ success: Bool, _ films: [Film], _ errorMessage: String?) -> ())
 }
 
@@ -34,8 +35,7 @@ class GetFilmsUseCaseImpl: GetFilmsUseCase {
                 completion(true, films, nil)
                 
             case .failure(let error):
-                let errorDescription = error.localizedDescription
-                completion(false, [], errorDescription)
+                completion(false, [], error.localizedDescription)
             }
         }
     }

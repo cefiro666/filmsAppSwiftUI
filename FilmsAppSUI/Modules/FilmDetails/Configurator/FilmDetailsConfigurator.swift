@@ -10,19 +10,26 @@ import SwiftUI
 import UIKit
 
 // MARK: - FilmDetailsConfigurator
-final class FilmDetailsConfigurator: IConfigurator {
-        
+final class FilmDetailsConfigurator: Configurator {
+       
+// MARK: - Properties
+    var view: FilmDetailsView<FilmDetailsPresenterImpl>!
+    
 // MARK: - Methods
-    func createScreen(_ data: Any?) -> UIViewController {
-        let view = FilmDetailsView()
-        let router = FilmDetailsRouter()
+    func createScreen() -> UIViewController {
+        self.view = FilmDetailsView(presenter: FilmDetailsPresenterImpl())
+        let router = FilmDetailsRouterImpl()
+
+        self.view.presenter.router = router
+        self.view.presenter.view = self.view
         
-        view.presenter.setFilm(data as? Film)
+//        configureBlock?(self as? Configurator)
         
-        view.presenter.router = router
-        view.presenter.view = view
-        
-        return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: view))
+        return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: self.view))
+    }
+    
+    func setFilm(film: Film) {
+        self.view.presenter.setFilm(film)
     }
     
 }

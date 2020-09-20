@@ -29,43 +29,38 @@ class Navigator {
             }
         }
         
-        return self.view?.navigationController
+        return self.viewController?.navigationController
     }
     
-    private weak var view: UIViewController?
+    private weak var viewController: UIViewController?
     
 // MARK: - Methods
-    func setup(view: UIViewController) {
-        self.view = view
+    func setup(viewController: UIViewController) {
+        self.viewController = viewController
     }
     
-    func push<Content: View>(screen: Content.Type, title: String, data: Any? = nil) {
-        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
-            viewController.title = title
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+    func push<Content: View&Configurable>(view: Content, title: String) {
+        let viewController = view.configurator.createScreen()
+        viewController.title = title
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func present<Content: View>(screen: Content.Type, title: String, data: Any? = nil) {
-        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
-            viewController.title = title
-            self.navigationController?.present(UINavigationController(rootViewController: viewController),
-                                               animated: true,
-                                               completion: nil)
-        }
+    func present<Content: View&Configurable>(view: Content, title: String) {
+        let viewController = view.configurator.createScreen()
+        viewController.title = title
+        self.navigationController?.present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }
     
-    func get<Content: View>(screen: Content.Type, data: Any? = nil) -> UIViewController? {
-        return ModuleConfig.config(screen: screen)?.createScreen(data)
+    func get<Content: View&Configurable>(view: Content) -> UIViewController? {
+        return view.configurator.createScreen()
     }
     
-    func setRootController<Content:View>(screen: Content.Type, data: Any? = nil) {
-        if let viewController = ModuleConfig.config(screen: screen)?.createScreen(data) {
-            let navigationController = UINavigationController(rootViewController: viewController)
-            navigationController.isNavigationBarHidden = true
-            navigationController.navigationBar.prefersLargeTitles = true
-            SceneDelegate.setupRoot(viewController: navigationController)
-        }
+    func setRootController<Content: View&Configurable>(view: Content) {
+        let viewController = view.configurator.createScreen()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.isNavigationBarHidden = true
+        navigationController.navigationBar.prefersLargeTitles = true
+        SceneDelegate.setupRoot(viewController: navigationController)
     }
     
     func pop() {

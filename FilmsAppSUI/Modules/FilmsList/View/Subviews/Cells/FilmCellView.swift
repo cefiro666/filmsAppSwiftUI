@@ -46,7 +46,7 @@ struct FilmCellView: View {
 struct FilmCellView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FilmCellView(filmModel: FilmModel(film: Film.placeholder))
+        FilmCellView(filmModel: FilmModel.placeholder)
     }
     
 }

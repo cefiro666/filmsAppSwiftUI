@@ -8,12 +8,12 @@
 
 import Foundation
 
-// MARK: - IFilmDetailsRouter
-protocol IFilmDetailsRouter {
+// MARK: - FilmDetailsRouter
+protocol FilmDetailsRouter {
     
 }
 
-// MARK: - FilmDetailsRouter
-class FilmDetailsRouter: IFilmDetailsRouter {
+// MARK: - FilmDetailsRouterImpl
+class FilmDetailsRouterImpl: FilmDetailsRouter {
     
 }

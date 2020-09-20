@@ -6,25 +6,27 @@
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
-// MARK: - IPresenter
-protocol IPresenter: class {
+// MARK: - Presenter
+protocol Presenter: ObservableObject {
     
-    var listener: IContainer? { get set }
+    var container: Container? { get set }
     
     func onClickError()
 }
 
-extension IPresenter {
+extension Presenter {
     
     func onClickError() {}
 }
 
 // MARK: - Presentable
 protocol Presentable {
+    associatedtype PresenterType: Presenter
     
-    var iPresenter: IPresenter? { get }
+    var presenter: PresenterType { get }
     
     func showErrorMessage(_ message: String?)
     func setLoadingVisible(_ visible: Bool)
@@ -33,16 +35,22 @@ protocol Presentable {
 extension Presentable {
     
     func showErrorMessage(_ message: String?) {
-        self.iPresenter?.listener?.showErrorMessage(message)
+        self.presenter.container?.showErrorMessage(message)
     }
     
     func setLoadingVisible(_ visible: Bool) {
-        self.iPresenter?.listener?.setLoadingVisible(visible)
+        self.presenter.container?.setLoadingVisible(visible)
     }
 }
 
-// MARK: - IConfigurator
-protocol IConfigurator: class {
+// MARK: - Configurator
+protocol Configurator: class {
     
-    func createScreen(_ data: Any?) -> UIViewController
+    func createScreen() -> UIViewController
+}
+
+// MARK: - Configurable
+protocol Configurable {
+    
+    var configurator: Configurator { get }
 }

@@ -9,10 +9,10 @@
 import SwiftUI
 
 // MARK: - FilmDetailsView
-struct FilmDetailsView: View {
+struct FilmDetailsView<Presenter>: View where Presenter: FilmDetailsPresenter {
     
 // MARK: - Presenter
-    @ObservedObject var presenter = FilmDetailsPresenter()
+    @ObservedObject var presenter: Presenter
 
 // MARK: -  body
     var body: some View {
@@ -24,34 +24,33 @@ struct FilmDetailsView: View {
                                  year: self.presenter.data.filmModel.year ?? 0,
                                  rating: self.presenter.data.filmModel.rating ?? 0)
                 }
+                    
                 .padding(.horizontal)
                 .frame(minWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
-                FilmGenresView(genres: self.presenter.data.filmModel.genres)
+                GenresView(genres: self.presenter.data.filmModel.genres, leftRightSpace: 15.0)
+                    .padding(.vertical)
                 
                 Text(self.presenter.data.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }
+                
             .padding(.top)
             
-        }.navigationBarTitle(Text(self.presenter.data.filmModel.localizedName ?? ""),
-                             displayMode: .large)
+        }
     }
-    
 }
 
 // MARK: - IFilmDetailsView
-extension FilmDetailsView: Presentable {
-    
-    var iPresenter: IPresenter? { self.presenter }
+extension FilmDetailsView: Presentable, Configurable {
+    var configurator: Configurator { FilmDetailsConfigurator() }
 }
 
 // MARK: - PreviewProvider
 struct FilmDetailCell_Previews: PreviewProvider {
     
     static var previews: some View {
-        FilmDetailsView()
+        FilmDetailsView(presenter: FilmDetailsPresenterImpl())
     }
-    
 }

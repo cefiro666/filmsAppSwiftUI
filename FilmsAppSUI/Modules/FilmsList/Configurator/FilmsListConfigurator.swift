@@ -10,19 +10,22 @@ import SwiftUI
 import UIKit
 
 // MARK: - FilmsListConfigurator
-final class FilmsListConfigurator: IConfigurator {
-
+final class FilmsListConfigurator: Configurator {
+    
 // MARK: - Methods
-    func createScreen(_ data: Any?) -> UIViewController {
-        let view = FilmsListView()
-        let router = FilmsListRouter()
+    var view: FilmsListView<FilmsListPresenterImpl>!
+    
+// MARK: - Methods
+    func createScreen() -> UIViewController {
+        self.view = FilmsListView(presenter: FilmsListPresenterImpl())
+        let router = FilmsListRouterImpl()
 
-        view.presenter.setUseCase(GetFilmsUseCaseImpl())
+        self.view.presenter.setUseCase(GetFilmsUseCaseImpl())
         
-        view.presenter.router = router
-        view.presenter.view = view
+        self.view.presenter.router = router
+        self.view.presenter.view = self.view
         
-        return UIHostingController<ContainerView<FilmsListView>>(rootView: ContainerView(content: view))
+        return UIHostingController<ContainerView<FilmsListView>>(rootView: ContainerView(content: self.view))
     }
     
 }

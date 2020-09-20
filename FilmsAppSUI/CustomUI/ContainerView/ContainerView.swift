@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-// MARK: - IContainer
-protocol IContainer {
+// MARK: - Container
+protocol Container {
     
     func showErrorMessage(_ message: String?)
     func setLoadingVisible(_ visible: Bool)
@@ -27,7 +27,7 @@ struct ContainerView<Content: View&Presentable>: View {
 // MARK: - Inits
     init(content: Content) {
         self.content = content
-        self.content.iPresenter?.listener = self
+        self.content.presenter.container = self
     }
     
 // MARK: - body
@@ -41,7 +41,7 @@ struct ContainerView<Content: View&Presentable>: View {
                   message: Text(self.presenter.errorMessage),
                   dismissButton: .default(Text("repeat")) {
                     
-                self.content.iPresenter?.onClickError()
+                self.content.presenter.onClickError()
             })
         }
         
@@ -55,8 +55,8 @@ struct ContainerView<Content: View&Presentable>: View {
     
 }
 
-// MARK: - IContainer
-extension ContainerView: IContainer {
+// MARK: - Container
+extension ContainerView: Container {
     
     func showErrorMessage(_ message: String?) {
         self.presenter.showErrorMessage(message)

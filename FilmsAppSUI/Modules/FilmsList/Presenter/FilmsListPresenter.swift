@@ -14,11 +14,13 @@ fileprivate struct Constants {
     static let kAllGenres = "Все"
 }
 
-// MARK: - IFilmsListPresenter
-protocol IFilmsListPresenter: IPresenter {
+// MARK: - FilmsListPresenter
+protocol FilmsListPresenter: Presenter {
     
-    var view: Presentable? { get set }
-    var router: IFilmsListRouter? { get set }
+    associatedtype ViewType: Presentable
+    
+    var view: ViewType? { get set }
+    var router: FilmsListRouter? { get set }
     var data: FilmsListData { get }
     
     func viewOnAppear()
@@ -26,14 +28,16 @@ protocol IFilmsListPresenter: IPresenter {
     func onClickFilmWithId(_ id: String)
 }
 
-// MARK: - FilmsListPresenter
-final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
+// MARK: - FilmsListPresenterImpl
+final class FilmsListPresenterImpl: FilmsListPresenter {
+    
+    typealias ViewType = FilmsListView
     
 // MARK: - Properties
-    lazy var view: Presentable? = nil
-    var router: IFilmsListRouter?
+    var view: FilmsListView<FilmsListPresenterImpl>?
+    var router: FilmsListRouter?
 
-    var listener: IContainer?
+    var container: Container?
     
 // MARK: - Data
     @Published var data = FilmsListData()
@@ -42,12 +46,8 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
     private var getFilmsUseCase: GetFilmsUseCase?
     
     func setUseCase(_ useCase: Any?) {
-        switch useCase {
-        case is GetFilmsUseCase:
-            self.getFilmsUseCase = useCase as? GetFilmsUseCase
-            
-        default:
-            break
+        if let getFilmsUseCase = useCase as? GetFilmsUseCase {
+            self.getFilmsUseCase = getFilmsUseCase
         }
     }
     
@@ -64,7 +64,10 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
             return
         }
         
-        self.data.filmsModels = self.data.films.map { FilmModel(film: $0) }.filter { $0.genres.contains(genre) }
+        self.data.filmsModels = self.data.films
+            .map { FilmModel(film: $0) }
+            .filter { $0.genres.contains(genre)
+        }
     }
     
     func onClickFilmWithId(_ id: String) {
@@ -81,20 +84,13 @@ final class FilmsListPresenter: ObservableObject, IFilmsListPresenter {
         self.getFilmsUseCase?.execute(completion: { [weak self] (success, films, errorMessage) in
             self?.view?.setLoadingVisible(false)
             if !success {
-                self?.view?.showErrorMessage("Похоже, что-то пошло не так. Попробуйте снова.")
+                self?.view?.showErrorMessage(errorMessage)
                 return
             }
             
             self?.data.films = films
             self?.data.filmsModels = films.map { FilmModel(film: $0) }
             self?.configureGenres()
-            
-#warning("Check change async fileds for Film object")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                withAnimation {
-                    self?.data.filmsModels[3].name = "asdadadsad"
-                }
-            }
         })
     }
     
