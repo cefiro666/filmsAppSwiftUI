@@ -39,24 +39,28 @@ class Navigator {
         self.viewController = viewController
     }
     
-    func push<Content: View&Configurable>(view: Content, title: String) {
-        let viewController = view.configurator.createScreen()
+    func push<Content: View&Configurable&Presentable>(view: Content, title: String, configureBlock: ((Content) -> ())?) {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func present<Content: View&Configurable>(view: Content, title: String) {
-        let viewController = view.configurator.createScreen()
+    func present<Content: View&Configurable&Presentable>(view: Content,
+                                                         title: String,
+                                                         configureBlock: ((Content) -> ())?) {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }
     
-    func get<Content: View&Configurable>(view: Content) -> UIViewController? {
-        return view.configurator.createScreen()
+    func get<Content: View&Configurable&Presentable>(view: Content,
+                                                     configureBlock: ((Content) -> ())?) -> UIViewController? {
+        return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
     }
     
-    func setRootController<Content: View&Configurable>(view: Content) {
-        let viewController = view.configurator.createScreen()
+    func setRootController<Content: View&Configurable&Presentable>(view: Content,
+                                                                   configureBlock: ((Content) -> ())?) {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
         navigationController.navigationBar.prefersLargeTitles = true

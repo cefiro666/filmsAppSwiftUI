@@ -16,8 +16,9 @@ final class FilmsListConfigurator: Configurator {
     var view: FilmsListView<FilmsListPresenterImpl>!
     
 // MARK: - Methods
-    func createScreen() -> UIViewController {
-        self.view = FilmsListView(presenter: FilmsListPresenterImpl())
+    func createScreen<Content: View&Presentable>(withView view: Content,
+                                                 configureBlock: ((Content) -> ())?) -> UIViewController {
+        self.view = view as? FilmsListView<FilmsListPresenterImpl>
         let router = FilmsListRouterImpl()
 
         self.view.presenter.setUseCase(GetFilmsUseCaseImpl())

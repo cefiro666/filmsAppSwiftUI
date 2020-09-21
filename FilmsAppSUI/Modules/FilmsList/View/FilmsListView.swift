@@ -9,10 +9,11 @@
 import SwiftUI
 
 // MARK: - FilmsListView
-struct FilmsListView<Presenter>: View where Presenter: FilmsListPresenter {
+struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter: FilmsListPresenter {
     
 // MARK: - Presenter
     @ObservedObject var presenter: Presenter
+    var configurator: Configurator = FilmsListConfigurator() 
     
 // MARK: - Body
     var body: some View {
@@ -33,19 +34,13 @@ struct FilmsListView<Presenter>: View where Presenter: FilmsListPresenter {
                 }
             }
         }
-            
+        
         .navigationBarTitle(Text("films"))
+    
         .onAppear {
             self.presenter.viewOnAppear()
         }
     }
-    
-}
-
-// MARK: - IFilmsListView
-extension FilmsListView: Presentable, Configurable {
-    
-    var configurator: Configurator { FilmsListConfigurator() }
 }
 
 // MARK: - getSectionsFromData

@@ -145,12 +145,12 @@
 			path = SpinnerView;
 			sourceTree = "<group>";
 		};
-		9A08BCEF250621F200268128 /* View+Extensions */ = {
+		9A08BCEF250621F200268128 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				9A08BCED250621E600268128 /* View+Extensions.swift */,
 			);
-			path = "View+Extensions";
+			path = View;
 			sourceTree = "<group>";
 		};
 		9A08BCFC250660FC00268128 /* Navigator */ = {
@@ -364,7 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				9A4AABF024F9338C009E1817 /* Text */,
-				9A08BCEF250621F200268128 /* View+Extensions */,
+				9A08BCEF250621F200268128 /* View */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -402,8 +402,8 @@
 			isa = PBXGroup;
 			children = (
 				9A4C645E250905E700D6A67A /* Data */,
-				9A08BD032506627E00268128 /* Configurator */,
 				9A08BD022506627600268128 /* Router */,
+				9A08BD032506627E00268128 /* Configurator */,
 				9A08BD012506626F00268128 /* Presenter */,
 				9A4AABFB24F93546009E1817 /* View */,
 			);
@@ -512,7 +512,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Виталий Баник";
 				TargetAttributes = {
 					9A4AABD324F9325D009E1817 = {
@@ -636,6 +636,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -696,6 +697,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

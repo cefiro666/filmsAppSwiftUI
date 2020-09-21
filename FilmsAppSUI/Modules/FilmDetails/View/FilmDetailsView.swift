@@ -9,10 +9,11 @@
 import SwiftUI
 
 // MARK: - FilmDetailsView
-struct FilmDetailsView<Presenter>: View where Presenter: FilmDetailsPresenter {
+struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Presenter: FilmDetailsPresenter {
     
 // MARK: - Presenter
     @ObservedObject var presenter: Presenter
+    var configurator: Configurator = FilmDetailsConfigurator()
 
 // MARK: -  body
     var body: some View {
@@ -40,11 +41,6 @@ struct FilmDetailsView<Presenter>: View where Presenter: FilmDetailsPresenter {
             
         }
     }
-}
-
-// MARK: - IFilmDetailsView
-extension FilmDetailsView: Presentable, Configurable {
-    var configurator: Configurator { FilmDetailsConfigurator() }
 }
 
 // MARK: - PreviewProvider

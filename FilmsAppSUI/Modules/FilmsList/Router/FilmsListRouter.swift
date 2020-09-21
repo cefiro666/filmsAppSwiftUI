@@ -11,16 +11,18 @@ import Foundation
 // MARK: - FilmsListRouter
 protocol FilmsListRouter {
     
-    func pushFilmDetailsScreen(film: Film)
+    func pushFilmDetailsScreenForFilm(_ film: Film)
 }
 
 // MARK: - FilmsListRouterImpl
-class FilmsListRouterImpl: FilmsListRouter {
+struct FilmsListRouterImpl: FilmsListRouter {
     
 // MARK: - Methods
-    func pushFilmDetailsScreen(film: Film) {
+    func pushFilmDetailsScreenForFilm(_ film: Film) {
         Navigator.shared.push(view: FilmDetailsView(presenter: FilmDetailsPresenterImpl()),
-                              title: film.localizedName)
+                              title: film.localizedName) { view in
+            view.presenter.setFilm(film)
+        }
     }
     
 }

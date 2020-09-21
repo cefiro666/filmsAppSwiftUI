@@ -46,11 +46,12 @@ extension Presentable {
 // MARK: - Configurator
 protocol Configurator: class {
     
-    func createScreen() -> UIViewController
+    func createScreen<Content: View&Presentable>(withView view: Content,
+                                                 configureBlock: ((Content) -> ())?) -> UIViewController
 }
 
 // MARK: - Configurable
 protocol Configurable {
     
-    var configurator: Configurator { get }
+    var configurator: Configurator { get set }
 }

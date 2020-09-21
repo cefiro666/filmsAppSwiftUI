@@ -72,7 +72,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     
     func onClickFilmWithId(_ id: String) {
         guard let film = self.data.films.first(where: { $0.id == Int(id) }) else { return }
-        self.router?.pushFilmDetailsScreen(film: film)
+        self.router?.pushFilmDetailsScreenForFilm(film)
     }
     
     func onClickError() {

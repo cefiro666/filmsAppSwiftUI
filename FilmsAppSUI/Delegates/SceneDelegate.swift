@@ -29,7 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
-        Navigator.shared.setRootController(view: FilmsListView(presenter: FilmsListPresenterImpl()))
+        Navigator.shared.setRootController(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                           configureBlock: nil)
     }
     
     static func setupRoot(viewController: UIViewController) {

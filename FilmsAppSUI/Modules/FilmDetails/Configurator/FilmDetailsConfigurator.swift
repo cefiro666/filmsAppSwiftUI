@@ -16,20 +16,18 @@ final class FilmDetailsConfigurator: Configurator {
     var view: FilmDetailsView<FilmDetailsPresenterImpl>!
     
 // MARK: - Methods
-    func createScreen() -> UIViewController {
-        self.view = FilmDetailsView(presenter: FilmDetailsPresenterImpl())
+    func createScreen<Content: View&Presentable>(withView view: Content,
+                                                 configureBlock: ((Content) -> ())?) -> UIViewController {
+        
+        self.view = view as? FilmDetailsView<FilmDetailsPresenterImpl>
         let router = FilmDetailsRouterImpl()
 
         self.view.presenter.router = router
         self.view.presenter.view = self.view
         
-//        configureBlock?(self as? Configurator)
+        configureBlock?(self.view as! Content)
         
         return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: self.view))
-    }
-    
-    func setFilm(film: Film) {
-        self.view.presenter.setFilm(film)
     }
     
 }

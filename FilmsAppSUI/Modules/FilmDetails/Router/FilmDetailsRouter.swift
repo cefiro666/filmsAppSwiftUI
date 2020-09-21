@@ -14,6 +14,6 @@ protocol FilmDetailsRouter {
 }
 
 // MARK: - FilmDetailsRouterImpl
-class FilmDetailsRouterImpl: FilmDetailsRouter {
+struct FilmDetailsRouterImpl: FilmDetailsRouter {
     
 }
