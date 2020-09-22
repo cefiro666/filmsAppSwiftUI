@@ -46,7 +46,6 @@ struct ContainerView<Content: View&Presentable>: View {
         }
         
         .onAppear {
-            // для 13 iOS
             UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().allowsSelection = false

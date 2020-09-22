@@ -39,7 +39,7 @@ class Navigator {
         self.viewController = viewController
     }
     
-    func push<Content: View&Configurable&Presentable>(view: Content, title: String, configureBlock: ((Content) -> ())?) {
+    func push<Content: View&Configurable&Presentable>(view: Content, title: String, configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -47,19 +47,19 @@ class Navigator {
     
     func present<Content: View&Configurable&Presentable>(view: Content,
                                                          title: String,
-                                                         configureBlock: ((Content) -> ())?) {
+                                                         configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }
     
     func get<Content: View&Configurable&Presentable>(view: Content,
-                                                     configureBlock: ((Content) -> ())?) -> UIViewController? {
+                                                     configureBlock: ((Content?) -> ())?) -> UIViewController? {
         return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
     }
     
     func setRootController<Content: View&Configurable&Presentable>(view: Content,
-                                                                   configureBlock: ((Content) -> ())?) {
+                                                                   configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true

@@ -23,7 +23,7 @@ struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Present
                     FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "")
                     FilmInfoView(name: self.presenter.data.filmModel.name ?? "",
                                  year: self.presenter.data.filmModel.year ?? 0,
-                                 rating: self.presenter.data.filmModel.rating ?? 0)
+                                 rating: self.presenter.data.filmModel.rating)
                 }
                     
                 .padding(.horizontal)

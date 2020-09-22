@@ -17,7 +17,7 @@ final class FilmsListConfigurator: Configurator {
     
 // MARK: - Methods
     func createScreen<Content: View&Presentable>(withView view: Content,
-                                                 configureBlock: ((Content) -> ())?) -> UIViewController {
+                                                 configureBlock: ((Content?) -> ())?) -> UIViewController {
         self.view = view as? FilmsListView<FilmsListPresenterImpl>
         let router = FilmsListRouterImpl()
 
@@ -25,6 +25,8 @@ final class FilmsListConfigurator: Configurator {
         
         self.view.presenter.router = router
         self.view.presenter.view = self.view
+        
+        configureBlock?(self.view as? Content)
         
         return UIHostingController<ContainerView<FilmsListView>>(rootView: ContainerView(content: self.view))
     }

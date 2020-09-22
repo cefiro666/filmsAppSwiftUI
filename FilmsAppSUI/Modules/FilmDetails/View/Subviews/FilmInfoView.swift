@@ -14,7 +14,7 @@ struct FilmInfoView: View {
 // MARK: - Properties
     var name: String
     var year: Int
-    var rating: Float
+    var rating: Float?
     
 // MARK: - body
     var body: some View {

@@ -21,7 +21,7 @@ struct FilmsListRouterImpl: FilmsListRouter {
     func pushFilmDetailsScreenForFilm(_ film: Film) {
         Navigator.shared.push(view: FilmDetailsView(presenter: FilmDetailsPresenterImpl()),
                               title: film.localizedName) { view in
-            view.presenter.setFilm(film)
+            view?.presenter.setFilm(film)
         }
     }
     
