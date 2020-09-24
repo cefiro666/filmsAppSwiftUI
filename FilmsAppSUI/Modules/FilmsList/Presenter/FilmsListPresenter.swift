@@ -31,8 +31,6 @@ protocol FilmsListPresenter: Presenter {
 // MARK: - FilmsListPresenterImpl
 final class FilmsListPresenterImpl: FilmsListPresenter {
     
-    typealias ViewType = FilmsListView
-    
 // MARK: - Properties
     var view: FilmsListView<FilmsListPresenterImpl>?
     var router: FilmsListRouter?

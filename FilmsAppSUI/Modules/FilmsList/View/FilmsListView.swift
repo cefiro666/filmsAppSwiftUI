@@ -13,30 +13,24 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
     
 // MARK: - Presenter
     @ObservedObject var presenter: Presenter
-    var configurator: Configurator = FilmsListConfigurator() 
+    var configurator: Configurator = FilmsListConfigurator()
     
 // MARK: - Body
     var body: some View {
-        List {
+        VStack {
             GenresView(genres: self.presenter.data.genres, clickHandler: { genre in
                 self.presenter.onClickGenre(genre)
             })
-            
-            ForEach(self.getSectionsFromData(self.presenter.data.filmsModels)) { section in
-                Section(header: YearHeaderView(yearString: section.header?.title ?? "")) {
-                    ForEach(section.elements.compactMap { $0 as? FilmModel }) { filmModel in
-                        ZStack {
-                            FilmCellView(filmModel: filmModel).onTapGesture {
-                                self.presenter.onClickFilmWithId(filmModel.id)
-                            }
-                        }
-                    }
-                }
-            }
+
+            .padding(.top, 14.0)
+            .padding(.bottom, 7.0)
+
+            FilmsTableView(sections: self.getSectionsFromData(self.presenter.data.filmsModels), clickHandler: { filmId in
+                self.presenter.onClickFilmWithId(filmId)
+            })
         }
-        
+
         .navigationBarTitle(Text("films"))
-    
         .onAppear {
             self.presenter.viewOnAppear()
         }

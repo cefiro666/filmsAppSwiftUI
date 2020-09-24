@@ -29,16 +29,15 @@ struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Present
                 .padding(.horizontal)
                 .frame(minWidth: UIScreen.main.bounds.width, alignment: .leading)
                 
-                GenresView(genres: self.presenter.data.filmModel.genres, leftRightSpace: 15.0)
-                    .padding(.vertical)
+                GenresView(genres: self.presenter.data.filmModel.genres)
+                    .padding(.vertical, 10.0)
                 
                 Text(self.presenter.data.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }
                 
-            .padding(.top)
-            
+            .padding(.top, 20.0)
         }
     }
 }

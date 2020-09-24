@@ -38,7 +38,11 @@ struct FilmCellView: View {
         .padding()
         .background(Color(#colorLiteral(red: 0.7475681534, green: 0.4965922286, blue: 0.7647058964, alpha: 1)))
         .cornerRadius(10)
-        .shadow(radius: 5)
+        .shadow(radius: 3)
+        
+        .eraseToAnyView()
+        .padding(.horizontal)
+        .padding(.vertical, 2.0)
     }
 }
 

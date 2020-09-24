@@ -23,8 +23,6 @@ protocol FilmDetailsPresenter: Presenter {
 // MARK: - FilmDetailsPresenterImpl
 final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
     
-    typealias ViewType = FilmDetailsView
-    
 // MARK: - Properties
     var view: FilmDetailsView<FilmDetailsPresenterImpl>?
     var router: FilmDetailsRouter?

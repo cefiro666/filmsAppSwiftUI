@@ -12,22 +12,19 @@ import UIKit
 // MARK: - FilmDetailsConfigurator
 final class FilmDetailsConfigurator: Configurator {
        
-// MARK: - Properties
-    var view: FilmDetailsView<FilmDetailsPresenterImpl>!
-    
 // MARK: - Methods
     func createScreen<Content: View&Presentable>(withView view: Content,
                                                  configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        self.view = view as? FilmDetailsView<FilmDetailsPresenterImpl>
+        guard let view = view as? FilmDetailsView<FilmDetailsPresenterImpl> else { return UIViewController() }
         let router = FilmDetailsRouterImpl()
 
-        self.view.presenter.router = router
-        self.view.presenter.view = self.view
+        view.presenter.router = router
+        view.presenter.view = view
         
-        configureBlock?(self.view as? Content)
+        configureBlock?(view as? Content)
         
-        return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: self.view))
+        return UIHostingController<ContainerView<FilmDetailsView>>(rootView: ContainerView(content: view))
     }
     
 }

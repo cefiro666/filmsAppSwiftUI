@@ -11,26 +11,25 @@ import SwiftUI
 // MARK: - GenresView
 struct GenresView: View {
     
-// MARK: - FilmsListGenresView
+// MARK: - Properties
     var genres: [String]
-    var leftRightSpace: CGFloat = .zero
     var clickHandler: ((String) -> ())?
 
-// MARK: - FilmsListGenresView
+// MARK: - body
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                Spacer(minLength: self.leftRightSpace)
+                Spacer(minLength: 14.0)
                 
                 ForEach(self.genres, id: \.hashValue) { genre in
                     Button(action: {
                         self.clickHandler?(genre)
                     }) {
                         GenreView(genre: genre)
-                    }.disabled(self.clickHandler == nil)
+                    }.disabled(clickHandler == nil)
                 }
                 
-                Spacer(minLength: self.leftRightSpace)
+                Spacer(minLength: 14.0)
             }
         }
     }
