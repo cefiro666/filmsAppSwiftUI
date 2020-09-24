@@ -170,7 +170,7 @@
 		9A08BCE32505F3EF00268128 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
-				9A13B1AD2515E0DD00889884 /* GenreView */,
+				9A13B1AD2515E0DD00889884 /* GenresView */,
 				9A08BCE92506031500268128 /* SpinnerView */,
 				9A08BCE22505ED4C00268128 /* NetworkImage */,
 				9A08BD17250745FF00268128 /* ContainerView */,
@@ -333,13 +333,13 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
-		9A13B1AD2515E0DD00889884 /* GenreView */ = {
+		9A13B1AD2515E0DD00889884 /* GenresView */ = {
 			isa = PBXGroup;
 			children = (
 				9A13B1AB2514B59000889884 /* GenresView.swift */,
 				9A13B1AE2515E2F900889884 /* GenreView.swift */,
 			);
-			path = GenreView;
+			path = GenresView;
 			sourceTree = "<group>";
 		};
 		9A4AABCB24F9325D009E1817 = {

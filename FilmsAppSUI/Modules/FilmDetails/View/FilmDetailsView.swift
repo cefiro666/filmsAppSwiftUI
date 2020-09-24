@@ -21,6 +21,7 @@ struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Present
             VStack(alignment: .leading) {
                 HStack(spacing: 20.0) {
                     FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "")
+                    
                     FilmInfoView(name: self.presenter.data.filmModel.name ?? "",
                                  year: self.presenter.data.filmModel.year ?? 0,
                                  rating: self.presenter.data.filmModel.rating)

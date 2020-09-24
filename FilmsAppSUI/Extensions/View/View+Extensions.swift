@@ -11,4 +11,8 @@ import SwiftUI
 extension View {
     
     @inlinable public func eraseToAnyView() -> AnyView { AnyView(self) }
+    
+    @inlinable func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
+        return conditional ? AnyView(content(self)) : AnyView(self)
+     }
 }
