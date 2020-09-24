@@ -1,25 +1,20 @@
 //
-//  GenresView.swift
+//  FilterByGenresView.swift
 //  FilmsAppSUI
 //
-//  Created by Виталий Баник on 18.09.2020.
+//  Created by Виталий Баник on 24.09.2020.
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
 import SwiftUI
 
-// MARK: - GenresView
-struct GenresView: View {
+struct FilterByGenresView: View {
     
-// MARK: - Properties
     var genres: [String]
     var clickHandler: ((String) -> ())?
-
-// MARK: - body
+    
     var body: some View {
-        if self.genres.isEmpty {
-            EmptyView()
-        } else {
+        VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     Spacer(minLength: 14.0)
@@ -28,21 +23,25 @@ struct GenresView: View {
                         Button(action: {
                             self.clickHandler?(genre)
                         }) {
-                            GenreView(genre: genre)
-                        }.disabled(clickHandler == nil)
+                            FilmGenreView(genre: genre)
+                        }
                     }
                     
                     Spacer(minLength: 14.0)
                 }
+                
+                .padding(.vertical)
             }
+            
+            .background(Color.init(.sRGB, white: .zero, opacity: 0.6))
+            
+            Spacer()
         }
     }
 }
 
-// MARK: - PreviewProvider
-struct FilmsListGenresView_Previews: PreviewProvider {
-    
+struct FilterByGenresView_Previews: PreviewProvider {
     static var previews: some View {
-        GenresView(genres: ["1", "2", "3"])
+        FilterByGenresView(genres: ["1", "2", "3"])
     }
 }

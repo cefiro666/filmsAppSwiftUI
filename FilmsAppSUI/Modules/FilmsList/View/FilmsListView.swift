@@ -15,22 +15,38 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
     @ObservedObject var presenter: Presenter
     var configurator: Configurator = FilmsListConfigurator()
     
+    @State var genresShowed = false
+    
 // MARK: - Body
     var body: some View {
-        VStack {
-            GenresView(genres: self.presenter.data.genres, clickHandler: { genre in
-                self.presenter.onClickGenre(genre)
-            })
-
-            .padding(.top, 14.0)
-            .padding(.bottom, 7.0)
-
+        ZStack {
             FilmsTableView(sections: self.getSectionsFromData(self.presenter.data.filmsModels), clickHandler: { filmId in
+                self.genresShowed = false
                 self.presenter.onClickFilmWithId(filmId)
             })
+            
+            .onTapGesture {
+                withAnimation {
+                    self.genresShowed = false
+                }
+            }
+            
+            if self.genresShowed {
+                FilterByGenresView(genres: self.presenter.data.genres, clickHandler: { genre in
+                    self.presenter.onClickGenre(genre)
+                })
+            }
         }
 
         .navigationBarTitle(Text("films"))
+        .navigationBarItems(trailing: Button(action: {
+            withAnimation {
+                self.genresShowed.toggle()
+            }
+        }) {
+            Image(systemName: "line.horizontal.3.decrease")
+        })
+        
         .onAppear {
             self.presenter.viewOnAppear()
         }

@@ -21,6 +21,7 @@ struct FilmsTableView: View {
             if #available(iOS 14.0, *) {
                 ScrollView {
                     LazyVStack(pinnedViews:[.sectionHeaders]) {
+                        Spacer(minLength: 10.0)
                         self.sectionsList
                     }
                     

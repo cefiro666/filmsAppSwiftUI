@@ -1,5 +1,5 @@
 //
-//  GenreView.swift
+//  FilmGenreView.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 19.09.2020.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-// MARK: - GenreView
-struct GenreView: View {
+// MARK: - FilmGenreView
+struct FilmGenreView: View {
     
 // MARK: - Properties
     var genre: String
@@ -27,9 +27,9 @@ struct GenreView: View {
 }
 
 // MARK: - PreviewProvider
-struct GenreView_Previews: PreviewProvider {
+struct FilmGenreView_Previews: PreviewProvider {
     
     static var previews: some View {
-        GenreView(genre: "genre")
+        FilmGenreView(genre: "genre")
     }
 }
