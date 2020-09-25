@@ -15,50 +15,46 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
     @ObservedObject var presenter: Presenter
     var configurator: Configurator = FilmsListConfigurator()
     
-    @State var genresShowed = false
+    @State var genresFilterShowed = false
     
 // MARK: - Body
     var body: some View {
         ZStack {
-            FilmsTableView(sections: self.getSectionsFromData(self.presenter.data.filmsModels), clickHandler: { filmId in
-                self.genresShowed = false
+            FilmsTableView(sections: self.getSectionsFromData( ), clickHandler: { filmId in
+                self.setGenresFilterVisible(false)
                 self.presenter.onClickFilmWithId(filmId)
-            })
-            
-            .onTapGesture {
-                withAnimation {
-                    self.genresShowed = false
+                
+            }).onTapGesture {
+                self.setGenresFilterVisible(false)
+            }
+
+            if genresFilterShowed {
+                FilterByGenresView(genres: self.presenter.data.genres) { genre in
+                    self.presenter.onClickGenre(genre)
                 }
             }
             
-            if self.genresShowed {
-                FilterByGenresView(genres: self.presenter.data.genres, clickHandler: { genre in
-                    self.presenter.onClickGenre(genre)
-                })
-            }
+            FilterButtonView(clickHandler: {
+                self.setGenresFilterVisible(self.genresFilterShowed ? false : true)
+            })
         }
 
         .navigationBarTitle(Text("films"))
-        .navigationBarItems(trailing: Button(action: {
-            withAnimation {
-                self.genresShowed.toggle()
-            }
-        }) {
-            Image(systemName: "line.horizontal.3.decrease")
-        })
-        
         .onAppear {
             self.presenter.viewOnAppear()
         }
     }
-}
-
-// MARK: - getSectionsFromData
-extension FilmsListView {
     
-    private func getSectionsFromData(_ data: [FilmModel]) -> [SectionModel] {
+// MARK: - Methods
+    private func setGenresFilterVisible(_ visible: Bool) {
+        withAnimation {
+            self.genresFilterShowed = visible
+        }
+    }
+    
+    private func getSectionsFromData() -> [SectionModel] {
         var secions = [SectionModel]()
-        let yearsSet = Set<Int>(data.compactMap { $0.year })
+        let yearsSet = Set<Int>(self.presenter.data.filmsModels.compactMap { $0.year })
             .sorted()
             .reversed()
         
@@ -66,7 +62,7 @@ extension FilmsListView {
             let stringYear = String(year)
             let sameYearsSection = SectionModel(id: stringYear)
             sameYearsSection.header = HeaderModel(id: stringYear, title: stringYear)
-            sameYearsSection.elements = data
+            sameYearsSection.elements = self.presenter.data.filmsModels
                 .filter { $0.year == year }
 
             secions.append(sameYearsSection)

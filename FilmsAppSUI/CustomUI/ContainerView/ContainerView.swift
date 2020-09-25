@@ -34,7 +34,10 @@ struct ContainerView<Content: View&Presentable>: View {
     var body: some View {
         ZStack {
             self.content
-            SpinnerView(isAnimating: self.presenter.isLoading, style: .large)
+            
+            if self.presenter.isLoading {
+                SpinnerView(isAnimating: true, style: .large)
+            }
 
         }.alert(isPresented: self.$presenter.hasError) {
             Alert(title: Text(""),
