@@ -33,7 +33,11 @@ extension FilmsProvider: TargetType {
     }
     
     var sampleData: Data {
-        return Data()
+        switch self {
+        case .getFilms:
+            let data = try? JSONEncoder().encode(FilmsResponse(films: [Film.placeholder]))
+            return data ?? Data()
+        }
     }
     
     var task: Task {
