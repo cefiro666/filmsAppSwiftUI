@@ -50,7 +50,7 @@ extension FilmsProvider: TargetType {
     var headers: [String : String]? {
         switch self {
         case .getFilms:
-            return  [HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
+            return [HTTPHeaderField.acceptType: ContentType.json]
         }
     }
 }

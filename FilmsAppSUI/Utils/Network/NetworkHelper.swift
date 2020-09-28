@@ -10,16 +10,16 @@ import Foundation
 import Moya
 
 // MARK: - HTTPHeaderField
-enum HTTPHeaderField: String {
+struct HTTPHeaderField {
     
-    case contentType = "Content-Type"
-    case acceptType = "Accept"
+    static let contentType = "Content-Type"
+    static let acceptType = "Accept"
 }
 
 // MARK: - ContentType
-enum ContentType: String {
+struct ContentType {
     
-    case json = "application/json"
+    static let json = "application/json"
 }
 
 // MARK: - baseURL

@@ -383,7 +383,6 @@
 				9A4AABEE24F932BF009E1817 /* Utils */,
 				9A4AABED24F932B8009E1817 /* Extensions */,
 				9A4AABEB24F932A6009E1817 /* Modules */,
-				9A4AABDF24F93261009E1817 /* Preview Content */,
 			);
 			path = FilmsAppSUI;
 			sourceTree = "<group>";
@@ -427,6 +426,7 @@
 		9A4AABEF24F932C6009E1817 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A4AABDF24F93261009E1817 /* Preview Content */,
 				9A4AABE524F93261009E1817 /* Info.plist */,
 				9A4AABDD24F93261009E1817 /* Assets.xcassets */,
 				9A4AABE224F93261009E1817 /* LaunchScreen.storyboard */,
@@ -901,7 +901,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FilmsAppSUI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FilmsAppSUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4XJM4GSZPH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FilmsAppSUI/Resources/Info.plist;
@@ -922,7 +922,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FilmsAppSUI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FilmsAppSUI/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4XJM4GSZPH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FilmsAppSUI/Resources/Info.plist;
