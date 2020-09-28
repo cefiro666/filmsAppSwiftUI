@@ -16,7 +16,7 @@ protocol Container {
 }
 
 // MARK: - ContainerView
-struct ContainerView<Content: View&Presentable>: View {
+struct ContainerView<Content: View & Presentable>: View {
     
 // MARK: - Presenter
     @ObservedObject var presenter = ContainerPresenter()

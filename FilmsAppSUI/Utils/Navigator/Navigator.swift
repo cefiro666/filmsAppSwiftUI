@@ -40,14 +40,14 @@ class Navigator: NSObject {
         self.viewController = viewController
     }
     
-    func push<Content: View&Configurable&Presentable>(view: Content, title: String,
+    func push<Content: View & Configurable & Presentable>(view: Content, title: String,
                                                              configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func present<Content: View&Configurable&Presentable>(view: Content,
+    func present<Content: View & Configurable & Presentable>(view: Content,
                                                                 title: String,
                                                                 configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
@@ -56,12 +56,12 @@ class Navigator: NSObject {
                                                 animated: true, completion: nil)
     }
     
-    func get<Content: View&Configurable&Presentable>(view: Content,
+    func get<Content: View & Configurable & Presentable>(view: Content,
                                                             configureBlock: ((Content?) -> ())?) -> UIViewController? {
         return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
     }
     
-    func setRootController<Content: View&Configurable&Presentable>(view: Content,
+    func setRootController<Content: View & Configurable & Presentable>(view: Content,
                                                                           configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         let navigationController = UINavigationController(rootViewController: viewController)
