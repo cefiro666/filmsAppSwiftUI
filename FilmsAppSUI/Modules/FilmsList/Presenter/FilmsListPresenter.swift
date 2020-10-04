@@ -37,8 +37,11 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
 
     var container: Container?
     
-// MARK: - Data
+// MARK: - Published Data
     @Published var data = FilmsListData()
+    
+// MARK: - Private Data
+    private var films: [Film] = []
     
 // MARK: - UseCases
     private var getFilmsUseCase: GetFilmsUseCase?
@@ -51,7 +54,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     
 // MARK: - Methods
     func viewOnAppear() {
-        if self.data.films.isEmpty {
+        if self.films.isEmpty {
             self.getFilms()
         }
     }
@@ -68,17 +71,17 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         }
         
         if genre == Constants.kAllGenres {
-            self.data.filmsModels = self.data.films.map { FilmModel(film: $0) }
+            self.data.filmsModels = self.films.map { FilmModel(film: $0) }
             return
         }
         
-        self.data.filmsModels = self.data.films
+        self.data.filmsModels = self.films
             .map { FilmModel(film: $0) }
             .filter { $0.genres.contains(genre) }
     }
     
     func onClickFilmWithId(_ id: String) {
-        guard let film = self.data.films.first(where: { $0.id == Int(id) }) else { return }
+        guard let film = self.films.first(where: { $0.id == Int(id) }) else { return }
         self.router?.pushFilmDetailsScreenForFilm(film)
     }
     
@@ -95,14 +98,14 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
                 return
             }
             
-            self?.data.films = films
+            self?.films = films
             self?.data.filmsModels = films.map { FilmModel(film: $0) }
             self?.configureGenres()
         })
     }
     
     private func configureGenres() {
-        var genres = Array(Set(self.data.films.flatMap { $0.genres })).sorted()
+        var genres = Array(Set(self.films.flatMap { $0.genres })).sorted()
         genres.insert(Constants.kAllGenres, at: .zero)
         self.data.genres = genres
         self.data.selectedGenre = Constants.kAllGenres

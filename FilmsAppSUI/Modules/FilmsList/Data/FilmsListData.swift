@@ -16,6 +16,4 @@ struct FilmsListData {
     var selectedGenre: String = ""
     var filmsModels: [FilmModel] = []
     var isDownloadFilmFromSelectedGenre = false
-
-    var films: [Film] = []
 }
