@@ -20,7 +20,7 @@ struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Present
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(spacing: 20.0) {
-                    FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "")
+                    FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "").id(UUID().uuidString)
                     
                     FilmInfoView(name: self.presenter.data.filmModel.name ?? "",
                                  year: self.presenter.data.filmModel.year ?? 0,
@@ -39,6 +39,9 @@ struct FilmDetailsView<Presenter>: View, Presentable, Configurable where Present
             }
                 
             .padding(.top, 20.0)
+            
+        }.onAppear() {
+            self.presenter.viewOnAppear()
         }
     }
 }

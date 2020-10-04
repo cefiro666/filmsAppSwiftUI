@@ -18,6 +18,7 @@ protocol FilmDetailsPresenter: Presenter {
     var data: FilmDetailsData { get }
     
     func setFilm(_ film: Film?)
+    func viewOnAppear()
 }
 
 // MARK: - FilmDetailsPresenterImpl
@@ -29,12 +30,20 @@ final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
 
     var container: Container?
     
-// MARK: - Data
+// MARK: - Published data
     @Published var data = FilmDetailsData()
+    
+// MARK: - Private data
+    private var film: Film?
         
 // MARK: - Methods
     func setFilm(_ film: Film?) {
+        self.film = film
         self.data.filmModel = FilmModel(film: film ?? Film.placeholder)
+    }
+    
+    func viewOnAppear() {
+        self.data.filmModel = FilmModel(film: self.film ?? Film.placeholder)
     }
     
 }

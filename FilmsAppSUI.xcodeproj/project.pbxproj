@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BFAB291D56B89FC069A6A9D /* TabsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2096C87461C0F16479695 /* TabsPresenter.swift */; };
+		230203C8AD3BA84A13D2D367 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1984C4A58920744E332994 /* TabsView.swift */; };
+		61BB856FC285E50F613CE495 /* TabsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4251294BE3EEBC94780BB /* TabsConfigurator.swift */; };
 		9A08BCCE2502585D00268128 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCD2502585D00268128 /* ListModels.swift */; };
 		9A08BCD0250266A600268128 /* FilmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCF250266A600268128 /* FilmDetailsView.swift */; };
 		9A08BCD2250266E800268128 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCD1250266E800268128 /* NetworkImage.swift */; };
-		9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCD4250268CE00268128 /* KingfisherSwiftUI */; };
+		9A08BCD5250268CE00268128 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */; };
 		9A08BCE82506030E00268128 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCE72506030E00268128 /* SpinnerView.swift */; };
 		9A08BCEE250621E600268128 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCED250621E600268128 /* View+Extensions.swift */; };
 		9A08BCFB25065DDD00268128 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCF925065DDD00268128 /* Navigator.swift */; };
@@ -20,7 +23,7 @@
 		9A08BD0F250743E000268128 /* GetFilmsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD0E250743E000268128 /* GetFilmsUseCase.swift */; };
 		9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD10250743F300268128 /* NetworkHelper.swift */; };
 		9A08BD13250743F300268128 /* FilmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD11250743F300268128 /* FilmsRequest.swift */; };
-		9A08BD16250744BB00268128 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BD15250744BB00268128 /* Moya */; };
+		9A08BD16250744BB00268128 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BD15250744BB00268128 /* SwiftPackageProductDependency */; };
 		9A08BD192507566F00268128 /* FilmsListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD182507566F00268128 /* FilmsListData.swift */; };
 		9A08BD1E25075D4C00268128 /* ContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD1D25075D4C00268128 /* ContainerPresenter.swift */; };
 		9A08BD2125075D9100268128 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD2025075D9100268128 /* Protocols.swift */; };
@@ -50,8 +53,10 @@
 		9A741B71252A136D00DD094E /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A741B70252A136D00DD094E /* Array+Extensions.swift */; };
 		9AB1223C2519D46500A300D7 /* FilmsAppSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1223B2519D46500A300D7 /* FilmsAppSUITests.swift */; };
 		9AB1224C2519D47800A300D7 /* FilmsAppSUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1224B2519D47800A300D7 /* FilmsAppSUIUITests.swift */; };
-		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
+		9ACDE0E0252A031700C4A7F3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */; };
 		9ACDE0E5252A032500C4A7F3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDE0E4252A032500C4A7F3 /* LottieView.swift */; };
+		ADD9BF1815460EB231AA961B /* TabsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF2838EDE849C252CD0FBC /* TabsData.swift */; };
+		AE612E37B81F7F228E6107B4 /* TabsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE72124DF53166DEEE40325 /* TabsRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1984C4A58920744E332994 /* TabsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		20A2096C87461C0F16479695 /* TabsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsPresenter.swift; sourceTree = "<group>"; };
+		2AD4251294BE3EEBC94780BB /* TabsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsConfigurator.swift; sourceTree = "<group>"; };
 		9A08BCCD2502585D00268128 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
 		9A08BCCF250266A600268128 /* FilmDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsView.swift; sourceTree = "<group>"; };
 		9A08BCD1250266E800268128 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
@@ -120,6 +128,8 @@
 		9AB1224B2519D47800A300D7 /* FilmsAppSUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsAppSUIUITests.swift; sourceTree = "<group>"; };
 		9AB1224D2519D47800A300D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ACDE0E4252A032500C4A7F3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		9AEF2838EDE849C252CD0FBC /* TabsData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsData.swift; sourceTree = "<group>"; };
+		ECE72124DF53166DEEE40325 /* TabsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,9 +137,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
-				9A08BD16250744BB00268128 /* Moya in Frameworks */,
-				9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */,
+				9A08BCD5250268CE00268128 /* BuildFile in Frameworks */,
+				9A08BD16250744BB00268128 /* BuildFile in Frameworks */,
+				9ACDE0E0252A031700C4A7F3 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +160,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		196EFC5533F15EC2EEFA1C9A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF2838EDE849C252CD0FBC /* TabsData.swift */,
+			);
+			name = Data;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1B3FC9624738740E92B22CA0 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				2AD4251294BE3EEBC94780BB /* TabsConfigurator.swift */,
+			);
+			name = Configurator;
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		45FB8D33EE452885BC7F8E4A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				20A2096C87461C0F16479695 /* TabsPresenter.swift */,
+			);
+			name = Presenter;
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		626BC4D293D91375556C4E89 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				86ACA5CE80119DCE222A09D2 /* View */,
+				45FB8D33EE452885BC7F8E4A /* Presenter */,
+				8363B6A7224FA3D52A5E5A9D /* Router */,
+				1B3FC9624738740E92B22CA0 /* Configurator */,
+				196EFC5533F15EC2EEFA1C9A /* Data */,
+			);
+			name = Tabs;
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		8363B6A7224FA3D52A5E5A9D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				ECE72124DF53166DEEE40325 /* TabsRouter.swift */,
+			);
+			name = Router;
+			path = Router;
+			sourceTree = "<group>";
+		};
+		86ACA5CE80119DCE222A09D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C1984C4A58920744E332994 /* TabsView.swift */,
+			);
+			name = View;
+			path = View;
+			sourceTree = "<group>";
+		};
 		9A08BCC025024FA100268128 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +471,7 @@
 			children = (
 				9A4AABF624F934E8009E1817 /* FilmDetails */,
 				9A4AABF524F934D2009E1817 /* FilmsList */,
+				626BC4D293D91375556C4E89 /* Tabs */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -613,9 +682,9 @@
 			);
 			name = FilmsAppSUI;
 			packageProductDependencies = (
-				9A08BCD4250268CE00268128 /* KingfisherSwiftUI */,
-				9A08BD15250744BB00268128 /* Moya */,
-				9ACDE0DF252A031700C4A7F3 /* Lottie */,
+				9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */,
+				9A08BD15250744BB00268128 /* SwiftPackageProductDependency */,
+				9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */,
 			);
 			productName = FilmsAppSUI;
 			productReference = 9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */;
@@ -690,9 +759,9 @@
 			);
 			mainGroup = 9A4AABCB24F9325D009E1817;
 			packageReferences = (
-				9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
-				9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */,
+				9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */,
+				9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
 			projectDirPath = "";
@@ -774,6 +843,11 @@
 				9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */,
 				9A08BCCE2502585D00268128 /* ListModels.swift in Sources */,
 				9A4AAC0324F9397D009E1817 /* Film.swift in Sources */,
+				230203C8AD3BA84A13D2D367 /* TabsView.swift in Sources */,
+				1BFAB291D56B89FC069A6A9D /* TabsPresenter.swift in Sources */,
+				AE612E37B81F7F228E6107B4 /* TabsRouter.swift in Sources */,
+				61BB856FC285E50F613CE495 /* TabsConfigurator.swift in Sources */,
+				ADD9BF1815460EB231AA961B /* TabsData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,7 +1176,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1110,7 +1184,7 @@
 				minimumVersion = 5.15.0;
 			};
 		};
-		9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -1118,7 +1192,7 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -1129,19 +1203,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9A08BCD4250268CE00268128 /* KingfisherSwiftUI */ = {
+		9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */;
 			productName = KingfisherSwiftUI;
 		};
-		9A08BD15250744BB00268128 /* Moya */ = {
+		9A08BD15250744BB00268128 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */;
 			productName = Moya;
 		};
-		9ACDE0DF252A031700C4A7F3 /* Lottie */ = {
+		9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

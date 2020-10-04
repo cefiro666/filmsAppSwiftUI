@@ -18,6 +18,9 @@ struct {{ module_info.name }}View<Presenter>: View, Presentable, Configurable wh
 // MARK: -  body
     var body: some View {
         Text("Hello, developer! =)")
+            .onAppear() {
+                self.presenter.viewOnAppear()
+        }
     }
 }
 

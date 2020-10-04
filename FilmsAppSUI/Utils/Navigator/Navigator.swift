@@ -22,7 +22,10 @@ class Navigator: NSObject {
            let sceneDelegate = scene as? UIWindowScene,
            let rootViewController = sceneDelegate.windows.first?.rootViewController {
             
-            let navigationController = (rootViewController as? UINavigationController) ?? rootViewController.navigationController
+            let navigationController = (rootViewController as? UINavigationController) ??
+                rootViewController.navigationController ??
+                (self.tabBarController?.selectedViewController as? UINavigationController)
+            
             navigationController?.delegate = self
             return navigationController
         }
@@ -30,6 +33,19 @@ class Navigator: NSObject {
         let navigationController = self.viewController?.navigationController
         navigationController?.delegate = self
         return navigationController
+    }
+    
+    weak var tabBarController: UITabBarController? {
+        if let scene = UIApplication.shared.connectedScenes.first,
+           let sceneDelegate = scene as? UIWindowScene,
+           let rootViewController = sceneDelegate.windows.first?.rootViewController {
+            
+            let tabBarController = (rootViewController as? UITabBarController) ?? rootViewController.tabBarController
+            return tabBarController
+        }
+        
+        let tabBarController = self.viewController?.tabBarController
+        return tabBarController
     }
     
     private weak var viewController: UIViewController?
@@ -53,20 +69,33 @@ class Navigator: NSObject {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.present(UINavigationController(rootViewController: viewController),
-                                                animated: true, completion: nil)
+                                           animated: true, completion: nil)
     }
     
-    func get<Content: View & Configurable & Presentable>(view: Content,
-                                                         configureBlock: ((Content?) -> ())?) -> UIViewController? {
+    func getScreen<Content: View & Configurable & Presentable>(view: Content,
+                                                               configureBlock: ((Content?) -> ())?) -> UIViewController? {
         return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+    }
+    
+    func getScreenWithNavBar<Content: View & Configurable & Presentable>(view: Content,
+                                                                         configureBlock: ((Content?) -> ())?) -> UIViewController? {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        return navigationController
+    }
+    
+    func setRootControllerWithNavBar<Content: View & Configurable & Presentable>(view: Content,
+                                                                                 configureBlock: ((Content?) -> ())?) {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.isNavigationBarHidden = true
+        SceneDelegate.setupRoot(viewController: navigationController)
     }
     
     func setRootController<Content: View & Configurable & Presentable>(view: Content,
                                                                        configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.isNavigationBarHidden = true
-        SceneDelegate.setupRoot(viewController: navigationController)
+        SceneDelegate.setupRoot(viewController: viewController)
     }
     
     func pop(completion: (() -> ())? = nil) {
