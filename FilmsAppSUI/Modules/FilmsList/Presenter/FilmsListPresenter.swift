@@ -64,8 +64,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         
         self.data.filmsModels = self.data.films
             .map { FilmModel(film: $0) }
-            .filter { $0.genres.contains(genre)
-        }
+            .filter { $0.genres.contains(genre) }
     }
     
     func onClickFilmWithId(_ id: String) {
