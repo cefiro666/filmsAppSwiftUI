@@ -1,0 +1,23 @@
+# Template information section
+name: "VUPERSUI"
+summary: "SwiftUI Vuper module template."
+author: "Sequenia"
+version: "0.1.0"
+
+# The declarations for code files
+
+code_files:
+# View layer
+- {name: View/View.swift, path: View/View.swift.liquid}
+
+# Presenter layer
+- {name: Presenter/Presenter.swift, path: Presenter/Presenter.swift.liquid}
+
+# Router layer
+- {name: Router/Router.swift, path: Router/Router.swift.liquid}
+
+# Configurator
+- {name: Configurator/Configurator.swift, path: Configurator/Configurator.swift.liquid}
+
+# Data
+- {name: Data/Data.swift, path: Data/Data.swift.liquid}

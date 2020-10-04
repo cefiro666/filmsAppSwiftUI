@@ -1,0 +1,32 @@
+### Headers settings
+company: Sequenia
+
+### Xcode project settings
+project_name: filmsAppSwiftUI
+xcodeproj_path: FilmsAppSUI.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: FilmsAppSUI
+
+# The file path for new modules
+project_file_path: FilmsAppSUI/Modules
+
+# The Xcode group path to new modules
+project_group_path: FilmsAppSUI/Modules
+
+### Tests generation settings section
+# The tests target name
+test_target: FilmsAppSUITests
+
+# The file path for new tests
+test_file_path: FilmsAppSUITests
+
+# The Xcode group path to new tests
+test_group_path: FilmsAppSUITests
+
+### Templates
+templates:
+- {name: rviper_controller}
+- {name: mvvm_controller}
+- {name: swifty_viper}

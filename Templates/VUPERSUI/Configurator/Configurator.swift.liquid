@@ -1,0 +1,30 @@
+//
+//  {{ module_info.name }}.swift
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import SwiftUI
+import UIKit
+
+// MARK: - {{ module_info.name }}Configurator
+final class {{ module_info.name }}Configurator: Configurator {
+       
+// MARK: - Methods
+    func createScreen<Content: View & Presentable>(withView view: Content,
+                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
+        
+        guard let view = view as? {{ module_info.name }}View<{{ module_info.name }}PresenterImpl> else { return UIViewController() }
+        let router = {{ module_info.name }}RouterImpl()
+
+        view.presenter.router = router
+        view.presenter.view = view
+        
+        configureBlock?(view as? Content)
+        
+        return UIHostingController<ContainerView<{{ module_info.name }}View>>(rootView: ContainerView(content: view))
+    }
+    
+}
