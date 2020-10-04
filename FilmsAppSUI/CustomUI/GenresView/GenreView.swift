@@ -13,6 +13,7 @@ struct FilmGenreView: View {
     
 // MARK: - Properties
     var genre: String
+    var isSelectedGenre = false
     
 // MARK: - body
     var body: some View {
@@ -21,7 +22,7 @@ struct FilmGenreView: View {
             .font(.subheadline)
             .padding(5.0)
             .eraseToAnyView()
-            .background(Color(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)))
+            .background(self.isSelectedGenre ? Color(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)) : Color(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)))
             .cornerRadius(10.0)
     }
 }

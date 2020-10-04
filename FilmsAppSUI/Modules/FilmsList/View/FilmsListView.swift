@@ -15,28 +15,34 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
     @ObservedObject var presenter: Presenter
     var configurator: Configurator = FilmsListConfigurator()
     
-    @State var genresFilterShowed = false
-    
 // MARK: - Body
     var body: some View {
-        ZStack {
-            FilmsTableView(sections: self.getSections(), clickHandler: { filmId in
-                self.setGenresFilterVisible(false)
-                self.presenter.onClickFilmWithId(filmId)
-                
-            }).onTapGesture {
-                self.setGenresFilterVisible(false)
-            }
-
-            if self.genresFilterShowed {
-                FilterByGenresView(genres: self.presenter.data.genres, clickHandler: { genre in
+        VStack {
+            Spacer(minLength: 16.0)
+            
+            GenresView(genres: self.presenter.data.genres,
+                       selectedGenre: self.presenter.data.selectedGenre,
+                       clickHandler: { genre in
+                        
+                withAnimation {
                     self.presenter.onClickGenre(genre)
+                }
+            })
+            
+            if self.presenter.data.isDownloadFilmFromSelectedGenre {
+                VStack {
+                    Spacer()
+                    
+                    LottieView(name: "loading", loopMode: .loop)
+                        .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.width * 0.7)
+                    
+                    Spacer()
+                }
+            } else {
+                FilmsTableView(sections: self.getSections(), clickHandler: { filmId in
+                    self.presenter.onClickFilmWithId(filmId)
                 })
             }
-            
-            FilterButtonView(clickHandler: {
-                self.setGenresFilterVisible(self.genresFilterShowed ? false : true)
-            })
         }
 
         .navigationBarTitle(Text("films"))
@@ -46,15 +52,11 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
     }
     
 // MARK: - Methods
-    private func setGenresFilterVisible(_ visible: Bool) {
-        withAnimation {
-            self.genresFilterShowed = visible
-        }
-    }
-    
     private func getSections() -> [SectionModel] {
         var secions = [SectionModel]()
-        let yearsSet = Set<Int>(self.presenter.data.filmsModels.compactMap { $0.year })
+        let yearsSet = self.presenter.data.filmsModels
+            .compactMap { $0.year }
+            .unique { $0 }
             .sorted()
             .reversed()
         

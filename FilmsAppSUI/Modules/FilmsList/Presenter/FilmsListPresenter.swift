@@ -57,6 +57,16 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     }
     
     func onClickGenre(_ genre: String) {
+        self.data.selectedGenre = genre
+        self.data.isDownloadFilmFromSelectedGenre = true
+        
+        // simulated long downloading films from selected genre
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            withAnimation {
+                self.data.isDownloadFilmFromSelectedGenre = false
+            }
+        }
+        
         if genre == Constants.kAllGenres {
             self.data.filmsModels = self.data.films.map { FilmModel(film: $0) }
             return
@@ -95,6 +105,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         var genres = Array(Set(self.data.films.flatMap { $0.genres })).sorted()
         genres.insert(Constants.kAllGenres, at: .zero)
         self.data.genres = genres
+        self.data.selectedGenre = Constants.kAllGenres
     }
     
 }

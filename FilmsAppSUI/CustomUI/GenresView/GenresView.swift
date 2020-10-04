@@ -1,5 +1,5 @@
 //
-//  FilmGenresView.swift
+//  GenresView.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 18.09.2020.
@@ -8,11 +8,13 @@
 
 import SwiftUI
 
-// MARK: - FilmGenresView
-struct FilmGenresView: View {
+// MARK: - GenresView
+struct GenresView: View {
     
 // MARK: - Properties
     var genres: [String]
+    var selectedGenre: String?
+    var clickHandler: ((String) -> ())?
 
 // MARK: - body
     var body: some View {
@@ -21,13 +23,17 @@ struct FilmGenresView: View {
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    Spacer(minLength: 14.0)
+                    Spacer(minLength: 18.0)
                     
                     ForEach(self.genres, id: \.hashValue) { genre in
-                        FilmGenreView(genre: genre)
+                        Button(action: {
+                            self.clickHandler?(genre)
+                        }, label: {
+                            FilmGenreView(genre: genre, isSelectedGenre: genre == self.selectedGenre)
+                        }).disabled(self.clickHandler == nil)
                     }
                     
-                    Spacer(minLength: 14.0)
+                    Spacer(minLength: 18.0)
                 }
             }
         }
@@ -35,9 +41,9 @@ struct FilmGenresView: View {
 }
 
 // MARK: - PreviewProvider
-struct FilmGenresView_Previews: PreviewProvider {
+struct GenresView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FilmGenresView(genres: ["1", "2", "3"])
+        GenresView(genres: ["1", "2", "3"])
     }
 }
