@@ -256,17 +256,9 @@
 		9A08BD0C2507438900268128 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				9A08BD0D2507439200268128 /* GetFilmsUseCase */,
+				9A968AE1252209E600218122 /* GetFilmsUseCase */,
 			);
 			path = UseCases;
-			sourceTree = "<group>";
-		};
-		9A08BD0D2507439200268128 /* GetFilmsUseCase */ = {
-			isa = PBXGroup;
-			children = (
-				9A08BD0E250743E000268128 /* GetFilmsUseCase.swift */,
-			);
-			path = GetFilmsUseCase;
 			sourceTree = "<group>";
 		};
 		9A08BD17250745FF00268128 /* ContainerView */ = {
@@ -532,6 +524,14 @@
 				9A08BD11250743F300268128 /* FilmsRequest.swift */,
 			);
 			path = Films;
+			sourceTree = "<group>";
+		};
+		9A968AE1252209E600218122 /* GetFilmsUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				9A08BD0E250743E000268128 /* GetFilmsUseCase.swift */,
+			);
+			path = GetFilmsUseCase;
 			sourceTree = "<group>";
 		};
 		9AB122312519D2E900A300D7 /* Frameworks */ = {

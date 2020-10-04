@@ -90,11 +90,10 @@ extension Navigator: UINavigationControllerDelegate {
     public func navigationController(_ navigationController: UINavigationController,
                                      didShow viewController: UIViewController,
                                      animated: Bool) {
-        if self.completion != nil {
-            DispatchQueue.main.async(execute: {
-                self.completion?()
-                self.completion = nil
-            })
-        }
+        DispatchQueue.main.async(execute: {
+            self.completion?()
+            self.completion = nil
+        })
     }
+    
 }

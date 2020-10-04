@@ -20,7 +20,7 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
 // MARK: - Body
     var body: some View {
         ZStack {
-            FilmsTableView(sections: self.getSectionsFromData( ), clickHandler: { filmId in
+            FilmsTableView(sections: self.getSections(), clickHandler: { filmId in
                 self.setGenresFilterVisible(false)
                 self.presenter.onClickFilmWithId(filmId)
                 
@@ -28,10 +28,10 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
                 self.setGenresFilterVisible(false)
             }
 
-            if genresFilterShowed {
-                FilterByGenresView(genres: self.presenter.data.genres) { genre in
+            if self.genresFilterShowed {
+                FilterByGenresView(genres: self.presenter.data.genres, clickHandler: { genre in
                     self.presenter.onClickGenre(genre)
-                }
+                })
             }
             
             FilterButtonView(clickHandler: {
@@ -52,7 +52,7 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
         }
     }
     
-    private func getSectionsFromData() -> [SectionModel] {
+    private func getSections() -> [SectionModel] {
         var secions = [SectionModel]()
         let yearsSet = Set<Int>(self.presenter.data.filmsModels.compactMap { $0.year })
             .sorted()
