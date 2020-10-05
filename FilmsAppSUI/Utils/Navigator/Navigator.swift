@@ -33,7 +33,8 @@ class Navigator: NSObject {
             
             let navigationController = (rootController as? UINavigationController) ??
                 (self.tabBarController?.selectedViewController as? UINavigationController) ??
-                rootController.navigationController
+                rootController.navigationController ??
+                (rootController.presentedViewController as? UINavigationController)
                 
             navigationController?.delegate = self
             return navigationController
@@ -66,14 +67,16 @@ class Navigator: NSObject {
                                                                        title: String,
                                                                        configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        viewController.title = title
-        self.navigationController?.present(UINavigationController(rootViewController: viewController),
-                                           animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.title = title
+        navigationController.modalPresentationStyle = .fullScreen
+        self.rootController?.present(navigationController, animated: true, completion: nil)
     }
     
     func present<Content: View & Configurable & Presentable>(view: Content,
                                                              configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        viewController.modalPresentationStyle = .fullScreen
         self.rootController?.present(viewController, animated: true, completion: nil)
     }
     
