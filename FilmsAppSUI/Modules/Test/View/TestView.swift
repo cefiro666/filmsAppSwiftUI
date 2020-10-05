@@ -18,9 +18,7 @@ struct TestView<Presenter>: View, Presentable, Configurable where Presenter: Tes
 // MARK: -  body
     var body: some View {
         Text("Hello, developer! =)")
-            .onAppear() {
-                self.presenter.viewOnAppear()
-            }.onTapGesture {
+            .onTapGesture {
                 self.presenter.onClickText()
             }
     }

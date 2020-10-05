@@ -17,7 +17,6 @@ protocol TestPresenter: Presenter {
     var router: TestRouter? { get set }
     var data: TestData { get }
 
-    func viewOnAppear()
     func onClickText()
 }
 
@@ -34,10 +33,6 @@ final class TestPresenterImpl: TestPresenter {
     @Published var data = TestData()
 
 // MARK: - Methods
-    func viewOnAppear() {
-        
-    }
-    
     func onClickText() {
         self.router?.presentFilmsListView()
     }

@@ -13,6 +13,7 @@ enum TabBarItem: Int {
     
     case films
     case someTab
+    case testTab
 }
 
 // MARK: - TabsRouter
