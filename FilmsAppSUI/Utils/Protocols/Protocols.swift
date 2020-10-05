@@ -55,3 +55,21 @@ protocol Configurable {
     
     var configurator: Configurator { get set }
 }
+
+// MARK: - Configurable
+protocol Router {
+    
+    func pop(completion: (() -> ())?)
+    func dismiss(completion: (() -> ())?)
+}
+
+extension Router {
+    
+    func pop(completion: (() -> ())?) {
+        Navigator.shared.pop(completion: completion)
+    }
+    
+    func dismiss(completion: (() -> ())?) {
+        Navigator.shared.dismiss(completion: completion)
+    }
+}

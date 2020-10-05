@@ -23,16 +23,14 @@ class Navigator: NSObject {
            let rootViewController = sceneDelegate.windows.first?.rootViewController {
             
             let navigationController = (rootViewController as? UINavigationController) ??
-                rootViewController.navigationController ??
-                (self.tabBarController?.selectedViewController as? UINavigationController)
-            
+                (self.tabBarController?.selectedViewController as? UINavigationController) ??
+                rootViewController.navigationController
+                
             navigationController?.delegate = self
             return navigationController
         }
         
-        let navigationController = self.viewController?.navigationController
-        navigationController?.delegate = self
-        return navigationController
+        return nil
     }
     
     weak var tabBarController: UITabBarController? {
@@ -44,18 +42,12 @@ class Navigator: NSObject {
             return tabBarController
         }
         
-        let tabBarController = self.viewController?.tabBarController
-        return tabBarController
+        return nil
     }
-    
-    private weak var viewController: UIViewController?
+
     private var completion: (() -> ())?
     
 // MARK: - Methods
-    func setup(viewController: UIViewController) {
-        self.viewController = viewController
-    }
-    
     func push<Content: View & Configurable & Presentable>(view: Content, title: String,
                                                           configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
@@ -63,13 +55,19 @@ class Navigator: NSObject {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func present<Content: View & Configurable & Presentable>(view: Content,
-                                                             title: String,
-                                                             configureBlock: ((Content?) -> ())?) {
+    func presentWithNavBar<Content: View & Configurable & Presentable>(view: Content,
+                                                                       title: String,
+                                                                       configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.present(UINavigationController(rootViewController: viewController),
                                            animated: true, completion: nil)
+    }
+    
+    func present<Content: View & Configurable & Presentable>(view: Content,
+                                                             configureBlock: ((Content?) -> ())?) {
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     func getScreen<Content: View & Configurable & Presentable>(view: Content,
@@ -109,6 +107,10 @@ class Navigator: NSObject {
     
     func dismiss(completion: (() -> ())? = nil) {
         self.navigationController?.dismiss(animated: true, completion: completion)
+    }
+    
+    func setTab(_ tab: TabBarItem) {
+        self.tabBarController?.selectedIndex = tab.rawValue
     }
 
 }

@@ -9,14 +9,14 @@
 import UIKit
 
 // MARK: - Tabs
-enum Tabs: Int {
+enum TabBarItem: Int {
     
     case films
     case someTab
 }
 
 // MARK: - TabsRouter
-protocol TabsRouter {
+protocol TabsRouter: Router {
  
     func configureTabs()
 }

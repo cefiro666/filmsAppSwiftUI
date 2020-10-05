@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - FilmDetailsRouter
-protocol FilmDetailsRouter {
+protocol FilmDetailsRouter: Router {
     
 }
 

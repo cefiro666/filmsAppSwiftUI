@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - FilmsListRouter
-protocol FilmsListRouter {
+protocol FilmsListRouter: Router {
     
     func pushFilmDetailsScreenForFilm(_ film: Film)
 }
