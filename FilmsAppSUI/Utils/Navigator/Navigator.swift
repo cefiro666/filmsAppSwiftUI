@@ -17,14 +17,23 @@ class Navigator: NSObject {
     private override init() {}
     
 // MARK: - Properties
-    weak var navigationController: UINavigationController? {
+    weak var rootController: UIViewController? {
         if let scene = UIApplication.shared.connectedScenes.first,
            let sceneDelegate = scene as? UIWindowScene,
            let rootViewController = sceneDelegate.windows.first?.rootViewController {
             
-            let navigationController = (rootViewController as? UINavigationController) ??
+            return rootViewController
+        }
+        
+        return nil
+    }
+    
+    weak var navigationController: UINavigationController? {
+        if let rootController = self.rootController {
+            
+            let navigationController = (rootController as? UINavigationController) ??
                 (self.tabBarController?.selectedViewController as? UINavigationController) ??
-                rootViewController.navigationController
+                rootController.navigationController
                 
             navigationController?.delegate = self
             return navigationController
@@ -34,11 +43,9 @@ class Navigator: NSObject {
     }
     
     weak var tabBarController: UITabBarController? {
-        if let scene = UIApplication.shared.connectedScenes.first,
-           let sceneDelegate = scene as? UIWindowScene,
-           let rootViewController = sceneDelegate.windows.first?.rootViewController {
+        if let rootController = self.rootController {
             
-            let tabBarController = (rootViewController as? UITabBarController) ?? rootViewController.tabBarController
+            let tabBarController = (rootController as? UITabBarController) ?? rootController.tabBarController
             return tabBarController
         }
         
@@ -67,7 +74,7 @@ class Navigator: NSObject {
     func present<Content: View & Configurable & Presentable>(view: Content,
                                                              configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        self.navigationController?.present(viewController, animated: true, completion: nil)
+        self.rootController?.present(viewController, animated: true, completion: nil)
     }
     
     func getScreen<Content: View & Configurable & Presentable>(view: Content,

@@ -42,9 +42,17 @@ struct TabsRouterImpl: TabsRouter {
                                                  image: UIImage(systemName: "square.and.pencil"),
                                                  selectedImage: UIImage(systemName: "square.and.pencil"))
         
+        guard let testController = Navigator.shared.getScreen(view: TestView(presenter: TestPresenterImpl()),
+                                                              configureBlock: nil) else { return }
+        
+        testController.tabBarItem = UITabBarItem(title: "Test tab",
+                                                 image: UIImage(systemName: "square.and.pencil"),
+                                                 selectedImage: UIImage(systemName: "square.and.pencil"))
+        
         Navigator.shared.tabBarController?.setViewControllers([
             filmsController,
-            someController
+            someController,
+            testController,
         ], animated: false)
     }
     
