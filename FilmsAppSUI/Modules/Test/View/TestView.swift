@@ -17,7 +17,7 @@ struct TestView<Presenter>: View, Presentable, Configurable where Presenter: Tes
 
 // MARK: -  body
     var body: some View {
-        Text("Hello, developer! =)")
+        Text("Sequenia. SwiftUI VUPER")
             .onTapGesture {
                 self.presenter.onClickText()
             }

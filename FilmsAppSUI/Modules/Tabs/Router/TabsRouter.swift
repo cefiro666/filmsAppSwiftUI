@@ -8,12 +8,16 @@
 
 import UIKit
 
-// MARK: - Tabs
-enum TabBarItem: Int {
+// MARK: - Tab
+enum Tab: Int, TabBarItem {
     
     case films
     case someTab
     case testTab
+    
+    var tabIndex: Int {
+        return self.rawValue
+    }
 }
 
 // MARK: - TabsRouter

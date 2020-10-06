@@ -10,6 +10,12 @@ import SwiftUI
 
 extension Text {
     
+    /**
+    Formats text for a specific rating.
+     
+    **Parameters:**
+        - raiting: film raiting.
+    */
     @inlinable public static func fromRaiting(_ raiting: Float?) -> some View {
         guard let raiting = raiting else {
             return Text("-").foregroundColor(Color(#colorLiteral(red: 0.3707730174, green: 0.370819658, blue: 0.3707520962, alpha: 1)))

@@ -29,34 +29,24 @@ class Navigator: NSObject {
     }
     
     weak var navigationController: UINavigationController? {
-        if let rootController = self.rootController {
+        let navigationController = (self.rootController as? UINavigationController) ??
+            (self.tabBarController?.selectedViewController as? UINavigationController) ??
+            self.rootController?.navigationController ??
+            (self.rootController?.presentedViewController as? UINavigationController)
             
-            let navigationController = (rootController as? UINavigationController) ??
-                (self.tabBarController?.selectedViewController as? UINavigationController) ??
-                rootController.navigationController ??
-                (rootController.presentedViewController as? UINavigationController)
-                
-            navigationController?.delegate = self
-            return navigationController
-        }
-        
-        return nil
+        navigationController?.delegate = self
+        return navigationController
     }
     
     weak var tabBarController: UITabBarController? {
-        if let rootController = self.rootController {
-            
-            let tabBarController = (rootController as? UITabBarController) ?? rootController.tabBarController
-            return tabBarController
-        }
-        
-        return nil
+        return (self.rootController as? UITabBarController) ?? self.rootController?.tabBarController
     }
 
     private var completion: (() -> ())?
     
 // MARK: - Methods
-    func push<Content: View & Configurable & Presentable>(view: Content, title: String,
+    func push<Content: View & Configurable & Presentable>(view: Content,
+                                                          title: String,
                                                           configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
@@ -67,8 +57,8 @@ class Navigator: NSObject {
                                                                        title: String,
                                                                        configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.title = title
         navigationController.modalPresentationStyle = .fullScreen
         self.rootController?.present(navigationController, animated: true, completion: nil)
     }
@@ -80,11 +70,6 @@ class Navigator: NSObject {
         self.rootController?.present(viewController, animated: true, completion: nil)
     }
     
-    func getScreen<Content: View & Configurable & Presentable>(view: Content,
-                                                               configureBlock: ((Content?) -> ())?) -> UIViewController? {
-        return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-    }
-    
     func getScreenWithNavBar<Content: View & Configurable & Presentable>(view: Content,
                                                                          configureBlock: ((Content?) -> ())?) -> UIViewController? {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
@@ -92,9 +77,16 @@ class Navigator: NSObject {
         return navigationController
     }
     
+    func getScreen<Content: View & Configurable & Presentable>(view: Content,
+                                                               configureBlock: ((Content?) -> ())?) -> UIViewController? {
+        return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+    }
+    
     func setRootControllerWithNavBar<Content: View & Configurable & Presentable>(view: Content,
+                                                                                 title: String,
                                                                                  configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
         SceneDelegate.setupRoot(viewController: navigationController)
@@ -120,7 +112,7 @@ class Navigator: NSObject {
     }
     
     func setTab(_ tab: TabBarItem) {
-        self.tabBarController?.selectedIndex = tab.rawValue
+        self.tabBarController?.selectedIndex = tab.tabIndex
     }
 
 }

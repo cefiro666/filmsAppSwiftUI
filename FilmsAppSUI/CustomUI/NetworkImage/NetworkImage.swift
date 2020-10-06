@@ -58,6 +58,7 @@ public struct NetworkImage: SwiftUI.View {
             }
         }
     }
+    
 }
 
 // MARK: - PreviewProvider

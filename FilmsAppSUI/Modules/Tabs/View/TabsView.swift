@@ -22,7 +22,7 @@ struct TabsView<Presenter>: View, Presentable, Configurable where Presenter: Tab
                 self.presenter.viewOnAppear()
                 Navigator.shared.tabBarController?.tabBar.tintColor = UIColor.black
                 Navigator.shared.tabBarController?.tabBar.unselectedItemTintColor = UIColor.gray
-        }
+            }
     }
 }
 

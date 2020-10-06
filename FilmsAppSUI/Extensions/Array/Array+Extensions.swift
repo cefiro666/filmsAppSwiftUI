@@ -10,6 +10,9 @@ import Foundation
 
 extension Array {
     
+    /**
+    Returns unique elements from an array.
+    */
     func unique<T: Hashable>(map: ((Element) -> (T))) -> [Element] {
         var set = Set<T>()
         var arrayOrdered = [Element]()

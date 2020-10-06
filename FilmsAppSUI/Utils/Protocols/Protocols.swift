@@ -56,7 +56,7 @@ protocol Configurable {
     var configurator: Configurator { get set }
 }
 
-// MARK: - Configurable
+// MARK: - Router
 protocol Router {
     
     func pop(completion: (() -> ())?)
@@ -72,4 +72,10 @@ extension Router {
     func dismiss(completion: (() -> ())?) {
         Navigator.shared.dismiss(completion: completion)
     }
+}
+
+// MARK: - TabBarItem
+protocol TabBarItem {
+    
+    var tabIndex: Int { get }
 }
