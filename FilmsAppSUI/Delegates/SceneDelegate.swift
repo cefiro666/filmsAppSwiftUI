@@ -25,16 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
 
             self.window = window
-            SceneDelegate.currentWindow = self.window
             window.makeKeyAndVisible()
         }
         
         self.configureSystem()
-        Navigator.shared.setRootController(view: TabsView(presenter: TabsPresenterImpl()), configureBlock: nil)
-    }
-    
-    static func setupRoot(viewController: UIViewController) {
-        SceneDelegate.currentWindow?.rootViewController = viewController
+        self.configureNavigator()
     }
     
     private func configureSystem() {
@@ -46,6 +41,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITableViewCell.appearance().selectionStyle = .none
         
         UINavigationBar.appearance().isTranslucent = false
+    }
+    
+    private func configureNavigator() {
+        Navigator.shared.setSceneDelegate(self)
+        Navigator.shared.setRootScreen(view: TabsView(presenter: TabsPresenterImpl()), configureBlock: nil)
     }
 
 }

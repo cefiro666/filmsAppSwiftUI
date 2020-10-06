@@ -34,7 +34,7 @@ final class TestPresentPresenterImpl: TestPresentPresenter {
 
 // MARK: - Methods
     func onTapDismissButton() {
-        self.router?.dismiss(completion: nil)
+        self.router?.dismissScreen(completion: nil)
     }
     
 }

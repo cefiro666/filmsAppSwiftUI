@@ -31,9 +31,10 @@ struct TabsRouterImpl: TabsRouter {
     
     func configureTabs() {
         let tabBarController = UITabBarController()
-        SceneDelegate.setupRoot(viewController: tabBarController)
+        UIApplication.shared.windows.first?.rootViewController = tabBarController
         
         guard let filmsController = Navigator.shared.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                                         title: "Фильмы",
                                                                          configureBlock: nil) else { return }
         
         filmsController.tabBarItem = UITabBarItem(title: "Фильмы",
@@ -41,6 +42,7 @@ struct TabsRouterImpl: TabsRouter {
                                                   selectedImage: UIImage(systemName: "list.dash"))
         
         guard let someController = Navigator.shared.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                                        title: "Фильмы",
                                                                         configureBlock: nil) else { return }
         
         someController.tabBarItem = UITabBarItem(title: "Some tab",

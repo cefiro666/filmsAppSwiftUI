@@ -12,23 +12,21 @@ import UIKit
 // MARK: - Navigator
 class Navigator: NSObject {
     
-// MARK: - Shared
+// MARK: - Singletone
     static var shared = Navigator()
     private override init() {}
-    
-// MARK: - Properties
-    weak var rootController: UIViewController? {
-        if let scene = UIApplication.shared.connectedScenes.first,
-           let sceneDelegate = scene as? UIWindowScene,
-           let rootViewController = sceneDelegate.windows.first?.rootViewController {
-            
-            return rootViewController
-        }
-        
-        return nil
+
+// MARK: - Setup methods
+    func setSceneDelegate(_ delegate: UIWindowSceneDelegate?) {
+        self.sceneDelegate = delegate
     }
     
-    weak var navigationController: UINavigationController? {
+// MARK: - Public properties
+    public weak var rootController: UIViewController? {
+        return self.sceneDelegate?.window??.rootViewController
+    }
+    
+    public weak var navigationController: UINavigationController? {
         let navigationController = (self.rootController as? UINavigationController) ??
             (self.tabBarController?.selectedViewController as? UINavigationController) ??
             self.rootController?.navigationController ??
@@ -38,69 +36,100 @@ class Navigator: NSObject {
         return navigationController
     }
     
-    weak var tabBarController: UITabBarController? {
+    public weak var tabBarController: UITabBarController? {
         return (self.rootController as? UITabBarController) ?? self.rootController?.tabBarController
     }
 
+// MARK: - Private properties
     private var completion: (() -> ())?
+    private weak var sceneDelegate: UIWindowSceneDelegate?
     
-// MARK: - Methods
-    func push<Content: View & Configurable & Presentable>(view: Content,
-                                                          title: String,
-                                                          needHideTabBar: Bool = true,
-                                                          configureBlock: ((Content?) -> ())?) {
+// MARK: - Public methods
+    @discardableResult public func pushScreen<Content: View & Configurable & Presentable>(
+        view: Content,
+        title: String,
+        needHideTabBar: Bool = true,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         viewController.hidesBottomBarWhenPushed = needHideTabBar
         self.navigationController?.pushViewController(viewController, animated: true)
+        return viewController
     }
     
-    func presentWithNavBar<Content: View & Configurable & Presentable>(view: Content,
-                                                                       title: String,
-                                                                       configureBlock: ((Content?) -> ())?) {
+    @discardableResult public func presentScreenWithNavBar<Content: View & Configurable & Presentable>(
+        view: Content,
+        title: String,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         self.rootController?.present(navigationController, animated: true, completion: nil)
+        return navigationController
     }
     
-    func present<Content: View & Configurable & Presentable>(view: Content,
-                                                             configureBlock: ((Content?) -> ())?) {
+    @discardableResult public func presentScreen<Content: View & Configurable & Presentable>(
+        view: Content,
+        completion: (() ->())? = nil,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.modalPresentationStyle = .fullScreen
-        self.rootController?.present(viewController, animated: true, completion: nil)
+        self.rootController?.present(viewController, animated: true, completion: completion)
+        return viewController
     }
     
-    func getScreenWithNavBar<Content: View & Configurable & Presentable>(view: Content,
-                                                                         configureBlock: ((Content?) -> ())?) -> UIViewController? {
+    public func getScreenWithNavBar<Content: View & Configurable & Presentable>(
+        view: Content,
+        title: String,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
     
-    func getScreen<Content: View & Configurable & Presentable>(view: Content,
-                                                               configureBlock: ((Content?) -> ())?) -> UIViewController? {
+    public func getScreen<Content: View & Configurable & Presentable>(
+        view: Content,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
     }
     
-    func setRootControllerWithNavBar<Content: View & Configurable & Presentable>(view: Content,
-                                                                                 title: String,
-                                                                                 configureBlock: ((Content?) -> ())?) {
+    @discardableResult public func setRootScreenWithNavBar<Content: View & Configurable & Presentable>(
+        view: Content,
+        title: String,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
-        SceneDelegate.setupRoot(viewController: navigationController)
+        self.sceneDelegate?.window??.rootViewController = navigationController
+        return navigationController
     }
     
-    func setRootController<Content: View & Configurable & Presentable>(view: Content,
-                                                                       configureBlock: ((Content?) -> ())?) {
+    @discardableResult public func setRootScreen<Content: View & Configurable & Presentable>(
+        view: Content,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        SceneDelegate.setupRoot(viewController: viewController)
+        self.sceneDelegate?.window??.rootViewController = viewController
+        return viewController
     }
     
-    func pop(completion: (() -> ())? = nil) {
+    public func popScreen(completion: (() -> ())? = nil) {
         if self.navigationController?.viewControllers.count == 1 {
             self.navigationController?.dismiss(animated: true, completion: completion)
         } else {
@@ -109,11 +138,11 @@ class Navigator: NSObject {
         }
     }
     
-    func dismiss(completion: (() -> ())? = nil) {
+    public func dismissScreen(completion: (() -> ())? = nil) {
         self.navigationController?.dismiss(animated: true, completion: completion)
     }
     
-    func setTab(_ tab: TabBarItem) {
+    public func setTab(_ tab: TabBarItem) {
         self.tabBarController?.selectedIndex = tab.tabIndex
     }
 

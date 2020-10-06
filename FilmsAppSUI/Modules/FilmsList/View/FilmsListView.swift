@@ -45,7 +45,6 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
             }
         }
 
-        .navigationBarTitle(Text("films"))
         .onAppear {
             self.presenter.viewOnAppear()
         }

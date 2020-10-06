@@ -18,9 +18,9 @@ protocol TestRouter: Router {
 struct TestRouterImpl: TestRouter {
     
     func presentFilmsListView() {
-        Navigator.shared.presentWithNavBar(view: TestPresentView(presenter: TestPresentPresenterImpl()),
-                                           title: "TestPresent",
-                                           configureBlock: nil)
+        Navigator.shared.presentScreenWithNavBar(view: TestPresentView(presenter: TestPresentPresenterImpl()),
+                                                 title: "TestPresent",
+                                                 configureBlock: nil)
     }
 }
 
