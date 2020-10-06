@@ -29,11 +29,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
+        self.configureSystem()
         Navigator.shared.setRootController(view: TabsView(presenter: TabsPresenterImpl()), configureBlock: nil)
     }
     
     static func setupRoot(viewController: UIViewController) {
         SceneDelegate.currentWindow?.rootViewController = viewController
+    }
+    
+    private func configureSystem() {
+        UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
+        
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().allowsSelection = false
+        
+        UITableViewCell.appearance().selectionStyle = .none
+        
+        UINavigationBar.appearance().isTranslucent = false
     }
 
 }

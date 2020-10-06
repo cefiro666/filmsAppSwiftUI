@@ -47,13 +47,6 @@ struct ContainerView<Content: View & Presentable>: View {
                 self.content.presenter.onClickError()
             })
         }
-        
-        .onAppear {
-            UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
-            UITableView.appearance().separatorStyle = .none
-            UITableView.appearance().allowsSelection = false
-            UITableViewCell.appearance().selectionStyle = .none
-        }
     }
 }
 

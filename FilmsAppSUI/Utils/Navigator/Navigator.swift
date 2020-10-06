@@ -47,9 +47,11 @@ class Navigator: NSObject {
 // MARK: - Methods
     func push<Content: View & Configurable & Presentable>(view: Content,
                                                           title: String,
+                                                          needHideTabBar: Bool = true,
                                                           configureBlock: ((Content?) -> ())?) {
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
+        viewController.hidesBottomBarWhenPushed = needHideTabBar
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
