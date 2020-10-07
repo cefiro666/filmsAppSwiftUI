@@ -20,8 +20,8 @@ struct TabsView<Presenter>: View, Presentable, Configurable where Presenter: Tab
         ZStack {}
             .onAppear() {
                 self.presenter.viewOnAppear()
-                Navigator.shared.tabBarController?.tabBar.tintColor = UIColor.black
-                Navigator.shared.tabBarController?.tabBar.unselectedItemTintColor = UIColor.gray
+                Navigator.tabBarController?.tabBar.tintColor = UIColor.black
+                Navigator.tabBarController?.tabBar.unselectedItemTintColor = UIColor.gray
             }
     }
 }

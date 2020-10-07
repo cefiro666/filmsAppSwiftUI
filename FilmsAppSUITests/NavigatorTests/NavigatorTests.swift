@@ -14,16 +14,7 @@ enum Tab: Int, TabBarItem {
     
     case oneTab
     case twoTab
-    // MARK: - Tab
-    enum Tab: Int, TabBarItem {
-        
-        case oneTab
-        case twoTab
-        
-        var tabIndex: Int {
-            return self.rawValue
-        }
-    }
+
     var tabIndex: Int {
         return self.rawValue
     }
@@ -32,101 +23,129 @@ enum Tab: Int, TabBarItem {
 // MARK: - NavigatorTests
 class NavigatorTests: XCTestCase {
 
+// MARK: - Properties
     var testView: TestModuleView<TestModulePresenterImpl>!
     var mockSceneDelegate: UIWindowSceneDelegate?
     
-    var statedController: UIViewController? {
+    var rootController: UIViewController? {
         return self.mockSceneDelegate?.window??.rootViewController
     }
     
+// MARK: - Setup and tear down
     override func setUpWithError() throws {
         self.testView = TestModuleView(presenter: TestModulePresenterImpl())
         self.mockSceneDelegate = MockSceneDelegate()
-        Navigator.shared.setSceneDelegate(self.mockSceneDelegate)
+        Navigator.setSceneDelegate(self.mockSceneDelegate)
     }
 
     override func tearDownWithError() throws {
         self.testView = nil
         self.mockSceneDelegate = nil
     }
-
-    func testNavigatorAfterInitNotEqualByNil() throws {
-        XCTAssertNotNil(Navigator.shared)
-    }
-
-    func testNavigatorIsSingleton() throws {
-        let navigatorInstance = Navigator.shared
-        let navigatorSomeInstance = Navigator.shared
+    
+    func testRootControllerAfterSetRootScreenNotEqualByNil() throws {
+        Navigator.setRootScreen(view: self.testView, configureBlock: nil)
         
-        XCTAssertEqual(navigatorInstance, navigatorSomeInstance)
+        XCTAssertNotNil(self.rootController)
     }
     
-    func testNavigatorAfterSetRootScreenRootControllerNotEqualByNil() throws {
-        Navigator.shared.setRootScreen(view: self.testView, configureBlock: nil)
+    func testRootControllerAfterSetRootScreenEqualByStatedScreen() throws {
+        let controller = Navigator.setRootScreen(view: self.testView, configureBlock: nil)
         
-        XCTAssertNotNil(self.statedController)
+        XCTAssertEqual(controller, self.rootController)
     }
     
-    func testNavigatorAfterSetRootScreenHasStatedScreen() throws {
-        let controller = Navigator.shared.setRootScreen(view: self.testView, configureBlock: nil)
-        
-        XCTAssertEqual(controller, self.statedController)
-    }
-    
-    func testNavigatorWhenSetRootScreenConfigureBlockWorking() throws {
-        let testString = "Foo"
-        Navigator.shared.setRootScreen(view: self.testView) { view in
-            view?.presenter.setTestString(testString)
+    func testConfigureBlockWhenSetRootScreenkWorking() throws {
+        Navigator.setRootScreen(view: self.testView) { view in
+            view?.presenter.setTestString("Foo")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, testString)
+        XCTAssertEqual(self.testView.presenter.data.testString, "Foo")
     }
     
-    func testNavigatorAfterSetRootScreenWithNavBarRootControllerNotEqualByNil() throws {
-        Navigator.shared.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+    func testRootControllerAfterSetRootScreenWithNavBarNotEqualByNil() throws {
+        Navigator.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
         
-        XCTAssertNotNil(self.statedController)
+        XCTAssertNotNil(self.rootController)
     }
     
-    func testNavigatorAfterSetRootScreenWithNavBarHasStatedScreen() throws {
-        let controller = Navigator.shared.setRootScreenWithNavBar(view: self.testView,
-                                                                  title: "Foo",
-                                                                  configureBlock: nil)
+    func testRootControllerAfterSetRootScreenWithNavBarEqualByStatedScreen() throws {
+        let controller = Navigator.setRootScreenWithNavBar(view: self.testView,
+                                                           title: "Foo",
+                                                           configureBlock: nil)
         
-        XCTAssertEqual(controller, self.statedController)
+        XCTAssertEqual(controller, self.rootController)
     }
     
-    func testNavigatorAfterSetRootScreenWithNavTitleEqualByStatedTitle() throws {
-        let title = "Foo"
-        Navigator.shared.setRootScreenWithNavBar(view: self.testView,
-                                                 title: title,
-                                                 configureBlock: nil)
+    func testRootControllerTitleAfterSetRootScreenWithNavBarEqualByStatedTitle() throws {
+        Navigator.setRootScreenWithNavBar(view: self.testView,
+                                          title: "Foo",
+                                          configureBlock: nil)
         
-        XCTAssertEqual(title, self.statedController?.title)
+        XCTAssertEqual("Foo", self.rootController?.title)
     }
     
-    func testNavigatorWhenSetRootScreenWithNavBarConfigureBlockWorking() throws {
-        let testString = "Foo"
-        Navigator.shared.setRootScreenWithNavBar(view: self.testView,
-                                                 title: "Foo") { view in
-            view?.presenter.setTestString(testString)
+    func testConfigureBlockWhenSetRootScreenWithNavBarWorking() throws {
+        Navigator.setRootScreenWithNavBar(view: self.testView, title: "Foo") { view in
+            view?.presenter.setTestString("Bar")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, testString)
+        XCTAssertEqual(self.testView.presenter.data.testString, "Bar")
     }
     
-    func testNavigatorTabAfterSetTabEqualByStatedTab() throws {
+    func testSelectedTabAfterSetTabEqualByStatedTab() throws {
+        self.tabControllerWasTuned()
+        
+        Navigator.setTab(Tab.oneTab)
+     
+        XCTAssertEqual(Navigator.tabBarController?.selectedIndex, Tab.oneTab.tabIndex)
+        
+        Navigator.setTab(Tab.twoTab)
+     
+        XCTAssertEqual(Navigator.tabBarController?.selectedIndex, Tab.twoTab.tabIndex)
+    }
+    
+    private func tabControllerWasTuned() {
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers([UIViewController(), UIViewController()], animated: false)
         self.mockSceneDelegate?.window??.rootViewController = tabBarController
-        
-        Navigator.shared.setTab(Tab.oneTab)
-     
-        XCTAssertEqual(Navigator.shared.tabBarController?.selectedIndex, Tab.oneTab.tabIndex)
-        
-        Navigator.shared.setTab(Tab.twoTab)
-     
-        XCTAssertEqual(Navigator.shared.tabBarController?.selectedIndex, Tab.twoTab.tabIndex)
     }
+    
+    func testRootControllerAfterPresentScreenEqualPresentedScreen() throws {
+        Navigator.setRootScreen(view: self.testView, configureBlock: nil)
+        
+        self.presentScreenAndWaitCancelTransitionAnimation { presentedController in
+            XCTAssertEqual(Navigator.presentedController, presentedController)
+        }
+    }
+    
+    private func presentScreenAndWaitCancelTransitionAnimation(_ animationCompletion: @escaping (UIViewController?) -> ()) {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+        let presentedController = Navigator.presentScreen(view: someView, configureBlock: nil)
+        
+        let exp = self.expectation(description: "Test Navigator.shared.presentScreen method")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            exp.fulfill()
+        }
 
+        waitForExpectations(timeout: 0.55) { _ in
+            animationCompletion(presentedController)
+        }
+    }
+    
+//    func testConfigureBlockWhenPresentScreenWorking() throws {
+//        Navigator.setRootScreen(view: self.testView, configureBlock: nil)
+//        
+//        self.presentScreenAndWaitCancelTransitionAnimation { presentedController in
+//            XCTAssertEqual(Navigator.presentedController, presentedController)
+//        }
+//        
+//        Navigator.setRootScreenWithNavBar(view: self.testView, title: "Foo") { view in
+//            view?.presenter.setTestString("Bar")
+//        }
+//        
+//        XCTAssertEqual(self.testView.presenter.data.testString, "Bar")
+//    }
+    
+    
 }

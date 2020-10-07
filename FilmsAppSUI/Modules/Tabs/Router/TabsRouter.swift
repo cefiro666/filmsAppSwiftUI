@@ -33,30 +33,30 @@ struct TabsRouterImpl: TabsRouter {
         let tabBarController = UITabBarController()
         UIApplication.shared.windows.first?.rootViewController = tabBarController
         
-        guard let filmsController = Navigator.shared.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
-                                                                         title: "Фильмы",
-                                                                         configureBlock: nil) else { return }
+        guard let filmsController = Navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                                  title: "Фильмы",
+                                                                  configureBlock: nil) else { return }
         
         filmsController.tabBarItem = UITabBarItem(title: "Фильмы",
                                                   image: UIImage(systemName: "list.dash"),
                                                   selectedImage: UIImage(systemName: "list.dash"))
         
-        guard let someController = Navigator.shared.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
-                                                                        title: "Фильмы",
-                                                                        configureBlock: nil) else { return }
+        guard let someController = Navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                                 title: "Фильмы",
+                                                                 configureBlock: nil) else { return }
         
         someController.tabBarItem = UITabBarItem(title: "Some tab",
                                                  image: UIImage(systemName: "square.and.pencil"),
                                                  selectedImage: UIImage(systemName: "square.and.pencil"))
         
-        guard let testController = Navigator.shared.getScreen(view: TestView(presenter: TestPresenterImpl()),
-                                                              configureBlock: nil) else { return }
+        guard let testController = Navigator.getScreen(view: TestView(presenter: TestPresenterImpl()),
+                                                       configureBlock: nil) else { return }
         
         testController.tabBarItem = UITabBarItem(title: "Test tab",
                                                  image: UIImage(systemName: "square.and.pencil"),
                                                  selectedImage: UIImage(systemName: "square.and.pencil"))
         
-        Navigator.shared.tabBarController?.setViewControllers([
+        Navigator.tabBarController?.setViewControllers([
             filmsController,
             someController,
             testController,

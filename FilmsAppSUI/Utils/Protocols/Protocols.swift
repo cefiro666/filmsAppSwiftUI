@@ -59,18 +59,18 @@ protocol Configurable {
 // MARK: - Router
 protocol Router {
     
-    func popScreen(completion: (() -> ())?)
+    func popScreen()
     func dismissScreen(completion: (() -> ())?)
 }
 
 extension Router {
     
-    func popScreen(completion: (() -> ())?) {
-        Navigator.shared.popScreen(completion: completion)
+    func popScreen() {
+        Navigator.popScreen()
     }
     
     func dismissScreen(completion: (() -> ())?) {
-        Navigator.shared.dismissScreen(completion: completion)
+        Navigator.dismissScreen(completion: completion)
     }
 }
 

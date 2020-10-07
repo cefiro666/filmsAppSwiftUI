@@ -17,6 +17,7 @@ class MockSceneDelegate: NSObject, UIWindowSceneDelegate {
 // MARK: - Inits
     override init() {
         self.window = UIWindow()
+        self.window?.makeKeyAndVisible()
     }
     
 }
