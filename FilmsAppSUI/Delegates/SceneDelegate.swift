@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func configureNavigator() {
-        Navigator.setSceneDelegate(self)
+        Navigator.sceneDelegate = self
         Navigator.setRootScreen(view: TabsView(presenter: TabsPresenterImpl()), configureBlock: nil)
     }
 

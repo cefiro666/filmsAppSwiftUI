@@ -11,11 +11,6 @@ import UIKit
 
 // MARK: - Navigator
 class Navigator {
-
-// MARK: - Setup methods
-    static func setSceneDelegate(_ delegate: UIWindowSceneDelegate?) {
-        Navigator.sceneDelegate = delegate
-    }
     
 // MARK: - Public properties
     static public weak var rootController: UIViewController? {
@@ -40,7 +35,7 @@ class Navigator {
     }
 
 // MARK: - Private properties
-    static private weak var sceneDelegate: UIWindowSceneDelegate?
+    static weak var sceneDelegate: UIWindowSceneDelegate?
     
 // MARK: - Public methods
     @discardableResult static public func pushScreen<Content: View & Configurable & Presentable>(
