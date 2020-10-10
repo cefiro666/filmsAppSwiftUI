@@ -7,26 +7,32 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import FilmsAppSUI
 
 // MARK: - NavigatorTests
 class NavigatorTests: XCTestCase {
 
 // MARK: - Properties
-    var sut = Navigator.self
+    var sut: Navigator.Type!
     
     var testView: TestModuleView<TestModulePresenterImpl>!
+    
     var mockSceneDelegate: UIWindowSceneDelegate?
     var currentRootController: UIViewController? { self.mockSceneDelegate?.window??.rootViewController }
     
 // MARK: - Setup and tear down
     override func setUpWithError() throws {
+        self.sut = TestModuleRouterImpl().Navigator
+        
         self.testView = TestModuleView(presenter: TestModulePresenterImpl())
+        
         self.mockSceneDelegate = MockSceneDelegate()
         self.sut.sceneDelegate = self.mockSceneDelegate
     }
 
     override func tearDownWithError() throws {
+        self.sut = nil
         self.testView = nil
         self.mockSceneDelegate = nil
     }
@@ -46,7 +52,7 @@ class NavigatorTests: XCTestCase {
     }
     
     func testCurrentRootControllerAfterSetRootScreenEqualByStatedScreen() throws {
-        let controller = Navigator.setRootScreen(view: self.testView, configureBlock: nil)
+        let controller = NavigatorImpl.setRootScreen(view: self.testView, configureBlock: nil)
         
         XCTAssertEqual(controller, self.currentRootController)
     }
@@ -66,7 +72,7 @@ class NavigatorTests: XCTestCase {
     }
     
     func testCurrentRootControllerAfterSetRootScreenWithNavBarEqualByStatedScreen() throws {
-        let controller = Navigator.setRootScreenWithNavBar(view: self.testView,
+        let controller = NavigatorImpl.setRootScreenWithNavBar(view: self.testView,
                                                            title: "Foo",
                                                            configureBlock: nil)
         
@@ -101,12 +107,6 @@ class NavigatorTests: XCTestCase {
         XCTAssertEqual(self.sut.tabBarController?.selectedIndex, Tab.twoTab.tabIndex)
     }
     
-    private func tabControllerWasTuned() {
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([UIViewController(), UIViewController()], animated: false)
-        self.mockSceneDelegate?.window??.rootViewController = tabBarController
-    }
-    
     func testPresentedControllerAfterPresentScreenEqualPresentedScreen() throws {
         self.sut.setRootScreen(view: self.testView, configureBlock: nil)
         
@@ -134,6 +134,48 @@ class NavigatorTests: XCTestCase {
         XCTAssertEqual(someView.presenter.data.testString, "Foo")
     }
     
+    func testReturnedControllerWhenGetScreenNotEqualByNil() throws {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+        let controller = self.sut.getScreen(view: someView, configureBlock: nil)
+        
+        XCTAssertNotNil(controller)
+    }
+    
+    func testReturnedControllerWhenGetScreenIncludesTransmittedView() throws {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+
+        self.sut.getScreen(view: someView) { view in
+            view?.presenter.setTestString("Foo")
+        }
+        
+        XCTAssertEqual(someView.presenter.data.testString, "Foo")
+    }
+    
+    func testReturnedControllerWhenGetScreenWithNavBarIncludesTransmittedView() throws {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+
+        self.sut.getScreenWithNavBar(view: someView, title: "Foo") { view in
+            view?.presenter.setTestString("Bar")
+        }
+        
+        XCTAssertEqual(someView.presenter.data.testString, "Bar")
+    }
+    
+    func testTitleReturnedControllerWhenGetScreenWithNavBarEqualByStatedTitle() throws {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+
+        let controller = self.sut.getScreenWithNavBar(view: someView, title: "Foo", configureBlock: nil)
+        
+        XCTAssertEqual(controller?.title, "Foo")
+    }
+    
+    func testReturnedControllerWhenGetScreenWithNavBarNotEqualByNil() throws {
+        let someView = TestModuleView(presenter: TestModulePresenterImpl())
+        let controller = self.sut.getScreenWithNavBar(view: someView, title: "Foo", configureBlock: nil)
+        
+        XCTAssertNotNil(controller)
+    }
+    
 }
 
 // MARK: - extensions
@@ -159,6 +201,12 @@ extension NavigatorTests {
             self.window = UIWindow()
             self.window?.makeKeyAndVisible()
         }
+    }
+    
+    private func tabControllerWasTuned() {
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([UIViewController(), UIViewController()], animated: false)
+        self.mockSceneDelegate?.window??.rootViewController = tabBarController
     }
     
 }

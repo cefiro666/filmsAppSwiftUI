@@ -13,7 +13,7 @@ import Lottie
 struct LottieView: UIViewRepresentable {
     
 // MARK: - Properties
-    var name: String!
+    var name: String
     var loopMode: LottieLoopMode = .playOnce
     var animationView = AnimationView()
 

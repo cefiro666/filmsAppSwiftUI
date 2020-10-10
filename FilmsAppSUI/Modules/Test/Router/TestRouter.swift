@@ -19,8 +19,8 @@ struct TestRouterImpl: TestRouter {
     
     func presentFilmsListView() {
         Navigator.presentScreenWithNavBar(view: TestPresentView(presenter: TestPresentPresenterImpl()),
-                                          title: "TestPresent",
-                                          configureBlock: nil)
+                                               title: "TestPresent",
+                                               configureBlock: nil)
     }
 }
 

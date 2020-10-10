@@ -1,5 +1,5 @@
 //
-//  Navigator.swift
+//  NavigatorImpl.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 28.08.2020.
@@ -9,19 +9,19 @@
 import SwiftUI
 import UIKit
 
-// MARK: - Navigator
-class Navigator {
+// MARK: - NavigatorImpl
+class NavigatorImpl: Navigator {
     
-// MARK: - Public properties
+// MARK: - Properties
     static public weak var rootController: UIViewController? {
-        return Navigator.sceneDelegate?.window??.rootViewController
+        return NavigatorImpl.sceneDelegate?.window??.rootViewController
     }
     
     static public weak var navigationController: UINavigationController? {
-        let navigationController = (Navigator.rootController as? UINavigationController) ??
-            (Navigator.tabBarController?.selectedViewController as? UINavigationController) ??
-            Navigator.rootController?.navigationController ??
-            (Navigator.rootController?.presentedViewController as? UINavigationController)
+        let navigationController = (NavigatorImpl.rootController as? UINavigationController) ??
+            (NavigatorImpl.tabBarController?.selectedViewController as? UINavigationController) ??
+            NavigatorImpl.rootController?.navigationController ??
+            (NavigatorImpl.rootController?.presentedViewController as? UINavigationController)
             
         return navigationController
     }
@@ -34,21 +34,32 @@ class Navigator {
         return self.rootController?.presentedViewController
     }
 
-// MARK: - Private properties
+// MARK: - Delegates
     static weak var sceneDelegate: UIWindowSceneDelegate?
     
-// MARK: - Public methods
+// MARK: - Methods
     @discardableResult static public func pushScreen<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
-        needHideTabBar: Bool = true,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
         
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.title = title
-        viewController.hidesBottomBarWhenPushed = needHideTabBar
-        Navigator.navigationController?.pushViewController(viewController, animated: true)
+        NavigatorImpl.navigationController?.pushViewController(viewController, animated: true)
+        return viewController
+    }
+    
+    @discardableResult static public func pushScreenWithHidenTabBar<Content: View & Configurable & Presentable>(
+        view: Content,
+        title: String,
+        configureBlock: ((Content?) -> ())?
+    ) -> UIViewController? {
+        
+        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        viewController.title = title
+        viewController.hidesBottomBarWhenPushed = true
+        NavigatorImpl.navigationController?.pushViewController(viewController, animated: true)
         return viewController
     }
     
@@ -62,7 +73,7 @@ class Navigator {
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
-        Navigator.rootController?.present(navigationController, animated: true)
+        NavigatorImpl.rootController?.present(navigationController, animated: true)
         return navigationController
     }
     
@@ -73,11 +84,11 @@ class Navigator {
         
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
         viewController.modalPresentationStyle = .fullScreen
-        Navigator.rootController?.present(viewController, animated: true)
+        NavigatorImpl.rootController?.present(viewController, animated: true)
         return viewController
     }
     
-    static public func getScreenWithNavBar<Content: View & Configurable & Presentable>(
+    @discardableResult static public func getScreenWithNavBar<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -89,7 +100,7 @@ class Navigator {
         return navigationController
     }
     
-    static public func getScreen<Content: View & Configurable & Presentable>(
+    @discardableResult static public func getScreen<Content: View & Configurable & Presentable>(
         view: Content,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -107,7 +118,7 @@ class Navigator {
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
-        Navigator.sceneDelegate?.window??.rootViewController = navigationController
+        NavigatorImpl.sceneDelegate?.window??.rootViewController = navigationController
         return navigationController
     }
     
@@ -117,24 +128,42 @@ class Navigator {
     ) -> UIViewController? {
         
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        Navigator.sceneDelegate?.window??.rootViewController = viewController
+        NavigatorImpl.sceneDelegate?.window??.rootViewController = viewController
         return viewController
     }
     
-    static func popScreen() {
-        if Navigator.navigationController?.viewControllers.count == 1 {
-            Navigator.navigationController?.dismiss(animated: true)
+    static public func popScreen() {
+        if NavigatorImpl.navigationController?.viewControllers.count == 1 {
+            NavigatorImpl.navigationController?.dismiss(animated: true)
         } else {
-            Navigator.navigationController?.popViewController(animated: true)
+            NavigatorImpl.navigationController?.popViewController(animated: true)
         }
     }
     
     static public func dismissScreen(completion: (() -> ())? = nil) {
-        Navigator.navigationController?.dismiss(animated: true, completion: completion)
+        NavigatorImpl.navigationController?.dismiss(animated: true, completion: completion)
     }
     
-    static public func setTab(_ tab: TabBarItem) {
-        Navigator.tabBarController?.selectedIndex = tab.tabIndex
+    static public func configureTabsWithTabBarItemType<TabItem: TabBarItem & CaseIterable>(_ tabType: TabItem.Type) {
+        let tabBarController = UITabBarController()
+        var controllers = [UIViewController]()
+        
+        for tabBarItem in tabType.allCases {
+            if let controller = tabBarItem.controller {
+                controller.tabBarItem = UITabBarItem(title: tabBarItem.title,
+                                                     image: tabBarItem.image,
+                                                     selectedImage: tabBarItem.selectedImage)
+                controllers.append(controller)
+            }
+        }
+        
+        tabBarController.setViewControllers(controllers, animated: false)
+        
+        self.sceneDelegate?.window??.rootViewController = tabBarController
+    }
+    
+    static public func setTab<TabItem: TabBarItem & CaseIterable>(_ tab: TabItem) {
+        NavigatorImpl.tabBarController?.selectedIndex = tab.tabIndex
     }
 
 }

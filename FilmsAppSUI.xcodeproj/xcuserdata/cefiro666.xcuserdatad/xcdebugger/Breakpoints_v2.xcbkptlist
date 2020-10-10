@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
             uuid = "51FC1381-51AA-4C5E-8D99-472DBA1A71E5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No">
          </BreakpointContent>
