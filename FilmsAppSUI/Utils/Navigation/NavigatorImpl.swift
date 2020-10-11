@@ -144,15 +144,15 @@ class NavigatorImpl: Navigator {
         NavigatorImpl.navigationController?.dismiss(animated: true, completion: completion)
     }
     
-    static public func configureTabsWithTabBarItemType<TabItem: TabBarItem & CaseIterable>(_ tabType: TabItem.Type) {
+    static public func configureTabsWithTabBarItemType<Item: TabBarItem & CaseIterable>(_ tabType: Item.Type) {
         let tabBarController = UITabBarController()
         var controllers = [UIViewController]()
         
-        for tabBarItem in tabType.allCases {
-            if let controller = tabBarItem.controller {
-                controller.tabBarItem = UITabBarItem(title: tabBarItem.title,
-                                                     image: tabBarItem.image,
-                                                     selectedImage: tabBarItem.selectedImage)
+        for tabItem in tabType.allCases {
+            if let controller = tabItem.controller {
+                controller.tabBarItem = UITabBarItem(title: tabItem.title,
+                                                     image: tabItem.image,
+                                                     selectedImage: tabItem.selectedImage)
                 controllers.append(controller)
             }
         }
@@ -162,7 +162,7 @@ class NavigatorImpl: Navigator {
         self.sceneDelegate?.window??.rootViewController = tabBarController
     }
     
-    static public func setTab<TabItem: TabBarItem & CaseIterable>(_ tab: TabItem) {
+    static public func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
         NavigatorImpl.tabBarController?.selectedIndex = tab.tabIndex
     }
 

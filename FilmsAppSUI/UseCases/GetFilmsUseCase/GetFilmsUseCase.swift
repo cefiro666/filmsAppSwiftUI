@@ -19,7 +19,7 @@ protocol GetFilmsUseCase {
 class GetFilmsUseCaseImpl: GetFilmsUseCase {
     
 // MARK: - Properties
-    let provider = MoyaProvider<FilmsProvider>()
+    lazy var provider = MoyaProvider<FilmsProvider>()
     
 // MARK: - Methods
     func execute(completion: @escaping (_ success: Bool, _ films: [Film], _ errorMessage: String?) -> ()) {

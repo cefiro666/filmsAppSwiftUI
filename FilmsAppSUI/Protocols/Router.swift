@@ -11,22 +11,18 @@ import Foundation
 // MARK: - Router
 protocol Router {
     
-    var Navigator: Navigator.Type { get }
-    
     func popScreen()
     func dismissScreen(completion: (() -> ())?)
 }
 
 extension Router {
-    
-    var Navigator: Navigator.Type { return NavigatorImpl.self }
-    
+
     func popScreen() {
-        Navigator.popScreen()
+        Utils.navigator.popScreen()
     }
     
     func dismissScreen(completion: (() -> ())?) {
-        Navigator.dismissScreen(completion: completion)
+        Utils.navigator.dismissScreen(completion: completion)
     }
     
 }

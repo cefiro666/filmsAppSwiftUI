@@ -11,5 +11,5 @@ import Foundation
 // MARK: - Configurable
 protocol Configurable {
     
-    var configurator: Configurator { get set }
+    var configurator: Configurator { get }
 }

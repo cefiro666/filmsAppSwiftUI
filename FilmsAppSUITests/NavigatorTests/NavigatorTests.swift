@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import SwiftUI
 @testable import FilmsAppSUI
 
 // MARK: - NavigatorTests
@@ -23,7 +22,7 @@ class NavigatorTests: XCTestCase {
     
 // MARK: - Setup and tear down
     override func setUpWithError() throws {
-        self.sut = TestModuleRouterImpl().Navigator
+        self.sut = Utils.navigator
         
         self.testView = TestModuleView(presenter: TestModulePresenterImpl())
         
@@ -52,7 +51,7 @@ class NavigatorTests: XCTestCase {
     }
     
     func testCurrentRootControllerAfterSetRootScreenEqualByStatedScreen() throws {
-        let controller = NavigatorImpl.setRootScreen(view: self.testView, configureBlock: nil)
+        let controller = self.sut.setRootScreen(view: self.testView, configureBlock: nil)
         
         XCTAssertEqual(controller, self.currentRootController)
     }
@@ -72,9 +71,9 @@ class NavigatorTests: XCTestCase {
     }
     
     func testCurrentRootControllerAfterSetRootScreenWithNavBarEqualByStatedScreen() throws {
-        let controller = NavigatorImpl.setRootScreenWithNavBar(view: self.testView,
-                                                           title: "Foo",
-                                                           configureBlock: nil)
+        let controller = self.sut.setRootScreenWithNavBar(view: self.testView,
+                                                          title: "Foo",
+                                                          configureBlock: nil)
         
         XCTAssertEqual(controller, self.currentRootController)
     }
@@ -189,6 +188,37 @@ extension NavigatorTests {
 
         var tabIndex: Int {
             return self.rawValue
+        }
+        
+        var title: String {
+            switch self {
+            case .oneTab: return "oneTab"
+            case .twoTab: return "twoTab"
+            }
+        }
+        
+        var image: UIImage? {
+            switch self {
+            case .oneTab: return UIImage()
+            case .twoTab: return UIImage()
+            }
+        }
+        
+        var selectedImage: UIImage? {
+            switch self {
+            case .oneTab: return UIImage()
+            case .twoTab: return UIImage()
+            }
+        }
+        
+        var controller: UIViewController? {
+            switch self {
+            case .oneTab: return Utils.navigator.getScreen(view: TestModuleView(presenter: TestModulePresenterImpl()),
+                                                               configureBlock: nil)
+                
+            case .twoTab: return Utils.navigator.getScreen(view: TestModuleView(presenter: TestModulePresenterImpl()),
+                                                           configureBlock: nil)
+            }
         }
     }
     

@@ -51,19 +51,19 @@ extension TabBarItemImpl: TabBarItem {
     var controller: UIViewController? {
         switch self {
         case .films:
-            return NavigatorImpl.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
-                                                     title: "Фильмы",
-                                                     configureBlock: nil)
+            return Utils.navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                       title: "Фильмы",
+                                                       configureBlock: nil)
             
         case .someTab:
-            return NavigatorImpl.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
-                                                     title: "Фильмы",
-                                                     configureBlock: nil)
+            return Utils.navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
+                                                       title: "Фильмы",
+                                                       configureBlock: nil)
             
             
         case .testTab:
-            return NavigatorImpl.getScreen(view: TestView(presenter: TestPresenterImpl()),
-                                           configureBlock: nil)
+            return Utils.navigator.getScreen(view: TestView(presenter: TestPresenterImpl()),
+                                             configureBlock: nil)
         }
     }
 }

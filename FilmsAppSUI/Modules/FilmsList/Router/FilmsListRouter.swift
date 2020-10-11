@@ -19,8 +19,8 @@ struct FilmsListRouterImpl: FilmsListRouter {
     
 // MARK: - Methods
     func pushFilmDetailsScreenForFilm(_ film: Film) {
-        Navigator.pushScreenWithHidenTabBar(view: FilmDetailsView(presenter: FilmDetailsPresenterImpl()),
-                                            title: film.localizedName) { view in
+        Utils.navigator.pushScreenWithHidenTabBar(view: FilmDetailsView(presenter: FilmDetailsPresenterImpl()),
+                                                  title: film.localizedName) { view in
             view?.presenter.setFilm(film)
         }
     }

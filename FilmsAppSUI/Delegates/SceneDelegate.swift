@@ -14,7 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 // MARK: Properties
     var window: UIWindow?
-    private var Navigator: Navigator.Type = NavigatorImpl.self
 
 // MARK: Methods
     func scene(_ scene: UIScene,
@@ -28,11 +27,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
-        self.configureSystem()
-        self.configureNavigator()
+        self.configureUIPreferences()
+        self.setupNavigatorDelegate()
+        self.configureTabs()
     }
     
-    private func configureSystem() {
+    private func configureUIPreferences() {
         UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().allowsSelection = false
@@ -42,9 +42,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
-    private func configureNavigator() {
-        Navigator.sceneDelegate = self
-        Navigator.configureTabsWithTabBarItemType(TabBarItemImpl.self)
+    private func setupNavigatorDelegate() {
+        Utils.navigator.sceneDelegate = self
+    }
+    
+    private func configureTabs() {
+        Utils.navigator.configureTabsWithTabBarItemType(TabBarItemImpl.self)
     }
 
 }

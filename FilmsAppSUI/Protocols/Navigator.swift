@@ -66,6 +66,6 @@ protocol Navigator {
     
     static func popScreen()
     static func dismissScreen(completion: (() -> ())?)
-    static func configureTabsWithTabBarItemType<T: TabBarItem & CaseIterable>(_ tabType: T.Type)
-    static func setTab<T: TabBarItem & CaseIterable>(_ tab: T)
+    static func configureTabsWithTabBarItemType<Item: TabBarItem & CaseIterable>(_ tabType: Item.Type)
+    static func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item)
 }
