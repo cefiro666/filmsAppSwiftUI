@@ -278,8 +278,8 @@
 		9A08BCC025024FA100268128 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				9A5FDD4A25112986000BE3D8 /* Films */,
-				9A08BD10250743F300268128 /* NetworkHelper.swift */,
+				9A68FDD62532EB5900AD7B22 /* Requests */,
+				9A68FDD72532EB6600AD7B22 /* NetworkHelper */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -287,7 +287,8 @@
 		9A08BCD825035B5B00268128 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A08BD1C25075C3600268128 /* Shared */,
+				9A13B1A12514B07700889884 /* ListModels */,
+				9A13B1A22514B09800889884 /* Film */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,7 +301,7 @@
 			path = NetworkImage;
 			sourceTree = "<group>";
 		};
-		9A08BCE32505F3EF00268128 /* CustomUI */ = {
+		9A08BCE32505F3EF00268128 /* CustomUIs */ = {
 			isa = PBXGroup;
 			children = (
 				9A2C20BF2529FD940090F0CD /* GenresView */,
@@ -309,7 +310,7 @@
 				9A08BD17250745FF00268128 /* ContainerView */,
 				9ACDE0EC252A034700C4A7F3 /* LottieView */,
 			);
-			path = CustomUI;
+			path = CustomUIs;
 			sourceTree = "<group>";
 		};
 		9A08BCE92506031500268128 /* SpinnerView */ = {
@@ -418,22 +419,13 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		9A08BD1C25075C3600268128 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				9A13B1A22514B09800889884 /* Film */,
-				9A13B1A12514B07700889884 /* ListModels */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		9A08BD1F25075D7A00268128 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				9A92B2F425317FEA0018C68E /* Presentable.swift */,
-				9A92B2F8253180110018C68E /* Presenter.swift */,
-				9A92B2FC253180340018C68E /* Configurator.swift */,
 				9A92B300253180520018C68E /* Configurable.swift */,
+				9A92B2FC253180340018C68E /* Configurator.swift */,
+				9A92B2F8253180110018C68E /* Presenter.swift */,
 				9A92B3042531806A0018C68E /* Router.swift */,
 				9A92B308253180850018C68E /* TabBarItem.swift */,
 				9A92B30E2531809C0018C68E /* Navigator.swift */,
@@ -506,13 +498,13 @@
 		9A4AABD624F9325D009E1817 /* FilmsAppSUI */ = {
 			isa = PBXGroup;
 			children = (
-				9A08BD1F25075D7A00268128 /* Protocols */,
+				9A4AAC0824F93B72009E1817 /* Delegates */,
 				9A08BD0C2507438900268128 /* UseCases */,
 				9A4AAC1024F93FF1009E1817 /* Entities */,
-				9A4AAC0824F93B72009E1817 /* Delegates */,
+				9A08BD1F25075D7A00268128 /* Protocols */,
 				9A4AABEF24F932C6009E1817 /* Resources */,
 				9A08BCD825035B5B00268128 /* Models */,
-				9A08BCE32505F3EF00268128 /* CustomUI */,
+				9A08BCE32505F3EF00268128 /* CustomUIs */,
 				9A4AABEE24F932BF009E1817 /* Utils */,
 				9A4AABED24F932B8009E1817 /* Extensions */,
 				9A4AABEB24F932A6009E1817 /* Modules */,
@@ -542,9 +534,8 @@
 		9A4AABED24F932B8009E1817 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9A4AABF024F9338C009E1817 /* Text */,
-				9A08BCEF250621F200268128 /* View */,
-				9A741B75252A138100DD094E /* Array */,
+				9A68FDDB2532EB9000AD7B22 /* Foundation */,
+				9A68FDDA2532EB7E00AD7B22 /* SwiftUI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -634,7 +625,7 @@
 		9A4AAC1024F93FF1009E1817 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				9A4AAC0224F9397D009E1817 /* Film.swift */,
+				9A68FDD42532EADA00AD7B22 /* Films */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -677,6 +668,47 @@
 				9A68FDB92532C6CF00AD7B22 /* Utils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		9A68FDD42532EADA00AD7B22 /* Films */ = {
+			isa = PBXGroup;
+			children = (
+				9A4AAC0224F9397D009E1817 /* Film.swift */,
+			);
+			path = Films;
+			sourceTree = "<group>";
+		};
+		9A68FDD62532EB5900AD7B22 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				9A5FDD4A25112986000BE3D8 /* Films */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		9A68FDD72532EB6600AD7B22 /* NetworkHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9A08BD10250743F300268128 /* NetworkHelper.swift */,
+			);
+			path = NetworkHelper;
+			sourceTree = "<group>";
+		};
+		9A68FDDA2532EB7E00AD7B22 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				9A08BCEF250621F200268128 /* View */,
+				9A4AABF024F9338C009E1817 /* Text */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		9A68FDDB2532EB9000AD7B22 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				9A741B75252A138100DD094E /* Array */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		9A741B75252A138100DD094E /* Array */ = {
