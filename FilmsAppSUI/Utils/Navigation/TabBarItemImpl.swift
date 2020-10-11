@@ -54,13 +54,10 @@ extension TabBarItemImpl: TabBarItem {
             return Utils.navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
                                                        title: "Фильмы",
                                                        configureBlock: nil)
-            
         case .someTab:
             return Utils.navigator.getScreenWithNavBar(view: FilmsListView(presenter: FilmsListPresenterImpl()),
                                                        title: "Фильмы",
                                                        configureBlock: nil)
-            
-            
         case .testTab:
             return Utils.navigator.getScreen(view: TestView(presenter: TestPresenterImpl()),
                                              configureBlock: nil)
