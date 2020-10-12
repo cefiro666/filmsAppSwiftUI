@@ -8,13 +8,6 @@
 
 import SwiftUI
 
-// MARK: - Container
-protocol Container {
-    
-    func showErrorMessage(_ message: String?)
-    func setLoadingVisible(_ visible: Bool)
-}
-
 // MARK: - ContainerView
 struct ContainerView<Content: View & Presentable>: View {
     
@@ -27,7 +20,7 @@ struct ContainerView<Content: View & Presentable>: View {
 // MARK: - Inits
     init(content: Content) {
         self.content = content
-        self.content.presenter.container = self
+        self.content.presenter.container = self.presenter
     }
     
 // MARK: - body
@@ -47,17 +40,5 @@ struct ContainerView<Content: View & Presentable>: View {
                 self.content.presenter.onClickError()
             })
         }
-    }
-}
-
-// MARK: - Container
-extension ContainerView: Container {
-    
-    func showErrorMessage(_ message: String?) {
-        self.presenter.showErrorMessage(message)
-    }
-    
-    func setLoadingVisible(_ visible: Bool) {
-        self.presenter.setLoadinVisible(visible)
     }
 }

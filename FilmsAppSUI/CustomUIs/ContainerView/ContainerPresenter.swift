@@ -15,14 +15,17 @@ final class ContainerPresenter: ObservableObject {
     @Published var isLoading = false
     @Published var hasError = false
     @Published var errorMessage = ""
+}
+
+// MARK: - Container
+extension ContainerPresenter: Container {
     
-// MARK: - Methods
     func showErrorMessage(_ message: String?) {
         self.hasError = true
         self.errorMessage = message ?? "Неизвестная ошибка"
     }
     
-    func setLoadinVisible(_ visible: Bool) {
+    func setLoadingVisible(_ visible: Bool) {
         self.isLoading = visible
     }
 }

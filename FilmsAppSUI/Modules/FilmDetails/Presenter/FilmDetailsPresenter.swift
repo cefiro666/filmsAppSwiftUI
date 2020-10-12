@@ -10,9 +10,7 @@ import Foundation
 
 // MARK: - FilmDetailsPresenter
 protocol FilmDetailsPresenter: Presenter {
-    associatedtype ViewType: Presentable
     
-    var view: ViewType? { get set }
     var router: FilmDetailsRouter? { get set }
     var data: FilmDetailsData { get }
     
@@ -24,10 +22,8 @@ protocol FilmDetailsPresenter: Presenter {
 final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
     
 // MARK: - Properties
-    var view: FilmDetailsView?
     var router: FilmDetailsRouter?
-
-    var container: Container?
+    weak var container: Container?
     
 // MARK: - Published data
     @Published var data = FilmDetailsData()

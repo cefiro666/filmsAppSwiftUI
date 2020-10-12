@@ -20,7 +20,6 @@ final class TestConfigurator: Configurator {
         let router = TestRouterImpl()
 
         view.presenter.router = router
-        view.presenter.view = view
         
         configureBlock?(view as? Content)
         

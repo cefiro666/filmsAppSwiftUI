@@ -20,7 +20,6 @@ final class FilmDetailsConfigurator: Configurator {
         let router = FilmDetailsRouterImpl()
 
         view.presenter.router = router
-        view.presenter.view = view
         
         configureBlock?(view as? Content)
         

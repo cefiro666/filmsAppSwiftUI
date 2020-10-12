@@ -13,18 +13,4 @@ protocol Presentable {
     associatedtype PresenterType: Presenter
     
     var presenter: PresenterType { get }
-    
-    func showErrorMessage(_ message: String?)
-    func setLoadingVisible(_ visible: Bool)
-}
-
-extension Presentable {
-    
-    func showErrorMessage(_ message: String?) {
-        self.presenter.container?.showErrorMessage(message)
-    }
-    
-    func setLoadingVisible(_ visible: Bool) {
-        self.presenter.container?.setLoadingVisible(visible)
-    }
 }

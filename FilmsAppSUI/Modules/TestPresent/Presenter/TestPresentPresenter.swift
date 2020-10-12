@@ -10,9 +10,7 @@ import Foundation
 
 // MARK: - TestPresentPresenter
 protocol TestPresentPresenter: Presenter {
-    associatedtype ViewType: Presentable
-    
-    var view: ViewType? { get set }
+
     var router: TestPresentRouter? { get set }
     var data: TestPresentData { get }
 
@@ -23,10 +21,8 @@ protocol TestPresentPresenter: Presenter {
 final class TestPresentPresenterImpl: TestPresentPresenter {
     
 // MARK: - Properties
-    var view: TestPresentView?
     var router: TestPresentRouter?
-
-    var container: Container?
+    weak var container: Container?
     
 // MARK: - Published data
     @Published var data = TestPresentData()

@@ -19,10 +19,9 @@ final class FilmsListConfigurator: Configurator {
         guard let view = view as? FilmsListView else { return UIViewController() }
         let router = FilmsListRouterImpl()
 
-        view.presenter.setUseCase(GetFilmsUseCaseImpl())
-        
         view.presenter.router = router
-        view.presenter.view = view
+        
+        view.presenter.setUseCase(GetFilmsUseCaseImpl())
         
         configureBlock?(view as? Content)
         

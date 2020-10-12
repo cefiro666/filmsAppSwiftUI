@@ -16,9 +16,7 @@ fileprivate struct Constants {
 
 // MARK: - FilmsListPresenter
 protocol FilmsListPresenter: Presenter {
-    associatedtype ViewType: Presentable
-    
-    var view: ViewType? { get set }
+
     var router: FilmsListRouter? { get set }
     var data: FilmsListData { get }
     
@@ -31,10 +29,8 @@ protocol FilmsListPresenter: Presenter {
 final class FilmsListPresenterImpl: FilmsListPresenter {
         
 // MARK: - Properties
-    var view: FilmsListView?
     var router: FilmsListRouter?
-
-    var container: Container?
+    weak var container: Container?
     
 // MARK: - Published Data
     @Published var data = FilmsListData()
@@ -89,11 +85,11 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     }
     
     private func getFilms() {
-        self.view?.setLoadingVisible(true)
+        self.container?.setLoadingVisible(true)
         self.getFilmsUseCase?.execute(completion: { [weak self] (success, films, errorMessage) in
-            self?.view?.setLoadingVisible(false)
+            self?.container?.setLoadingVisible(false)
             if !success {
-                self?.view?.showErrorMessage(errorMessage)
+                self?.container?.showErrorMessage(errorMessage)
                 return
             }
             
