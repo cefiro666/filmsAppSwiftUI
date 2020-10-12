@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.configureUIPreferences()
-        self.configureTabsWithTabBarItemType(TabBarItemImpl.self)
+        self.configureTabs()
     }
     
     private func configureUIPreferences() {
@@ -41,22 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
-    public func configureTabsWithTabBarItemType<Item: TabBarItem & CaseIterable>(_ tabType: Item.Type) {
-        let tabBarController = UITabBarController()
-        var controllers = [UIViewController]()
-        
-        for tabItem in tabType.allCases {
-            if let controller = tabItem.controller {
-                controller.tabBarItem = UITabBarItem(title: tabItem.title,
-                                                     image: tabItem.image,
-                                                     selectedImage: tabItem.selectedImage)
-                controllers.append(controller)
-            }
-        }
-        
-        tabBarController.setViewControllers(controllers, animated: false)
-        
-        self.window?.rootViewController = tabBarController
+    public func configureTabs() {
+        self.window?.rootViewController = TabBarConfigurator.getTabBarFromTabBarItemType(TabBarItemImpl.self)
     }
 
 }
