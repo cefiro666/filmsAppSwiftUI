@@ -13,7 +13,7 @@ struct TestModuleView<Presenter>: View, Presentable, Configurable where Presente
     
 // MARK: - Presenter
     @ObservedObject var presenter: Presenter
-    var configurator: Configurator = TestModuleConfigurator()
+    var configurator: Configurator.Type = TestModuleConfigurator.self
 
 // MARK: -  body
     var body: some View {

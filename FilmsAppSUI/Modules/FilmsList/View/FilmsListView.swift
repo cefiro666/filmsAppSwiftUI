@@ -10,10 +10,16 @@ import SwiftUI
 
 // MARK: - FilmsListView
 struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter: FilmsListPresenter {
+    typealias FilmsListPresenter = FilmsListPresenterImpl
     
 // MARK: - Presenter
-    @ObservedObject var presenter: Presenter
-    var configurator: Configurator = FilmsListConfigurator()
+    @ObservedObject var presenter: FilmsListPresenter
+    var configurator: Configurator.Type = FilmsListConfigurator.self
+    
+// MARK: - Inits
+    init() {
+        self.presenter = FilmsListPresenterImpl()
+    }
     
 // MARK: - Body
     var body: some View {
@@ -77,6 +83,6 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
 struct FilmsListView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FilmsListView(presenter: FilmsListPresenterImpl())
+        FilmsListView<FilmsListPresenterImpl>()
     }
 }

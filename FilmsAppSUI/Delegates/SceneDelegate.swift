@@ -28,8 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.configureUIPreferences()
-        self.setupNavigatorDelegate()
-        self.configureTabs()
+        self.configureTabsWithTabBarItemType(TabBarItemImpl.self)
     }
     
     private func configureUIPreferences() {
@@ -42,12 +41,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
-    private func setupNavigatorDelegate() {
-        Utils.navigator.sceneDelegate = self
-    }
-    
-    private func configureTabs() {
-        Utils.navigator.configureTabsWithTabBarItemType(TabBarItemImpl.self)
+    public func configureTabsWithTabBarItemType<Item: TabBarItem & CaseIterable>(_ tabType: Item.Type) {
+        let tabBarController = UITabBarController()
+        var controllers = [UIViewController]()
+        
+        for tabItem in tabType.allCases {
+            if let controller = tabItem.controller {
+                controller.tabBarItem = UITabBarItem(title: tabItem.title,
+                                                     image: tabItem.image,
+                                                     selectedImage: tabItem.selectedImage)
+                controllers.append(controller)
+            }
+        }
+        
+        tabBarController.setViewControllers(controllers, animated: false)
+        
+        self.window?.rootViewController = tabBarController
     }
 
 }

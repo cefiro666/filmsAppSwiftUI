@@ -10,10 +10,16 @@ import SwiftUI
 
 // MARK: - {{ module_info.name }}View
 struct {{ module_info.name }}View<Presenter>: View, Presentable, Configurable where Presenter: {{ module_info.name }}Presenter {
+    typealias {{ module_info.name }}Presenter = {{ module_info.name }}PresenterImpl
     
 // MARK: - Presenter
-    @ObservedObject var presenter: Presenter
-    var configurator: Configurator = {{ module_info.name }}Configurator()
+    @ObservedObject var presenter: {{ module_info.name }}Presenter
+    var configurator: Configurator.Type = {{ module_info.name }}Configurator.self
+
+// MARK: - Inits
+    init() {
+        self.presenter = {{ module_info.name }}PresenterImpl
+    }
 
 // MARK: -  body
     var body: some View {
@@ -28,6 +34,6 @@ struct {{ module_info.name }}View<Presenter>: View, Presentable, Configurable wh
 struct {{ module_info.name }}_Previews: PreviewProvider {
     
     static var previews: some View {
-        {{ module_info.name }}View(presenter: {{ module_info.name }}PresenterImpl())
+        {{ module_info.name }}View<{{ module_info.name }}PresenterImpl>()
     }
 }

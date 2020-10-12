@@ -13,8 +13,8 @@ import UIKit
 final class FilmsListConfigurator: Configurator {
     
 // MARK: - Methods
-    func createScreen<Content: View & Presentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
+    static func createScreen<Content: View & Presentable>(withView view: Content,
+                                                          configureBlock: ((Content?) -> ())?) -> UIViewController {
         
         guard let view = view as? FilmsListView<FilmsListPresenterImpl> else { return UIViewController() }
         let router = FilmsListRouterImpl()

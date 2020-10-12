@@ -12,6 +12,6 @@ import UIKit
 // MARK: - Configurator
 protocol Configurator: class {
     
-    func createScreen<Content: View & Presentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController
+    static func createScreen<Content: View & Presentable>(withView view: Content,
+                                                          configureBlock: ((Content?) -> ())?) -> UIViewController
 }

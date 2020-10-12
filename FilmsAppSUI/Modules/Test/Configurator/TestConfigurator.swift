@@ -13,8 +13,8 @@ import UIKit
 final class TestConfigurator: Configurator {
        
 // MARK: - Methods
-    func createScreen<Content: View & Presentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
+    static func createScreen<Content: View & Presentable>(withView view: Content,
+                                                          configureBlock: ((Content?) -> ())?) -> UIViewController {
         
         guard let view = view as? TestView<TestPresenterImpl> else { return UIViewController() }
         let router = TestRouterImpl()
