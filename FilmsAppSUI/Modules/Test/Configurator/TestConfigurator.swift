@@ -16,7 +16,7 @@ final class TestConfigurator: Configurator {
     static func createScreen<Content: View & Presentable>(withView view: Content,
                                                           configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        guard let view = view as? TestView<TestPresenterImpl> else { return UIViewController() }
+        guard let view = view as? TestView else { return UIViewController() }
         let router = TestRouterImpl()
 
         view.presenter.router = router

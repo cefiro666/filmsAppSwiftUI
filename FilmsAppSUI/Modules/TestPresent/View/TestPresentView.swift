@@ -9,17 +9,11 @@
 import SwiftUI
 
 // MARK: - TestPresentView
-struct TestPresentView<Presenter>: View, Presentable, Configurable where Presenter: TestPresentPresenter {
-    typealias TestPresentPresenter = TestPresentPresenterImpl
+struct TestPresentView: View, Presentable, Configurable {
     
 // MARK: - Presenter
-    @ObservedObject var presenter: TestPresentPresenter
-    var configurator: Configurator.Type = TestPresentConfigurator.self
-    
-// MARK: - Inits
-    init() {
-        self.presenter = TestPresentPresenterImpl()
-    }
+    @ObservedObject var presenter = TestPresentPresenterImpl()
+    let configurator: Configurator.Type = TestPresentConfigurator.self
 
 // MARK: -  body
     var body: some View {
@@ -35,6 +29,6 @@ struct TestPresentView<Presenter>: View, Presentable, Configurable where Present
 struct TestPresent_Previews: PreviewProvider {
     
     static var previews: some View {
-        TestPresentView<TestPresentPresenterImpl>()
+        TestPresentView()
     }
 }

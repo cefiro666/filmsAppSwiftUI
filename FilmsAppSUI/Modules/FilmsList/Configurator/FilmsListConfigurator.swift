@@ -16,7 +16,7 @@ final class FilmsListConfigurator: Configurator {
     static func createScreen<Content: View & Presentable>(withView view: Content,
                                                           configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        guard let view = view as? FilmsListView<FilmsListPresenterImpl> else { return UIViewController() }
+        guard let view = view as? FilmsListView else { return UIViewController() }
         let router = FilmsListRouterImpl()
 
         view.presenter.setUseCase(GetFilmsUseCaseImpl())

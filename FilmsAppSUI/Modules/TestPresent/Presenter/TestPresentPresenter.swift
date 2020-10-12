@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - TestPresentPresenter
 protocol TestPresentPresenter: Presenter {
-    
     associatedtype ViewType: Presentable
     
     var view: ViewType? { get set }
@@ -24,7 +23,7 @@ protocol TestPresentPresenter: Presenter {
 final class TestPresentPresenterImpl: TestPresentPresenter {
     
 // MARK: - Properties
-    var view: TestPresentView<TestPresentPresenterImpl>?
+    var view: TestPresentView?
     var router: TestPresentRouter?
 
     var container: Container?

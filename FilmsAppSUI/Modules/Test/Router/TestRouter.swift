@@ -18,7 +18,7 @@ protocol TestRouter: Router {
 struct TestRouterImpl: TestRouter {
     
     func presentFilmsListView() {
-        self.presentScreenWithNavBar(view: TestPresentView<TestPresentPresenterImpl>(),
+        self.presentScreenWithNavBar(view: TestPresentView(),
                                      title: "TestPresent",
                                      configureBlock: nil)
     }

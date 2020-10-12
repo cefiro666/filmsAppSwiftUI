@@ -9,17 +9,11 @@
 import SwiftUI
 
 // MARK: - FilmsListView
-struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter: FilmsListPresenter {
-    typealias FilmsListPresenter = FilmsListPresenterImpl
+struct FilmsListView: View, Presentable, Configurable {
     
 // MARK: - Presenter
-    @ObservedObject var presenter: FilmsListPresenter
-    var configurator: Configurator.Type = FilmsListConfigurator.self
-    
-// MARK: - Inits
-    init() {
-        self.presenter = FilmsListPresenterImpl()
-    }
+    @ObservedObject var presenter = FilmsListPresenterImpl()
+    let configurator: Configurator.Type = FilmsListConfigurator.self
     
 // MARK: - Body
     var body: some View {
@@ -83,6 +77,6 @@ struct FilmsListView<Presenter>: View, Presentable, Configurable where Presenter
 struct FilmsListView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FilmsListView<FilmsListPresenterImpl>()
+        FilmsListView()
     }
 }

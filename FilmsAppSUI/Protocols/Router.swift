@@ -11,13 +11,12 @@ import SwiftUI
 
 // MARK: - Router
 protocol Router {
-    
+
     var rootController: UIViewController? { get }
     var navigationController: UINavigationController? { get }
     var tabBarController: UITabBarController? { get }
     var presentedController: UIViewController? { get }
-    
-    var sceneDelegate: UIWindowScene? { get }
+    var window: UIWindow? { get }
     
     @discardableResult func pushScreen<Content: View & Configurable & Presentable>(
         view: Content,
@@ -72,11 +71,15 @@ protocol Router {
 extension Router {
 
 // MARK: - Properties
-    public weak var rootController: UIViewController? {
-        return self.sceneDelegate?.windows.first?.rootViewController
+    public var window: UIWindow? {
+        return (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
     }
     
-    public weak var navigationController: UINavigationController? {
+    public var rootController: UIViewController? {
+        return self.window?.rootViewController
+    }
+    
+    public var navigationController: UINavigationController? {
         let navigationController = (self.rootController as? UINavigationController) ??
             (self.tabBarController?.selectedViewController as? UINavigationController) ??
             self.rootController?.navigationController ??
@@ -85,17 +88,12 @@ extension Router {
         return navigationController
     }
     
-    public weak var tabBarController: UITabBarController? {
+    public var tabBarController: UITabBarController? {
         return (self.rootController as? UITabBarController) ?? self.rootController?.tabBarController
     }
     
-    public weak var presentedController: UIViewController? {
+    public var presentedController: UIViewController? {
         return self.rootController?.presentedViewController
-    }
-
-// MARK: - Delegates
-    weak var sceneDelegate: UIWindowScene? {
-        return UIApplication.shared.connectedScenes.first as? UIWindowScene
     }
     
 // MARK: - Methods
@@ -179,7 +177,7 @@ extension Router {
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.isNavigationBarHidden = true
-        self.sceneDelegate?.windows.first?.rootViewController = navigationController
+        self.window?.rootViewController = navigationController
         return navigationController
     }
     
@@ -189,7 +187,7 @@ extension Router {
     ) -> UIViewController? {
         
         let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
-        self.sceneDelegate?.windows.first?.rootViewController = viewController
+        self.window?.rootViewController = viewController
         return viewController
     }
     

@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - FilmDetailsPresenter
 protocol FilmDetailsPresenter: Presenter {
-    
     associatedtype ViewType: Presentable
     
     var view: ViewType? { get set }
@@ -25,7 +24,7 @@ protocol FilmDetailsPresenter: Presenter {
 final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
     
 // MARK: - Properties
-    var view: FilmDetailsView<FilmDetailsPresenterImpl>?
+    var view: FilmDetailsView?
     var router: FilmDetailsRouter?
 
     var container: Container?

@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - {{ module_info.name }}Presenter
 protocol {{ module_info.name }}Presenter: Presenter {
-    
     associatedtype ViewType: Presentable
     
     var view: ViewType? { get set }
@@ -24,7 +23,7 @@ protocol {{ module_info.name }}Presenter: Presenter {
 final class {{ module_info.name }}PresenterImpl: {{ module_info.name }}Presenter {
     
 // MARK: - Properties
-    var view: {{ module_info.name }}View<{{ module_info.name }}PresenterImpl>?
+    var view: {{ module_info.name }}View?
     var router: {{ module_info.name }}Router?
 
     var container: Container?

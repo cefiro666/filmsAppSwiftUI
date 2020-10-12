@@ -16,7 +16,6 @@ fileprivate struct Constants {
 
 // MARK: - FilmsListPresenter
 protocol FilmsListPresenter: Presenter {
-    
     associatedtype ViewType: Presentable
     
     var view: ViewType? { get set }
@@ -30,9 +29,9 @@ protocol FilmsListPresenter: Presenter {
 
 // MARK: - FilmsListPresenterImpl
 final class FilmsListPresenterImpl: FilmsListPresenter {
-    
+        
 // MARK: - Properties
-    var view: FilmsListView<FilmsListPresenterImpl>?
+    var view: FilmsListView?
     var router: FilmsListRouter?
 
     var container: Container?

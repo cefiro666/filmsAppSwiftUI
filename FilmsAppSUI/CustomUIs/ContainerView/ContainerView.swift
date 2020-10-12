@@ -22,7 +22,7 @@ struct ContainerView<Content: View & Presentable>: View {
     @ObservedObject var presenter = ContainerPresenter()
     
 // MARK: - Content
-    private var content: Content
+    private let content: Content
     
 // MARK: - Inits
     init(content: Content) {
