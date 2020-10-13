@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - FilmsListView
 struct FilmsListView: View, Presentable, Configurable {
     
-// MARK: - Presenter
+// MARK: - Properties
     @ObservedObject var presenter = FilmsListPresenterImpl()
     let configurator: Configurator.Type = FilmsListConfigurator.self
     

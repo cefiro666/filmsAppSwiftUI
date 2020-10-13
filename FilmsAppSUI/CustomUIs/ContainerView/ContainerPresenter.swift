@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+// MARK: - Constants
+fileprivate struct Constants {
+    
+    static let kDefaultErrorText = "Неизвестная ошибка"
+}
+
 // MARK: - ContainerModel
 final class ContainerPresenter: ObservableObject {
     
@@ -22,7 +28,7 @@ extension ContainerPresenter: Container {
     
     func showErrorMessage(_ message: String?) {
         self.hasError = true
-        self.errorMessage = message ?? "Неизвестная ошибка"
+        self.errorMessage = message ?? Constants.kDefaultErrorText
     }
     
     func setLoadingVisible(_ visible: Bool) {

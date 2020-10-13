@@ -12,11 +12,11 @@ import SwiftUI
 // MARK: - Router
 protocol Router {
 
+    var window: UIWindow? { get }
     var rootController: UIViewController? { get }
     var navigationController: UINavigationController? { get }
     var tabBarController: UITabBarController? { get }
     var presentedController: UIViewController? { get }
-    var window: UIWindow? { get }
     
     @discardableResult func pushScreen<Content: View & Configurable & Presentable>(
         view: Content,
@@ -71,15 +71,15 @@ protocol Router {
 extension Router {
 
 // MARK: - Properties
-    public var window: UIWindow? {
+    var window: UIWindow? {
         return (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
     }
     
-    public var rootController: UIViewController? {
+    var rootController: UIViewController? {
         return self.window?.rootViewController
     }
     
-    public var navigationController: UINavigationController? {
+    var navigationController: UINavigationController? {
         let navigationController = (self.rootController as? UINavigationController) ??
             (self.tabBarController?.selectedViewController as? UINavigationController) ??
             self.rootController?.navigationController ??
@@ -88,16 +88,16 @@ extension Router {
         return navigationController
     }
     
-    public var tabBarController: UITabBarController? {
+    var tabBarController: UITabBarController? {
         return (self.rootController as? UITabBarController) ?? self.rootController?.tabBarController
     }
     
-    public var presentedController: UIViewController? {
+    var presentedController: UIViewController? {
         return self.rootController?.presentedViewController
     }
     
 // MARK: - Methods
-    @discardableResult public func pushScreen<Content: View & Configurable & Presentable>(
+    @discardableResult func pushScreen<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -109,7 +109,7 @@ extension Router {
         return viewController
     }
     
-    @discardableResult public func pushScreenWithHidenTabBar<Content: View & Configurable & Presentable>(
+    @discardableResult func pushScreenWithHidenTabBar<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -122,7 +122,7 @@ extension Router {
         return viewController
     }
     
-    @discardableResult public func presentScreenWithNavBar<Content: View & Configurable & Presentable>(
+    @discardableResult func presentScreenWithNavBar<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -136,7 +136,7 @@ extension Router {
         return navigationController
     }
     
-    @discardableResult public func presentScreen<Content: View & Configurable & Presentable>(
+    @discardableResult func presentScreen<Content: View & Configurable & Presentable>(
         view: Content,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -147,7 +147,7 @@ extension Router {
         return viewController
     }
     
-    @discardableResult public func getScreenWithNavBar<Content: View & Configurable & Presentable>(
+    @discardableResult func getScreenWithNavBar<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -159,7 +159,7 @@ extension Router {
         return navigationController
     }
     
-    @discardableResult public func getScreen<Content: View & Configurable & Presentable>(
+    @discardableResult func getScreen<Content: View & Configurable & Presentable>(
         view: Content,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -167,7 +167,7 @@ extension Router {
         return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
     }
     
-    @discardableResult public func setRootScreenWithNavBar<Content: View & Configurable & Presentable>(
+    @discardableResult func setRootScreenWithNavBar<Content: View & Configurable & Presentable>(
         view: Content,
         title: String,
         configureBlock: ((Content?) -> ())?
@@ -181,7 +181,7 @@ extension Router {
         return navigationController
     }
     
-    @discardableResult public func setRootScreen<Content: View & Configurable & Presentable>(
+    @discardableResult func setRootScreen<Content: View & Configurable & Presentable>(
         view: Content,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -191,7 +191,7 @@ extension Router {
         return viewController
     }
     
-    public func popScreen() {
+    func popScreen() {
         if self.navigationController?.viewControllers.count == 1 {
             self.navigationController?.dismiss(animated: true)
         } else {
@@ -199,11 +199,11 @@ extension Router {
         }
     }
     
-    public func dismissScreen(completion: (() -> ())? = nil) {
+    func dismissScreen(completion: (() -> ())? = nil) {
         self.navigationController?.dismiss(animated: true, completion: completion)
     }
     
-    public func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
+    func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
         self.tabBarController?.selectedIndex = tab.tabIndex
     }
     

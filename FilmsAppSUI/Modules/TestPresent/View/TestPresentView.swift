@@ -11,11 +11,11 @@ import SwiftUI
 // MARK: - TestPresentView
 struct TestPresentView: View, Presentable, Configurable {
     
-// MARK: - Presenter
+// MARK: - Properties
     @ObservedObject var presenter = TestPresentPresenterImpl()
     let configurator: Configurator.Type = TestPresentConfigurator.self
 
-// MARK: -  body
+// MARK: - Body
     var body: some View {
         Button {
             self.presenter.onTapDismissButton()

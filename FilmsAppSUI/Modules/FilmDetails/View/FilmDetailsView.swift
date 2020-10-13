@@ -11,11 +11,11 @@ import SwiftUI
 // MARK: - FilmDetailsView
 struct FilmDetailsView: View, Presentable, Configurable {
     
-// MARK: - Presenter
+// MARK: - Properties
     @ObservedObject var presenter = FilmDetailsPresenterImpl()
     let configurator: Configurator.Type = FilmDetailsConfigurator.self
 
-// MARK: -  body
+// MARK: - Body
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {

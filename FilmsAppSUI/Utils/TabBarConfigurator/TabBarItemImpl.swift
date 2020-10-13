@@ -13,7 +13,6 @@ import UIKit
 enum TabBarItemImpl: Int {
     
     case films
-    case someTab
     case testTab
 }
 
@@ -27,15 +26,13 @@ extension TabBarItemImpl: TabBarItem {
     var title: String {
         switch self {
         case .films: return "Фильмы"
-        case .someTab: return "someTab"
-        case .testTab: return "testTab"
+        case .testTab: return "TestTab"
         }
     }
     
     var image: UIImage? {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
-        case .someTab: return UIImage(systemName: "square.and.pencil")
         case .testTab: return UIImage(systemName: "square.and.pencil")
         }
     }
@@ -43,7 +40,6 @@ extension TabBarItemImpl: TabBarItem {
     var selectedImage: UIImage? {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
-        case .someTab: return UIImage(systemName: "square.and.pencil")
         case .testTab: return UIImage(systemName: "square.and.pencil")
         }
     }
@@ -51,13 +47,6 @@ extension TabBarItemImpl: TabBarItem {
     var controller: UIViewController? {
         switch self {
         case .films:
-            let viewController = FilmsListConfigurator.createScreen(withView: FilmsListView(),
-                                                                    configureBlock: nil)
-            viewController.title = "Фильмы"
-            let navigationController = UINavigationController(rootViewController: viewController)
-            return navigationController
-        
-        case .someTab:
             let viewController = FilmsListConfigurator.createScreen(withView: FilmsListView(),
                                                                     configureBlock: nil)
             viewController.title = "Фильмы"

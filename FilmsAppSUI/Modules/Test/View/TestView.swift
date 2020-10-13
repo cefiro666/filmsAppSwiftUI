@@ -11,11 +11,11 @@ import SwiftUI
 // MARK: - TestView
 struct TestView: View, Presentable, Configurable {
     
-// MARK: - Presenter
+// MARK: - Properties
     @ObservedObject var presenter = TestPresenterImpl()
     let configurator: Configurator.Type = TestConfigurator.self
     
-// MARK: -  body
+// MARK: - Body
     var body: some View {
         Text("Sequenia. SwiftUI VUPER")
             .onTapGesture {

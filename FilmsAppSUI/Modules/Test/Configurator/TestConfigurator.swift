@@ -10,16 +10,15 @@ import SwiftUI
 import UIKit
 
 // MARK: - TestConfigurator
-final class TestConfigurator: Configurator {
+struct TestConfigurator: Configurator {
        
 // MARK: - Methods
     static func createScreen<Content: View & Presentable>(withView view: Content,
                                                           configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        guard let view = view as? TestView else { return UIViewController() }
-        let router = TestRouterImpl()
+        guard let view = view as? TestView else { fatalError("view does not comply with protocol") }
 
-        view.presenter.router = router
+        view.presenter.router = TestRouterImpl()
         
         configureBlock?(view as? Content)
         

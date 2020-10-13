@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 // MARK: - Configurator
-protocol Configurator: class {
+protocol Configurator {
     
     static func createScreen<Content: View & Presentable>(withView view: Content,
                                                           configureBlock: ((Content?) -> ())?) -> UIViewController

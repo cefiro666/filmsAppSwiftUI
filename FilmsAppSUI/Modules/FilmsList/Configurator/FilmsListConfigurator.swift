@@ -10,17 +10,16 @@ import SwiftUI
 import UIKit
 
 // MARK: - FilmsListConfigurator
-final class FilmsListConfigurator: Configurator {
+struct FilmsListConfigurator: Configurator {
     
 // MARK: - Methods
     static func createScreen<Content: View & Presentable>(withView view: Content,
                                                           configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        guard let view = view as? FilmsListView else { return UIViewController() }
-        let router = FilmsListRouterImpl()
-
-        view.presenter.router = router
+        guard let view = view as? FilmsListView else { fatalError("view does not comply with protocol") }
         
+        view.presenter.router = FilmsListRouterImpl()
+
         view.presenter.setUseCase(GetFilmsUseCaseImpl())
         
         configureBlock?(view as? Content)
