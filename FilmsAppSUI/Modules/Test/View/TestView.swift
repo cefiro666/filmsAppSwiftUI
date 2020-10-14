@@ -9,7 +9,7 @@
 import SwiftUI
 
 // MARK: - TestView
-struct TestView: View, Presentable, Configurable {
+struct TestView: Contentable {
     
 // MARK: - Properties
     @ObservedObject var presenter = TestPresenterImpl()

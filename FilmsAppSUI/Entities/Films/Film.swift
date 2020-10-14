@@ -20,7 +20,8 @@ struct Film: Codable {
     
 //MARK: - Properties
     var id: Int
-    var localizedName, name: String
+    var localizedName: String
+    var name: String
     var year: Int
     var rating: Float?
     var imageURL: String?

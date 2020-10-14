@@ -9,7 +9,7 @@
 import SwiftUI
 
 // MARK: - FilmDetailsView
-struct FilmDetailsView: View, Presentable, Configurable {
+struct FilmDetailsView: Contentable {
     
 // MARK: - Properties
     @ObservedObject var presenter = FilmDetailsPresenterImpl()

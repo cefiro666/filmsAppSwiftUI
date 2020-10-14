@@ -13,8 +13,8 @@ import UIKit
 struct FilmsListConfigurator: Configurator {
     
 // MARK: - Methods
-    static func createScreen<Content: View & Presentable>(withView view: Content,
-                                                          configureBlock: ((Content?) -> ())?) -> UIViewController {
+    static func createScreen<Content: Contentable>(withView view: Content,
+                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
         
         guard let view = view as? FilmsListView else { fatalError("view does not comply with protocol") }
         
