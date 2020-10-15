@@ -18,15 +18,5 @@ extension View {
         - bar: a bunch more randomness.
     */
     @inlinable public func eraseToAnyView() -> AnyView { AnyView(self) }
-    
-    /**
-    Returns a specific view depending on the passed condition.
-     
-    **Parameters:**
-        - conditional: passed condition.
-        - content: dependent content.
-    */
-    @inlinable func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
-        return conditional ? AnyView(content(self)) : AnyView(self)
-    }
+
 }

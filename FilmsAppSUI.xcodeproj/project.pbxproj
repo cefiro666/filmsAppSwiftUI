@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D9B49393D5FEE9E4FCFEF44 /* TestPresentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3302BE2CC31BE87C1E0D4D /* TestPresentConfigurator.swift */; };
-		5F0DBB1F04E57EE3C33D9A6E /* TestPresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485167C0E7EC6F7D4418E8D8 /* TestPresentView.swift */; };
-		732702B35379ECC08FF13BB3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996765FF4DE41E79EE1E79AD /* TestView.swift */; };
-		80E7E258448C7467F94C61F6 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25A7E614EFA4E4BFD93263 /* TestData.swift */; };
-		869166AAAC21A4D67F26E255 /* TestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BE9F73313FFB922087DC2C /* TestPresenter.swift */; };
-		92F6E33B58D0FC9D5CC15186 /* TestPresentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8C9465149C3B8166ED6E6 /* TestPresentData.swift */; };
 		9A08BCCE2502585D00268128 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCD2502585D00268128 /* ListModels.swift */; };
 		9A08BCD0250266A600268128 /* FilmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCF250266A600268128 /* FilmDetailsView.swift */; };
 		9A08BCD2250266E800268128 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCD1250266E800268128 /* NetworkImage.swift */; };
@@ -55,7 +49,6 @@
 		9A622EEC2536DFC40056FEFB /* TestModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A622EE52536DFC40056FEFB /* TestModuleConfigurator.swift */; };
 		9A622EED2536DFC40056FEFB /* TestModuleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A622EE72536DFC40056FEFB /* TestModuleData.swift */; };
 		9A622EEE2536DFC40056FEFB /* TestModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A622EE92536DFC40056FEFB /* TestModuleRouter.swift */; };
-		9A622EF325370DA20056FEFB /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A622EF225370DA10056FEFB /* ExtensionsTests.swift */; };
 		9A68FEF725347E3600AD7B22 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A68FEF625347E3600AD7B22 /* TabBarConfigurator.swift */; };
 		9A68FF112534DC6800AD7B22 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A68FF102534DC6800AD7B22 /* Container.swift */; };
 		9A741B6C252A11F600DD094E /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A741B6B252A11F600DD094E /* loading.json */; };
@@ -70,10 +63,6 @@
 		9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3352531C3400018C68E /* TabBarItemImpl.swift */; };
 		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
 		9ACDE0E5252A032500C4A7F3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDE0E4252A032500C4A7F3 /* LottieView.swift */; };
-		A086FD3755BEA0CD8F07547C /* TestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED716C5794B199199586AA22 /* TestConfigurator.swift */; };
-		B8FC8A53BD8D272127FDAF7D /* TestPresentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81CC147CF56C3DCF7C5019C /* TestPresentPresenter.swift */; };
-		E027379C0190CFC51DF4E2DD /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7FFC3E5F22B2A759B40D7 /* TestRouter.swift */; };
-		F500848AC897A770A1A063A6 /* TestPresentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F981DA9281A7C3544E62A7D /* TestPresentRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,11 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1AA7FFC3E5F22B2A759B40D7 /* TestRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
-		2F981DA9281A7C3544E62A7D /* TestPresentRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresentRouter.swift; sourceTree = "<group>"; };
-		485167C0E7EC6F7D4418E8D8 /* TestPresentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresentView.swift; sourceTree = "<group>"; };
-		57BE9F73313FFB922087DC2C /* TestPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresenter.swift; sourceTree = "<group>"; };
-		996765FF4DE41E79EE1E79AD /* TestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		9A08BCCD2502585D00268128 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
 		9A08BCCF250266A600268128 /* FilmDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsView.swift; sourceTree = "<group>"; };
 		9A08BCD1250266E800268128 /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
@@ -134,7 +118,6 @@
 		9A622EE52536DFC40056FEFB /* TestModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModuleConfigurator.swift; sourceTree = "<group>"; };
 		9A622EE72536DFC40056FEFB /* TestModuleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModuleData.swift; sourceTree = "<group>"; };
 		9A622EE92536DFC40056FEFB /* TestModuleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModuleRouter.swift; sourceTree = "<group>"; };
-		9A622EF225370DA10056FEFB /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		9A68FEF625347E3600AD7B22 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
 		9A68FF102534DC6800AD7B22 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		9A741B6B252A11F600DD094E /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -150,11 +133,6 @@
 		9AB122392519D46500A300D7 /* FilmsAppSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmsAppSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB1223D2519D46500A300D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ACDE0E4252A032500C4A7F3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		9DD8C9465149C3B8166ED6E6 /* TestPresentData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresentData.swift; sourceTree = "<group>"; };
-		A81CC147CF56C3DCF7C5019C /* TestPresentPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresentPresenter.swift; sourceTree = "<group>"; };
-		AA3302BE2CC31BE87C1E0D4D /* TestPresentConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestPresentConfigurator.swift; sourceTree = "<group>"; };
-		CF25A7E614EFA4E4BFD93263 /* TestData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
-		ED716C5794B199199586AA22 /* TestConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,66 +156,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0DC20EB37C9D3341BB68D7E0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				996765FF4DE41E79EE1E79AD /* TestView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0FBC10975B73EC8A1D76824A /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A81CC147CF56C3DCF7C5019C /* TestPresentPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		51F68E979CBA6F3C4ACD767B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				485167C0E7EC6F7D4418E8D8 /* TestPresentView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5B7E00DC127DBB4D8FCD0C04 /* TestPresent */ = {
-			isa = PBXGroup;
-			children = (
-				51F68E979CBA6F3C4ACD767B /* View */,
-				0FBC10975B73EC8A1D76824A /* Presenter */,
-				7C159C156E18A2667416F5F6 /* Router */,
-				B224FB5475D66B19135D478F /* Configurator */,
-				D501A141F3E5DA003E731854 /* Data */,
-			);
-			path = TestPresent;
-			sourceTree = "<group>";
-		};
-		61F3C013D0FE8838D95BA167 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				57BE9F73313FFB922087DC2C /* TestPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		7C159C156E18A2667416F5F6 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				2F981DA9281A7C3544E62A7D /* TestPresentRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		8285E6C1491951A84F1DA3D1 /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				ED716C5794B199199586AA22 /* TestConfigurator.swift */,
-			);
-			path = Configurator;
-			sourceTree = "<group>";
-		};
 		9A08BCC025024FA100268128 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,8 +406,6 @@
 			children = (
 				9A4AABF624F934E8009E1817 /* FilmDetails */,
 				9A4AABF524F934D2009E1817 /* FilmsList */,
-				D5BD807728E957BE3CB763BF /* Test */,
-				5B7E00DC127DBB4D8FCD0C04 /* TestPresent */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -676,14 +592,6 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		9A622EF125370D780056FEFB /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				9A622EF225370DA10056FEFB /* ExtensionsTests.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		9A68FDD42532EADA00AD7B22 /* Films */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,7 +661,6 @@
 			isa = PBXGroup;
 			children = (
 				9A622EDF2536DFC40056FEFB /* TestModule */,
-				9A622EF125370D780056FEFB /* Extensions */,
 				9A91A776252CB30A001A249A /* Module */,
 				9AB1223D2519D46500A300D7 /* Info.plist */,
 			);
@@ -774,50 +681,6 @@
 				9A741B6B252A11F600DD094E /* loading.json */,
 			);
 			path = Lottie;
-			sourceTree = "<group>";
-		};
-		9D384064CF24EDEE16798AA3 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				CF25A7E614EFA4E4BFD93263 /* TestData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		AA6F6C7FF9C180D4405063FB /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				1AA7FFC3E5F22B2A759B40D7 /* TestRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		B224FB5475D66B19135D478F /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				AA3302BE2CC31BE87C1E0D4D /* TestPresentConfigurator.swift */,
-			);
-			path = Configurator;
-			sourceTree = "<group>";
-		};
-		D501A141F3E5DA003E731854 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				9DD8C9465149C3B8166ED6E6 /* TestPresentData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		D5BD807728E957BE3CB763BF /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				0DC20EB37C9D3341BB68D7E0 /* View */,
-				61F3C013D0FE8838D95BA167 /* Presenter */,
-				AA6F6C7FF9C180D4405063FB /* Router */,
-				8285E6C1491951A84F1DA3D1 /* Configurator */,
-				9D384064CF24EDEE16798AA3 /* Data */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -973,18 +836,8 @@
 				9A08BCCE2502585D00268128 /* ListModels.swift in Sources */,
 				9A4AAC0324F9397D009E1817 /* Film.swift in Sources */,
 				9A92B2F9253180110018C68E /* Presenter.swift in Sources */,
-				732702B35379ECC08FF13BB3 /* TestView.swift in Sources */,
 				9A92B2F525317FEA0018C68E /* Presentable.swift in Sources */,
-				869166AAAC21A4D67F26E255 /* TestPresenter.swift in Sources */,
-				E027379C0190CFC51DF4E2DD /* TestRouter.swift in Sources */,
-				A086FD3755BEA0CD8F07547C /* TestConfigurator.swift in Sources */,
-				80E7E258448C7467F94C61F6 /* TestData.swift in Sources */,
-				5F0DBB1F04E57EE3C33D9A6E /* TestPresentView.swift in Sources */,
-				B8FC8A53BD8D272127FDAF7D /* TestPresentPresenter.swift in Sources */,
-				F500848AC897A770A1A063A6 /* TestPresentRouter.swift in Sources */,
 				9A92B3052531806A0018C68E /* Router.swift in Sources */,
-				3D9B49393D5FEE9E4FCFEF44 /* TestPresentConfigurator.swift in Sources */,
-				92F6E33B58D0FC9D5CC15186 /* TestPresentData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,7 +851,6 @@
 				9A91A77A252CB333001A249A /* RouterTests.swift in Sources */,
 				9A622EED2536DFC40056FEFB /* TestModuleData.swift in Sources */,
 				9A622EEB2536DFC40056FEFB /* TestModuleView.swift in Sources */,
-				9A622EF325370DA20056FEFB /* ExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

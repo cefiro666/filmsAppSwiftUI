@@ -29,6 +29,7 @@ class RouterTests: XCTestCase {
         self.testView = nil
     }
     
+// MARK: - Tests
     func testCurrentRootControllerAfterSetRootScreenNotEqualByNil() throws {
         self.sut.setRootScreen(view: self.testView, configureBlock: nil)
         
@@ -175,7 +176,7 @@ class RouterTests: XCTestCase {
         }
     }
     
-    func testNavigationControllerAfterpresentScreenWithNavBarEqualByPresentedController() throws {
+    func testNavigationControllerAfterPresentScreenWithNavBarEqualByPresentedController() throws {
         self.sut.setRootScreen(view: self.testView, configureBlock: nil)
  
         let presentedController = self.sut.presentScreenWithNavBar(view: self.testView,
@@ -183,6 +184,112 @@ class RouterTests: XCTestCase {
                                                                    configureBlock: nil)
 
         XCTAssertEqual(self.sut.navigationController, presentedController)
+    }
+    
+    func testTopControllerAfterPushScreenEqualByPushedController() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        let pushedController = self.sut.pushScreen(view: self.testView,
+                                                   title: "Bar",
+                                                   configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.navigationController?.topViewController, pushedController)
+        }
+    }
+    
+    func testTopControllerTitleAfterPushScreenEqualByStatedTitle() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.navigationController?.topViewController?.title, "Bar")
+        }
+    }
+    
+    func testConfigureBlockWhenPushScreenWorking() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        let someView = TestModuleView()
+        self.sut.pushScreen(view: someView, title: "Bar") { view in
+            view?.presenter.setTestString("Baz")
+        }
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(someView.presenter.data.testString, "Baz")
+        }
+    }
+    
+    func testTabBarAfterPushScreenShowed() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertFalse(self.sut.navigationController?.topViewController?.hidesBottomBarWhenPushed ?? true)
+        }
+    }
+    
+    func testTopControllerAfterPushScreenWithHidenTabBarEqualByPushedController() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        let pushedController = self.sut.pushScreenWithHidenTabBar(view: self.testView,
+                                                                  title: "Bar",
+                                                                  configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.navigationController?.topViewController, pushedController)
+        }
+    }
+    
+    func testTopControllerTitleAfterPushScreenWithHidenTabBarEqualByStatedTitle() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        self.sut.pushScreenWithHidenTabBar(view: self.testView, title: "Bar", configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.navigationController?.topViewController?.title, "Bar")
+        }
+    }
+    
+    func testConfigureBlockWhenPushScreeWithHidenTabBarnWorking() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        let someView = TestModuleView()
+        self.sut.pushScreenWithHidenTabBar(view: someView, title: "Bar") { view in
+            view?.presenter.setTestString("Baz")
+        }
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(someView.presenter.data.testString, "Baz")
+        }
+    }
+    
+    func testTabBarAfterPushScreenWithHidenTabBarHiden() throws {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+ 
+        self.sut.pushScreenWithHidenTabBar(view: self.testView, title: "Bar", configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertTrue(self.sut.navigationController?.topViewController?.hidesBottomBarWhenPushed ?? true)
+        }
+    }
+    
+    func testCurrentControllerAfterPopScreenEqualByStatedControllerBeforePushScreen() {
+        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        
+        let pushedController = self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.navigationController?.topViewController, pushedController)
+            
+            self.sut.popScreen()
+            
+            self.waitCancelAnimationAndCheck() {
+                XCTAssertNotEqual(self.sut.navigationController?.topViewController, pushedController)
+            }
+        }
     }
     
 }
@@ -235,12 +342,12 @@ extension RouterTests {
     }
     
     private func waitCancelAnimationAndCheck(checkBlock: @escaping () -> ()) {
-        let cancelAnimationExpectation = self.expectation(description: "cancelAnimationExpectation")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        let cancelAnimationExpectation = self.expectation(description: "Cancel animation expectation")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             cancelAnimationExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 0.6) { _ in
+        waitForExpectations(timeout: 1) { _ in
             checkBlock()
         }
     }

@@ -54,9 +54,14 @@ extension TabBarItemImpl: TabBarItem {
             return navigationController
             
         case .testTab:
-            let viewController = TestConfigurator.createScreen(withView: TestView(),
-                                                               configureBlock: nil)
-            return viewController
+            let viewController = FilmsListConfigurator.createScreen(withView: FilmsListView(),
+                                                                    configureBlock: nil)
+            viewController.title = "Фильмы"
+            let navigationController = UINavigationController(rootViewController: viewController)
+            return navigationController
+//            let viewController = TestConfigurator.createScreen(withView: TestView(),
+//                                                               configureBlock: nil)
+//            return viewController
         }
     }
     

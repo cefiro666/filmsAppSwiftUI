@@ -194,11 +194,7 @@ extension Router {
     }
     
     func popScreen() {
-        if self.navigationController?.viewControllers.count == 1 {
-            self.navigationController?.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func dismissScreen(completion: (() -> ())? = nil) {
