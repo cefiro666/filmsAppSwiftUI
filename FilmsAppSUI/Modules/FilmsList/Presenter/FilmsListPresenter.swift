@@ -56,23 +56,22 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     
     func onClickGenre(_ genre: String) {
         self.data.selectedGenre = genre
-        self.data.isDownloadFilmFromSelectedGenre = true
+        self.data.isLoadingFilmsWithSelectedGenre = true
         
         // simulated long downloading films from selected genre
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            withAnimation {
-                self.data.isDownloadFilmFromSelectedGenre = false
+     
+            self.data.isLoadingFilmsWithSelectedGenre = false
+            
+            if genre == Constants.kAllGenres {
+                self.data.filmsModels = self.films.map { FilmModel(film: $0) }
+                return
             }
+            
+            self.data.filmsModels = self.films
+                .map { FilmModel(film: $0) }
+                .filter { $0.genres.contains(genre) }
         }
-        
-        if genre == Constants.kAllGenres {
-            self.data.filmsModels = self.films.map { FilmModel(film: $0) }
-            return
-        }
-        
-        self.data.filmsModels = self.films
-            .map { FilmModel(film: $0) }
-            .filter { $0.genres.contains(genre) }
     }
     
     func onClickFilmWithId(_ id: String) {

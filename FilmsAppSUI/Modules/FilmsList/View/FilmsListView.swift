@@ -29,19 +29,16 @@ struct FilmsListView: Contentable {
                 }
             })
             
-            if self.presenter.data.isDownloadFilmFromSelectedGenre {
-                VStack {
-                    Spacer()
-                    
-                    LottieView(name: "loading", loopMode: .loop)
-                        .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.width * 0.7)
-                    
-                    Spacer()
-                }
-            } else {
+            ZStack {
                 FilmsTableView(sections: self.getSections(), clickHandler: { filmId in
                     self.presenter.onClickFilmWithId(filmId)
                 })
+                
+                .animation(.spring())
+                
+                if self.presenter.data.isLoadingFilmsWithSelectedGenre {
+                    FillSpinnerView()
+                }
             }
         }
 

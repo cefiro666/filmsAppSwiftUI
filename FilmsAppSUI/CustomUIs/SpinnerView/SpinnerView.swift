@@ -13,18 +13,29 @@ import UIKit
 struct SpinnerView: UIViewRepresentable {
     
 // MARK: - Properties
-    let isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
+    var style: UIActivityIndicatorView.Style
+    var color: UIColor?
+    
+    init(style: UIActivityIndicatorView.Style, color: UIColor? = nil) {
+        self.style = style
+        self.color = color
+    }
 
 // MARK: - Methods
     func makeUIView(context: Context) -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView(style: self.style)
         spinner.hidesWhenStopped = true
+        
+        if let color = self.color {
+            spinner.color = color
+        }
+        
+        spinner.startAnimating()
         return spinner
     }
 
     func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
-        self.isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+        
     }
     
 }

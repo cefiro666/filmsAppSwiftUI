@@ -343,11 +343,11 @@ extension RouterTests {
     
     private func waitCancelAnimationAndCheck(checkBlock: @escaping () -> ()) {
         let cancelAnimationExpectation = self.expectation(description: "Cancel animation expectation")
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             cancelAnimationExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1) { _ in
+        waitForExpectations(timeout: 2.5) { _ in
             checkBlock()
         }
     }

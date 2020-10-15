@@ -13,7 +13,7 @@ import UIKit
 enum TabBarItemImpl: Int {
     
     case films
-    case testTab
+    case testing
 }
 
 // MARK: - TabBarItem
@@ -26,21 +26,21 @@ extension TabBarItemImpl: TabBarItem {
     var title: String {
         switch self {
         case .films: return "Фильмы"
-        case .testTab: return "TestTab"
+        case .testing: return "Testing"
         }
     }
     
     var image: UIImage? {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
-        case .testTab: return UIImage(systemName: "square.and.pencil")
+        case .testing: return UIImage(systemName: "square.and.pencil")
         }
     }
     
     var selectedImage: UIImage? {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
-        case .testTab: return UIImage(systemName: "square.and.pencil")
+        case .testing: return UIImage(systemName: "square.and.pencil")
         }
     }
     
@@ -53,15 +53,12 @@ extension TabBarItemImpl: TabBarItem {
             let navigationController = UINavigationController(rootViewController: viewController)
             return navigationController
             
-        case .testTab:
-            let viewController = FilmsListConfigurator.createScreen(withView: FilmsListView(),
-                                                                    configureBlock: nil)
-            viewController.title = "Фильмы"
+        case .testing:
+            let viewController = TestingTabConfigurator.createScreen(withView: TestingTabView(),
+                                                                     configureBlock: nil)
+            viewController.title = "Testing"
             let navigationController = UINavigationController(rootViewController: viewController)
             return navigationController
-//            let viewController = TestConfigurator.createScreen(withView: TestView(),
-//                                                               configureBlock: nil)
-//            return viewController
         }
     }
     

@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.configureUIPreferences()
-        self.configureTabs()
+        self.setInitialScreen()
     }
     
     private func configureUIPreferences() {
@@ -37,12 +37,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITableView.appearance().allowsSelection = false
         UITableViewCell.appearance().selectionStyle = .none
         UINavigationBar.appearance().isTranslucent = false
-        UITabBar.appearance().tintColor = .red
+        UITabBar.appearance().tintColor = .systemBlue
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
-    public func configureTabs() {
-        self.window?.rootViewController = TabBarConfigurator.getTabBarFromTabBarItemType(TabBarItemImpl.self)
+    public func setInitialScreen() {
+        self.window?.rootViewController = SplashScreenConfigurator.createScreen(withView: SplashScreenView(),
+                                                                                configureBlock: nil)
     }
 
 }

@@ -29,16 +29,23 @@ struct ContainerView<Content: Contentable>: View {
             self.content
             
             if self.presenter.isLoading {
-                SpinnerView(isAnimating: true, style: .large)
+                SpinnerView(style: .large)
             }
-
-        }.alert(isPresented: self.$presenter.hasError) {
-            Alert(title: Text(""),
-                  message: Text(self.presenter.errorMessage),
-                  dismissButton: .default(Text("repeat")) {
+            
+            if self.presenter.hasError {
+                VStack {
+                    Spacer()
                     
-                self.content.presenter.onClickError()
-            })
+                    ErrorView(message: self.presenter.errorMessage, clickHandler: {
+                        self.content.presenter.onClickError()
+                        self.presenter.hasError = false
+                    })
+                    
+                    .animation(.spring())
+                }
+                
+                .padding(.bottom, 20.0)
+            }
         }
     }
 }

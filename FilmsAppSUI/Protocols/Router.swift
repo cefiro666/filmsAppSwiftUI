@@ -21,47 +21,47 @@ protocol Router {
     var presentedController: UIViewController? { get }
     
     @discardableResult func pushScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func pushScreenWithHidenTabBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func presentScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func presentScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func getScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func getScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func setRootScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func setRootScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController?
     
@@ -100,7 +100,7 @@ extension Router {
     
 // MARK: - Methods
     @discardableResult func pushScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -112,7 +112,7 @@ extension Router {
     }
     
     @discardableResult func pushScreenWithHidenTabBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -125,7 +125,7 @@ extension Router {
     }
     
     @discardableResult func presentScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -139,7 +139,7 @@ extension Router {
     }
     
     @discardableResult func presentScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
         
@@ -150,7 +150,7 @@ extension Router {
     }
     
     @discardableResult func getScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -162,7 +162,7 @@ extension Router {
     }
     
     @discardableResult func getScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
         
@@ -170,7 +170,7 @@ extension Router {
     }
     
     @discardableResult func setRootScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
@@ -184,7 +184,7 @@ extension Router {
     }
     
     @discardableResult func setRootScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         configureBlock: ((Content?) -> ())?
     ) -> UIViewController? {
         
@@ -205,4 +205,9 @@ extension Router {
         self.tabBarController?.selectedIndex = tab.tabIndex
     }
     
+}
+
+extension SplashScreenView {
+    
+    static var test: Configurator.Type { SplashScreenConfigurator.self }
 }

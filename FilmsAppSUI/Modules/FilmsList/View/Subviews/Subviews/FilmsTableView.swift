@@ -40,8 +40,9 @@ struct FilmsTableView: View {
         ForEach(self.sections) { section in
             Section(header: YearHeaderView(yearString: section.header?.title ?? "")) {
                 ForEach(section.elements.compactMap { $0 as? FilmModel }) { filmModel in
-                    FilmCellView(filmModel: filmModel).onTapGesture {
-                        self.clickHandler?(filmModel.id)
+                    FilmCellView(filmModel: filmModel)
+                        .onTapGesture {
+                            self.clickHandler?(filmModel.id)
                     }
                 }
             }

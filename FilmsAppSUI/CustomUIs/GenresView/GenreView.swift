@@ -18,7 +18,7 @@ struct FilmGenreView: View {
 // MARK: - body
     var body: some View {
         Text(self.genre.capitalized(with: nil))
-            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+            .foregroundColor(.white)
             .font(.subheadline)
             .padding(5.0)
             .eraseToAnyView()
