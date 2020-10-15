@@ -34,8 +34,6 @@ struct FilmsListView: Contentable {
                     self.presenter.onClickFilmWithId(filmId)
                 })
                 
-                .animation(.spring())
-                
                 if self.presenter.data.isLoadingFilmsWithSelectedGenre {
                     FillSpinnerView()
                 }
