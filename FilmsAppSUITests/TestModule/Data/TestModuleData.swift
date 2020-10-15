@@ -7,14 +7,11 @@
 //
 
 import Foundation
+@testable import FilmsAppSUI
 
-// MARK: - TestModuleRouter
-protocol TestModuleRouter: Router {
-    
+// MARK: - TestModuleData
+struct TestModuleData {
+
+// MARK: - Properties
+    var testString = ""
 }
-
-// MARK: - TestModuleRouterImpl
-struct TestModuleRouterImpl: TestModuleRouter {
-    
-}
-

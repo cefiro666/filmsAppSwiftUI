@@ -6,11 +6,11 @@
 //  Copyright © 2020 Sequenia. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
 // MARK: - TestPresentData
 struct TestPresentData {
 
 // MARK: - Properties
-
+    
 }

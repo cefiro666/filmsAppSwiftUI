@@ -8,18 +8,18 @@
 
 import SwiftUI
 import UIKit
+@testable import FilmsAppSUI
 
 // MARK: - TestModuleConfigurator
 final class TestModuleConfigurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: View & Presentable>(withView view: Content,
-                                                          configureBlock: ((Content?) -> ())?) -> UIViewController {
+    static func createScreen<Content: Contentable>(withView view: Content,
+                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
         
-        guard let view = view as? TestModuleView<TestModulePresenterImpl> else { return UIViewController() }
-        let router = TestModuleRouterImpl()
+        guard let view = view as? TestModuleView else { return UIViewController() }
 
-        view.presenter.router = router
+        view.presenter.router = TestModuleRouterImpl()
         
         configureBlock?(view as? Content)
         

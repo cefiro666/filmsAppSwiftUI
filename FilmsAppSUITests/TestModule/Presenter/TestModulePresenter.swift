@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import FilmsAppSUI
 
 // MARK: - TestModulePresenter
 protocol TestModulePresenter: Presenter {
@@ -14,7 +15,6 @@ protocol TestModulePresenter: Presenter {
     var router: TestModuleRouter? { get set }
     var data: TestModuleData { get }
 
-    func viewOnAppear()
     func setTestString(_ string: String)
 }
 
@@ -29,10 +29,6 @@ final class TestModulePresenterImpl: TestModulePresenter {
     @Published var data = TestModuleData()
 
 // MARK: - Methods
-    func viewOnAppear() {
-        
-    }
-    
     func setTestString(_ string: String) {
         self.data.testString = string
     }

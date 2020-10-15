@@ -7,20 +7,18 @@
 //
 
 import SwiftUI
+@testable import FilmsAppSUI
 
 // MARK: - TestModuleView
-struct TestModuleView<Presenter>: View, Presentable, Configurable where Presenter: TestModulePresenter {
+struct TestModuleView: Contentable {
     
 // MARK: - Presenter
-    @ObservedObject var presenter: Presenter
+    @ObservedObject var presenter = TestModulePresenterImpl()
     var configurator: Configurator.Type = TestModuleConfigurator.self
 
 // MARK: -  body
     var body: some View {
         Text("Sequenia. SwiftUI VUPER")
-            .onAppear() {
-                self.presenter.viewOnAppear()
-        }
     }
 }
 
@@ -28,6 +26,6 @@ struct TestModuleView<Presenter>: View, Presentable, Configurable where Presente
 struct TestModule_Previews: PreviewProvider {
     
     static var previews: some View {
-        TestModuleView(presenter: TestModulePresenterImpl())
+        TestModuleView()
     }
 }

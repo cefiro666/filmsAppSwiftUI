@@ -85,7 +85,6 @@ extension Router {
     var navigationController: UINavigationController? {
         let navigationController = (self.rootController as? UINavigationController) ??
             (self.tabBarController?.selectedViewController as? UINavigationController) ??
-            self.rootController?.navigationController ??
             (self.rootController?.presentedViewController as? UINavigationController)
             
         return navigationController
@@ -96,7 +95,7 @@ extension Router {
     }
     
     var presentedController: UIViewController? {
-        return self.rootController?.presentedViewController
+        return self.rootController?.presentedViewController ?? self.rootController
     }
     
 // MARK: - Methods
@@ -203,7 +202,7 @@ extension Router {
     }
     
     func dismissScreen(completion: (() -> ())? = nil) {
-        self.navigationController?.dismiss(animated: true, completion: completion)
+        self.presentedController?.dismiss(animated: true, completion: completion)
     }
     
     func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {

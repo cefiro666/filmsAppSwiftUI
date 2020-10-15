@@ -6,7 +6,7 @@
 //  Copyright © 2020 Sequenia. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
 // MARK: - TestData
 struct TestData {
