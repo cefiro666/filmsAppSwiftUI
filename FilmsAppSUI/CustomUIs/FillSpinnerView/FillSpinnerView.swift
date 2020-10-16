@@ -29,6 +29,7 @@ struct FillSpinnerView: View {
 
 // MARK: - PreviewProvider
 struct FillSpinnerView_Previews: PreviewProvider {
+    
     static var previews: some View {
         FillSpinnerView()
     }

@@ -77,6 +77,8 @@
 		9A92B3052531806A0018C68E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3042531806A0018C68E /* Router.swift */; };
 		9A92B309253180850018C68E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B308253180850018C68E /* TabBarItem.swift */; };
 		9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3352531C3400018C68E /* TabBarItemImpl.swift */; };
+		9ACCB7272539610E00F989E9 /* TabBarItemImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */; };
+		9ACCB72E2539632B00F989E9 /* TabBarConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */; };
 		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
 		9ACDE0E5252A032500C4A7F3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDE0E4252A032500C4A7F3 /* LottieView.swift */; };
 		9C87EDB2DD6885D673C9C611 /* PushingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30E0AA3FDBB4022A65A5D8 /* PushingData.swift */; };
@@ -168,6 +170,8 @@
 		9A92B3352531C3400018C68E /* TabBarItemImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemImpl.swift; sourceTree = "<group>"; };
 		9AB122392519D46500A300D7 /* FilmsAppSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmsAppSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB1223D2519D46500A300D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemImplTests.swift; sourceTree = "<group>"; };
+		9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfiguratorTests.swift; sourceTree = "<group>"; };
 		9ACDE0E4252A032500C4A7F3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		9EB6ED75D24A9F00113DFE30 /* TestingTabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestingTabView.swift; sourceTree = "<group>"; };
 		A19C8B90F47E7E0B5C428AAE /* PresentingRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PresentingRouter.swift; sourceTree = "<group>"; };
@@ -831,12 +835,12 @@
 			path = Array;
 			sourceTree = "<group>";
 		};
-		9A91A776252CB30A001A249A /* Module */ = {
+		9A91A776252CB30A001A249A /* Router */ = {
 			isa = PBXGroup;
 			children = (
 				9A91A779252CB333001A249A /* RouterTests.swift */,
 			);
-			path = Module;
+			path = Router;
 			sourceTree = "<group>";
 		};
 		9A968AE1252209E600218122 /* GetFilmsUseCase */ = {
@@ -850,11 +854,29 @@
 		9AB1223A2519D46500A300D7 /* FilmsAppSUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9ACCB72C2539631200F989E9 /* TabBarConfigurator */,
+				9ACCB725253960EA00F989E9 /* TabBarItemImpl */,
 				9A622EDF2536DFC40056FEFB /* TestModule */,
-				9A91A776252CB30A001A249A /* Module */,
+				9A91A776252CB30A001A249A /* Router */,
 				9AB1223D2519D46500A300D7 /* Info.plist */,
 			);
 			path = FilmsAppSUITests;
+			sourceTree = "<group>";
+		};
+		9ACCB725253960EA00F989E9 /* TabBarItemImpl */ = {
+			isa = PBXGroup;
+			children = (
+				9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */,
+			);
+			path = TabBarItemImpl;
+			sourceTree = "<group>";
+		};
+		9ACCB72C2539631200F989E9 /* TabBarConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */,
+			);
+			path = TabBarConfigurator;
 			sourceTree = "<group>";
 		};
 		9ACDE0EC252A034700C4A7F3 /* LottieView */ = {
@@ -1143,10 +1165,12 @@
 			files = (
 				9A622EEE2536DFC40056FEFB /* TestModuleRouter.swift in Sources */,
 				9A622EEC2536DFC40056FEFB /* TestModuleConfigurator.swift in Sources */,
+				9ACCB72E2539632B00F989E9 /* TabBarConfiguratorTests.swift in Sources */,
 				9A622EEA2536DFC40056FEFB /* TestModulePresenter.swift in Sources */,
 				9A91A77A252CB333001A249A /* RouterTests.swift in Sources */,
 				9A622EED2536DFC40056FEFB /* TestModuleData.swift in Sources */,
 				9A622EEB2536DFC40056FEFB /* TestModuleView.swift in Sources */,
+				9ACCB7272539610E00F989E9 /* TabBarItemImplTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

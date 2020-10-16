@@ -47,7 +47,7 @@ extension FilmsProvider: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .getFilms:
             return [HTTPHeaderField.acceptType: ContentType.json]

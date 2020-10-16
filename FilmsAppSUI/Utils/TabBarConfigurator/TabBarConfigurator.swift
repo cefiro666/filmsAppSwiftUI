@@ -12,7 +12,8 @@ import UIKit
 class TabBarConfigurator {
     
     static public func getTabBarFromTabBarItemType<Item: TabBarItem & CaseIterable>(
-        _ tabType: Item.Type
+        _ tabType: Item.Type,
+        creatingControllersCompletion: (([UIViewController]) -> ())? = nil
     ) -> UITabBarController {
         
         let tabBarController = UITabBarController()
@@ -28,6 +29,7 @@ class TabBarConfigurator {
         }
         
         tabBarController.setViewControllers(controllers, animated: false)
+        creatingControllersCompletion?(controllers)
         
         return tabBarController
     }

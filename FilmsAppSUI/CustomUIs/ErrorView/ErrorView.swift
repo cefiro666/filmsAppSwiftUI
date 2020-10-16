@@ -41,6 +41,7 @@ struct ErrorView: View {
 
 // MARK: - PreviewProvider
 struct ErrorView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ErrorView(message: "Error message!")
     }

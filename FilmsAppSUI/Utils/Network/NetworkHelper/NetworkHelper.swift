@@ -9,6 +9,12 @@
 import Foundation
 import Moya
 
+// MARK: - Constants
+fileprivate struct Constants {
+    
+    static let kBaseUrl = "https://s3-eu-west-1.amazonaws.com"
+}
+
 // MARK: - HTTPHeaderField
 struct HTTPHeaderField {
     
@@ -26,6 +32,7 @@ struct ContentType {
 extension TargetType {
 
     var baseURL: URL {
-        return URL(string: "https://s3-eu-west-1.amazonaws.com")!
+        guard let url = URL(string: Constants.kBaseUrl) else { fatalError("Invalid base url!") }
+        return url
     }
 }
