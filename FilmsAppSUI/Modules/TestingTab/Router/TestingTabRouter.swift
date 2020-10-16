@@ -21,19 +21,19 @@ protocol TestingTabRouter: Router {
 struct TestingTabRouterImpl: TestingTabRouter {
     
     func presentTestViewWithNavBar() {
-        self.presentScreenWithNavBar(view: PresentingView(), title: "Presented view", configureBlock: nil)
+        self.presentScreenWithNavBar(view: PresentingView.self, title: "Presented view", configureBlock: nil)
     }
     
     func presentTestView() {
-        self.presentScreen(view: PresentingView(), configureBlock: nil)
+        self.presentScreen(view: PresentingView.self, configureBlock: nil)
     }
     
     func pushTestViewWithHidenTabBar() {
-        self.pushScreenWithHidenTabBar(view: PushingView(), title: "Pushed view", configureBlock: nil)
+        self.pushScreenWithHidenTabBar(view: PushingView.self, title: "Pushed view", configureBlock: nil)
     }
     
     func pushTestView() {
-        self.pushScreen(view: PushingView(), title: "Pushed view", configureBlock: nil)
+        self.pushScreen(view: PushingView.self, title: "Pushed view", configureBlock: nil)
     }
 }
 

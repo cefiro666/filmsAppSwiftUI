@@ -11,8 +11,7 @@ import UIKit
 
 // MARK: - Configurator
 protocol Configurator {
+    associatedtype Content: Contentable
     
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController
-
+    static func createScreen(configureBlock: ((Content?) -> ())?) -> UIViewController
 }

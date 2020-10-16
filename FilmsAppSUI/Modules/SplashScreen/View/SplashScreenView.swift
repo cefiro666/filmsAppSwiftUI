@@ -13,7 +13,7 @@ struct SplashScreenView: Contentable {
 
 // MARK: - Properties
     @ObservedObject var presenter = SplashScreenPresenterImpl()
-    let configurator: Configurator.Type = SplashScreenConfigurator.self
+    static let configurator = SplashScreenConfigurator.self
 
 // MARK: - Body
     var body: some View {

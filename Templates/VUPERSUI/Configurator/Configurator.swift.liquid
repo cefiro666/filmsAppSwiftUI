@@ -13,14 +13,12 @@ import UIKit
 struct {{ module_info.name }}Configurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? {{ module_info.name }}View else { fatalError("view does not comply with protocol") }
+    static func createScreen(configureBlock: (({{ module_info.name }}View?) -> ())?) -> UIViewController {
+        let view = {{ module_info.name }}View()
 
         view.presenter.router = {{ module_info.name }}RouterImpl()
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<{{ module_info.name }}View>>(rootView: ContainerView(content: view))
     }

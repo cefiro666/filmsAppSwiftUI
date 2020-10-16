@@ -42,8 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     public func setInitialScreen() {
-        self.window?.rootViewController = SplashScreenConfigurator.createScreen(withView: SplashScreenView(),
-                                                                                configureBlock: nil)
+        self.window?.rootViewController = SplashScreenConfigurator.createScreen(configureBlock: nil)
     }
 
 }

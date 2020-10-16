@@ -13,7 +13,7 @@ struct PushingView: Contentable {
 
 // MARK: - Properties
     @ObservedObject var presenter = PushingPresenterImpl()
-    let configurator: Configurator.Type = PushingConfigurator.self
+    static let configurator = PushingConfigurator.self
 
 // MARK: - Body
     var body: some View {

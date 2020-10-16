@@ -15,49 +15,47 @@ class RouterTests: XCTestCase {
 // MARK: - Properties
     var sut: Router!
     
-    var testView: TestModuleView!
-    var mockSceneDelegate: UIWindowSceneDelegate?
-    
 // MARK: - Setup and tear down
     override func setUpWithError() throws {
         self.sut = TestModuleRouterImpl()
-        self.testView = TestModuleView()
     }
 
     override func tearDownWithError() throws {
         self.sut = nil
-        self.testView = nil
     }
     
 // MARK: - Tests
     func testCurrentRootControllerAfterSetRootScreenNotEqualByNil() throws {
-        self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
         
         XCTAssertNotNil(self.sut.rootController)
     }
     
     func testCurrentRootControllerAfterSetRootScreenEqualByStatedScreen() throws {
-        let controller = self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        let controller = self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
         
         XCTAssertEqual(controller, self.sut.rootController)
     }
     
     func testConfigureBlockWhenSetRootScreenkWorking() throws {
-        self.sut.setRootScreen(view: self.testView) { view in
+        var testableView: TestModuleView?
+        
+        self.sut.setRootScreen(view: TestModuleView.self) { view in
+            testableView = view
             view?.presenter.setTestString("Foo")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, "Foo")
+        XCTAssertEqual(testableView?.presenter.data.testString, "Foo")
     }
     
     func testCurrentRootControllerAfterSetRootScreenWithNavBarNotEqualByNil() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
         XCTAssertNotNil(self.sut.rootController)
     }
     
     func testCurrentRootControllerAfterSetRootScreenWithNavBarEqualByStatedScreen() throws {
-        let controller = self.sut.setRootScreenWithNavBar(view: self.testView,
+        let controller = self.sut.setRootScreenWithNavBar(view: TestModuleView.self,
                                                           title: "Foo",
                                                           configureBlock: nil)
         
@@ -65,7 +63,7 @@ class RouterTests: XCTestCase {
     }
     
     func testCurrentRootControllerTitleAfterSetRootScreenWithNavBarEqualByStatedTitle() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView,
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self,
                                          title: "Foo",
                                          configureBlock: nil)
         
@@ -73,11 +71,14 @@ class RouterTests: XCTestCase {
     }
     
     func testConfigureBlockWhenSetRootScreenWithNavBarWorking() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo") { view in
+        var testableView: TestModuleView?
+        
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo") { view in
+            testableView = view
             view?.presenter.setTestString("Bar")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, "Bar")
+        XCTAssertEqual(testableView?.presenter.data.testString, "Bar")
     }
     
     func testSelectedTabAfterSetTabEqualByStatedTab() throws {
@@ -93,10 +94,9 @@ class RouterTests: XCTestCase {
     }
     
     func testPresentedControllerAfterPresentScreenEqualPresentedScreen() throws {
-        self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
         
-        let someView = TestModuleView()
-        let presentedController = self.sut.presentScreen(view: someView, configureBlock: nil)
+        let presentedController = self.sut.presentScreen(view: TestModuleView.self, configureBlock: nil)
         
         self.waitCancelAnimationAndCheck() {
             XCTAssertEqual(self.sut.presentedController, presentedController)
@@ -104,66 +104,74 @@ class RouterTests: XCTestCase {
     }
     
     func testConfigureBlockWhenPresentScreenWorking() throws {
-        self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
         
-        let someView = TestModuleView()
-        self.sut.presentScreen(view: someView) { view in
+        var testableView: TestModuleView?
+        
+        self.sut.presentScreen(view: TestModuleView.self) { view in
+            testableView = view
             view?.presenter.setTestString("Foo")
         }
         
-        XCTAssertEqual(someView.presenter.data.testString, "Foo")
+        XCTAssertEqual(testableView?.presenter.data.testString, "Foo")
     }
     
     func testReturnedControllerWhenGetScreenNotEqualByNil() throws {
-        let controller = self.sut.getScreen(view: self.testView, configureBlock: nil)
+        let controller = self.sut.getScreen(view: TestModuleView.self, configureBlock: nil)
         
         XCTAssertNotNil(controller)
     }
     
     func testReturnedControllerWhenGetScreenIncludesTransmittedView() throws {
-        self.sut.getScreen(view: self.testView) { view in
+        var testableView: TestModuleView?
+        
+        self.sut.getScreen(view: TestModuleView.self) { view in
+            testableView = view
             view?.presenter.setTestString("Foo")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, "Foo")
+        XCTAssertEqual(testableView?.presenter.data.testString, "Foo")
     }
     
     func testReturnedControllerWhenGetScreenWithNavBarIncludesTransmittedView() throws {
-        self.sut.getScreenWithNavBar(view: self.testView, title: "Foo") { view in
+        var testableView: TestModuleView?
+        
+        self.sut.getScreenWithNavBar(view: TestModuleView.self, title: "Foo") { view in
+            testableView = view
             view?.presenter.setTestString("Bar")
         }
         
-        XCTAssertEqual(self.testView.presenter.data.testString, "Bar")
+        XCTAssertEqual(testableView?.presenter.data.testString, "Bar")
     }
     
     func testTitleReturnedControllerWhenGetScreenWithNavBarEqualByStatedTitle() throws {
-        let controller = self.sut.getScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        let controller = self.sut.getScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
         XCTAssertEqual(controller?.title, "Foo")
     }
     
     func testReturnedControllerWhenGetScreenWithNavBarNotEqualByNil() throws {
-        let controller = self.sut.getScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        let controller = self.sut.getScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
         XCTAssertNotNil(controller)
     }
     
     func testNavigationControllerAfterSetRootScreenWithNavBarNotEqualByNil() throws {
-        let controller = self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        let controller = self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
         
         XCTAssertNotNil(controller)
     }
     
     func testNavigationControllerAfterSetRootScreenWithNavBarEqualByStatedController() throws {
-        let controller = self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        let controller = self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
         XCTAssertEqual(controller, self.sut.navigationController)
     }
     
     func testCurrentControllerAfterDismissScreenEqualByStatedControllerBeforePresent() throws {
-        let controller = self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        let controller = self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
 
-        self.sut.presentScreen(view: self.testView, configureBlock: nil)
+        self.sut.presentScreen(view: TestModuleView.self, configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertNotEqual(self.sut.presentedController, controller)
@@ -177,9 +185,9 @@ class RouterTests: XCTestCase {
     }
     
     func testNavigationControllerAfterPresentScreenWithNavBarEqualByPresentedController() throws {
-        self.sut.setRootScreen(view: self.testView, configureBlock: nil)
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
  
-        let presentedController = self.sut.presentScreenWithNavBar(view: self.testView,
+        let presentedController = self.sut.presentScreenWithNavBar(view: TestModuleView.self,
                                                                    title: "Foo",
                                                                    configureBlock: nil)
 
@@ -187,9 +195,9 @@ class RouterTests: XCTestCase {
     }
     
     func testTopControllerAfterPushScreenEqualByPushedController() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        let pushedController = self.sut.pushScreen(view: self.testView,
+        let pushedController = self.sut.pushScreen(view: TestModuleView.self,
                                                    title: "Bar",
                                                    configureBlock: nil)
 
@@ -199,9 +207,9 @@ class RouterTests: XCTestCase {
     }
     
     func testTopControllerTitleAfterPushScreenEqualByStatedTitle() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+        self.sut.pushScreen(view: TestModuleView.self, title: "Bar", configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertEqual(self.sut.navigationController?.topViewController?.title, "Bar")
@@ -209,22 +217,24 @@ class RouterTests: XCTestCase {
     }
     
     func testConfigureBlockWhenPushScreenWorking() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        let someView = TestModuleView()
-        self.sut.pushScreen(view: someView, title: "Bar") { view in
+        var testableView: TestModuleView?
+        
+        self.sut.pushScreen(view: TestModuleView.self, title: "Bar") { view in
+            testableView = view
             view?.presenter.setTestString("Baz")
         }
 
         self.waitCancelAnimationAndCheck() {
-            XCTAssertEqual(someView.presenter.data.testString, "Baz")
+            XCTAssertEqual(testableView?.presenter.data.testString, "Baz")
         }
     }
     
     func testTabBarAfterPushScreenShowed() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+        self.sut.pushScreen(view: TestModuleView.self, title: "Bar", configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertFalse(self.sut.navigationController?.topViewController?.hidesBottomBarWhenPushed ?? true)
@@ -232,9 +242,9 @@ class RouterTests: XCTestCase {
     }
     
     func testTopControllerAfterPushScreenWithHidenTabBarEqualByPushedController() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        let pushedController = self.sut.pushScreenWithHidenTabBar(view: self.testView,
+        let pushedController = self.sut.pushScreenWithHidenTabBar(view: TestModuleView.self,
                                                                   title: "Bar",
                                                                   configureBlock: nil)
 
@@ -244,9 +254,9 @@ class RouterTests: XCTestCase {
     }
     
     func testTopControllerTitleAfterPushScreenWithHidenTabBarEqualByStatedTitle() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        self.sut.pushScreenWithHidenTabBar(view: self.testView, title: "Bar", configureBlock: nil)
+        self.sut.pushScreenWithHidenTabBar(view: TestModuleView.self, title: "Bar", configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertEqual(self.sut.navigationController?.topViewController?.title, "Bar")
@@ -254,22 +264,24 @@ class RouterTests: XCTestCase {
     }
     
     func testConfigureBlockWhenPushScreeWithHidenTabBarnWorking() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        let someView = TestModuleView()
-        self.sut.pushScreenWithHidenTabBar(view: someView, title: "Bar") { view in
+        var testableView: TestModuleView?
+        
+        self.sut.pushScreenWithHidenTabBar(view: TestModuleView.self, title: "Bar") { view in
+            testableView = view
             view?.presenter.setTestString("Baz")
         }
 
         self.waitCancelAnimationAndCheck() {
-            XCTAssertEqual(someView.presenter.data.testString, "Baz")
+            XCTAssertEqual(testableView?.presenter.data.testString, "Baz")
         }
     }
     
     func testTabBarAfterPushScreenWithHidenTabBarHiden() throws {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
  
-        self.sut.pushScreenWithHidenTabBar(view: self.testView, title: "Bar", configureBlock: nil)
+        self.sut.pushScreenWithHidenTabBar(view: TestModuleView.self, title: "Bar", configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertTrue(self.sut.navigationController?.topViewController?.hidesBottomBarWhenPushed ?? true)
@@ -277,9 +289,9 @@ class RouterTests: XCTestCase {
     }
     
     func testCurrentControllerAfterPopScreenEqualByStatedControllerBeforePushScreen() {
-        self.sut.setRootScreenWithNavBar(view: self.testView, title: "Foo", configureBlock: nil)
+        self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
-        let pushedController = self.sut.pushScreen(view: self.testView, title: "Bar", configureBlock: nil)
+        let pushedController = self.sut.pushScreen(view: TestModuleView.self, title: "Bar", configureBlock: nil)
 
         self.waitCancelAnimationAndCheck() {
             XCTAssertEqual(self.sut.navigationController?.topViewController, pushedController)
@@ -330,8 +342,8 @@ extension RouterTests {
         
         var controller: UIViewController? {
             switch self {
-            case .oneTab: return TestModuleConfigurator.createScreen(withView: TestModuleView(), configureBlock: nil)
-            case .twoTab: return TestModuleConfigurator.createScreen(withView: TestModuleView(), configureBlock: nil)
+            case .oneTab: return TestModuleConfigurator.createScreen(configureBlock: nil)
+            case .twoTab: return TestModuleConfigurator.createScreen(configureBlock: nil)
             }
         }
     }

@@ -21,48 +21,48 @@ protocol Router {
     var presentedController: UIViewController? { get }
     
     @discardableResult func pushScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func pushScreenWithHidenTabBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func presentScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func presentScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func getScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func getScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func setRootScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     @discardableResult func setRootScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
     func popScreen()
@@ -100,24 +100,24 @@ extension Router {
     
 // MARK: - Methods
     @discardableResult func pushScreen<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.title = title
         self.navigationController?.pushViewController(viewController, animated: true)
         return viewController
     }
     
     @discardableResult func pushScreenWithHidenTabBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.title = title
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -125,12 +125,12 @@ extension Router {
     }
     
     @discardableResult func presentScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
@@ -139,56 +139,55 @@ extension Router {
     }
     
     @discardableResult func presentScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.modalPresentationStyle = .fullScreen
         self.rootController?.present(viewController, animated: true)
         return viewController
     }
     
     @discardableResult func getScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
     
     @discardableResult func getScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        return view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        return view.configurator.createScreen(configureBlock: configureBlock)
     }
     
     @discardableResult func setRootScreenWithNavBar<Content: Contentable>(
-        view: Content,
+        view: Content.Type,
         title: String,
-        configureBlock: ((Content?) -> ())?
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         viewController.title = title
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.isNavigationBarHidden = true
         self.window?.rootViewController = navigationController
         return navigationController
     }
     
     @discardableResult func setRootScreen<Content: Contentable>(
-        view: Content,
-        configureBlock: ((Content?) -> ())?
+        view: Content.Type,
+        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController? {
         
-        let viewController = view.configurator.createScreen(withView: view, configureBlock: configureBlock)
+        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
         self.window?.rootViewController = viewController
         return viewController
     }

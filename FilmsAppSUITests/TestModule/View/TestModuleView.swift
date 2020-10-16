@@ -14,11 +14,13 @@ struct TestModuleView: Contentable {
     
 // MARK: - Presenter
     @ObservedObject var presenter = TestModulePresenterImpl()
-    var configurator: Configurator.Type = TestModuleConfigurator.self
+    static var configurator = TestModuleConfigurator.self
 
 // MARK: -  body
     var body: some View {
-        Text("Sequenia. SwiftUI VUPER")
+        Text("Sequenia. SwiftUI VUPER.\nTest screen!")
+            .multilineTextAlignment(.center)
+            .foregroundColor(.red)
     }
 }
 

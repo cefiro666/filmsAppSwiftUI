@@ -23,7 +23,7 @@
 		9A08BCCE2502585D00268128 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCD2502585D00268128 /* ListModels.swift */; };
 		9A08BCD0250266A600268128 /* FilmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCCF250266A600268128 /* FilmDetailsView.swift */; };
 		9A08BCD2250266E800268128 /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCD1250266E800268128 /* NetworkImage.swift */; };
-		9A08BCD5250268CE00268128 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */; };
+		9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BCD4250268CE00268128 /* KingfisherSwiftUI */; };
 		9A08BCE82506030E00268128 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCE72506030E00268128 /* SpinnerView.swift */; };
 		9A08BCEE250621E600268128 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BCED250621E600268128 /* View+Extensions.swift */; };
 		9A08BD052506637100268128 /* FilmsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD042506637100268128 /* FilmsListConfigurator.swift */; };
@@ -32,7 +32,7 @@
 		9A08BD0F250743E000268128 /* GetFilmsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD0E250743E000268128 /* GetFilmsUseCase.swift */; };
 		9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD10250743F300268128 /* NetworkHelper.swift */; };
 		9A08BD13250743F300268128 /* FilmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD11250743F300268128 /* FilmsRequest.swift */; };
-		9A08BD16250744BB00268128 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BD15250744BB00268128 /* SwiftPackageProductDependency */; };
+		9A08BD16250744BB00268128 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9A08BD15250744BB00268128 /* Moya */; };
 		9A08BD192507566F00268128 /* FilmsListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD182507566F00268128 /* FilmsListData.swift */; };
 		9A08BD1E25075D4C00268128 /* ContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD1D25075D4C00268128 /* ContainerPresenter.swift */; };
 		9A08BD23250763DE00268128 /* FilmDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD22250763DE00268128 /* FilmDetailsConfigurator.swift */; };
@@ -77,7 +77,7 @@
 		9A92B3052531806A0018C68E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3042531806A0018C68E /* Router.swift */; };
 		9A92B309253180850018C68E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B308253180850018C68E /* TabBarItem.swift */; };
 		9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3352531C3400018C68E /* TabBarItemImpl.swift */; };
-		9ACDE0E0252A031700C4A7F3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */; };
+		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
 		9ACDE0E5252A032500C4A7F3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDE0E4252A032500C4A7F3 /* LottieView.swift */; };
 		9C87EDB2DD6885D673C9C611 /* PushingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30E0AA3FDBB4022A65A5D8 /* PushingData.swift */; };
 		B01B3FA01F4F3B8BCE395826 /* TestingTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D83F3E2C4B79FCDF8EB28B /* TestingTabPresenter.swift */; };
@@ -184,9 +184,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A08BCD5250268CE00268128 /* BuildFile in Frameworks */,
-				9A08BD16250744BB00268128 /* BuildFile in Frameworks */,
-				9ACDE0E0252A031700C4A7F3 /* BuildFile in Frameworks */,
+				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
+				9A08BD16250744BB00268128 /* Moya in Frameworks */,
+				9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +213,6 @@
 			children = (
 				90DC9551965756F9C90ACF5C /* SplashScreenData.swift */,
 			);
-			name = Data;
 			path = Data;
 			sourceTree = "<group>";
 		};
@@ -234,7 +233,6 @@
 			children = (
 				B9042CEBE7FEA453DDFC5ACC /* SplashScreenRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -323,7 +321,6 @@
 			children = (
 				14C8C10984D148CB925E34C3 /* SplashScreenPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -889,7 +886,6 @@
 			children = (
 				FAE163B4CB6CB9F7D5063D81 /* SplashScreenConfigurator.swift */,
 			);
-			name = Configurator;
 			path = Configurator;
 			sourceTree = "<group>";
 		};
@@ -938,7 +934,6 @@
 			children = (
 				6FC4FADE8145A7CBBE4B7DD3 /* SplashScreenView.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -951,7 +946,6 @@
 				ACA7369C1F80F632B459463E /* Configurator */,
 				092291EF415EF4A0692ECEC4 /* Data */,
 			);
-			name = SplashScreen;
 			path = SplashScreen;
 			sourceTree = "<group>";
 		};
@@ -980,9 +974,9 @@
 			);
 			name = FilmsAppSUI;
 			packageProductDependencies = (
-				9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */,
-				9A08BD15250744BB00268128 /* SwiftPackageProductDependency */,
-				9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */,
+				9A08BCD4250268CE00268128 /* KingfisherSwiftUI */,
+				9A08BD15250744BB00268128 /* Moya */,
+				9ACDE0DF252A031700C4A7F3 /* Lottie */,
 			);
 			productName = FilmsAppSUI;
 			productReference = 9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */;
@@ -1035,9 +1029,9 @@
 			);
 			mainGroup = 9A4AABCB24F9325D009E1817;
 			packageReferences = (
-				9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */,
-				9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */,
-				9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */,
+				9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
+				9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
 			projectDirPath = "";
@@ -1343,7 +1337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XJM4GSZPH;
 				INFOPLIST_FILE = FilmsAppSUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1364,7 +1358,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XJM4GSZPH;
 				INFOPLIST_FILE = FilmsAppSUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1411,7 +1405,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */ = {
+		9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1419,7 +1413,7 @@
 				minimumVersion = 5.15.0;
 			};
 		};
-		9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */ = {
+		9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -1427,7 +1421,7 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */ = {
+		9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -1438,19 +1432,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9A08BCD4250268CE00268128 /* SwiftPackageProductDependency */ = {
+		9A08BCD4250268CE00268128 /* KingfisherSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A08BCD3250268CE00268128 /* RemoteSwiftPackageReference */;
+			package = 9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = KingfisherSwiftUI;
 		};
-		9A08BD15250744BB00268128 /* SwiftPackageProductDependency */ = {
+		9A08BD15250744BB00268128 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A08BD14250744BB00268128 /* RemoteSwiftPackageReference */;
+			package = 9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		9ACDE0DF252A031700C4A7F3 /* SwiftPackageProductDependency */ = {
+		9ACDE0DF252A031700C4A7F3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9ACDE0DE252A031700C4A7F3 /* RemoteSwiftPackageReference */;
+			package = 9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

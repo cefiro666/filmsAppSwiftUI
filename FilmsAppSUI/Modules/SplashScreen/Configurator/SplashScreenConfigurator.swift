@@ -13,14 +13,12 @@ import UIKit
 struct SplashScreenConfigurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? SplashScreenView else { fatalError("view does not comply with protocol") }
+    static func createScreen(configureBlock: ((SplashScreenView?) -> ())?) -> UIViewController {
+        let view = SplashScreenView()
 
         view.presenter.router = SplashScreenRouterImpl()
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<SplashScreenView>>(rootView: ContainerView(content: view))
     }

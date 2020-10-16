@@ -13,7 +13,7 @@ struct TestingTabView: Contentable {
 
 // MARK: - Properties
     @ObservedObject var presenter = TestingTabPresenterImpl()
-    let configurator: Configurator.Type = TestingTabConfigurator.self
+    static let configurator = TestingTabConfigurator.self
 
 // MARK: - Body
     var body: some View {

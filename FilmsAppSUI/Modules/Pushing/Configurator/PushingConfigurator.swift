@@ -13,14 +13,12 @@ import UIKit
 struct PushingConfigurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? PushingView else { fatalError("view does not comply with protocol") }
+    static func createScreen(configureBlock: ((PushingView?) -> ())?) -> UIViewController {
+        let view = PushingView()
 
         view.presenter.router = PushingRouterImpl()
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<PushingView>>(rootView: ContainerView(content: view))
     }

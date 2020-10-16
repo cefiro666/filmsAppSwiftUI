@@ -13,7 +13,7 @@ struct {{ module_info.name }}View: Contentable {
 
 // MARK: - Properties
     @ObservedObject var presenter = {{ module_info.name }}PresenterImpl()
-    let configurator: Configurator.Type = {{ module_info.name }}Configurator.self
+    static let configurator = {{ module_info.name }}Configurator.self
 
 // MARK: - Body
     var body: some View {

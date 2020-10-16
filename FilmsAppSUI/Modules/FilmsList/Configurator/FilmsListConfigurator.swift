@@ -13,16 +13,14 @@ import UIKit
 struct FilmsListConfigurator: Configurator {
     
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? FilmsListView else { fatalError("view does not comply with protocol") }
+    static func createScreen(configureBlock: ((FilmsListView?) -> ())?) -> UIViewController {
+        let view = FilmsListView()
         
         view.presenter.router = FilmsListRouterImpl()
 
         view.presenter.setUseCase(GetFilmsUseCaseImpl())
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<FilmsListView>>(rootView: ContainerView(content: view))
     }

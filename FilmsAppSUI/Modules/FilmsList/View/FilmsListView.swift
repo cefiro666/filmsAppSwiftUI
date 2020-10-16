@@ -13,7 +13,7 @@ struct FilmsListView: Contentable {
     
 // MARK: - Properties
     @ObservedObject var presenter = FilmsListPresenterImpl()
-    let configurator: Configurator.Type = FilmsListConfigurator.self
+    static let configurator = FilmsListConfigurator.self
     
 // MARK: - Body
     var body: some View {

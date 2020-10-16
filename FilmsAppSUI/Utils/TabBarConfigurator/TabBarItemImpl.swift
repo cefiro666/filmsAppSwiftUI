@@ -47,15 +47,13 @@ extension TabBarItemImpl: TabBarItem {
     var controller: UIViewController? {
         switch self {
         case .films:
-            let viewController = FilmsListConfigurator.createScreen(withView: FilmsListView(),
-                                                                    configureBlock: nil)
+            let viewController = FilmsListConfigurator.createScreen(configureBlock: nil)
             viewController.title = "Фильмы"
             let navigationController = UINavigationController(rootViewController: viewController)
             return navigationController
             
         case .testing:
-            let viewController = TestingTabConfigurator.createScreen(withView: TestingTabView(),
-                                                                     configureBlock: nil)
+            let viewController = TestingTabConfigurator.createScreen(configureBlock: nil)
             viewController.title = "Testing"
             let navigationController = UINavigationController(rootViewController: viewController)
             return navigationController

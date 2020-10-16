@@ -14,14 +14,12 @@ import UIKit
 final class TestModuleConfigurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? TestModuleView else { return UIViewController() }
+    static func createScreen(configureBlock: ((TestModuleView?) -> ())?) -> UIViewController {
+        let view = TestModuleView()
 
         view.presenter.router = TestModuleRouterImpl()
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<TestModuleView>>(rootView: ContainerView(content: view))
     }

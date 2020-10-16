@@ -13,14 +13,12 @@ import UIKit
 struct TestingTabConfigurator: Configurator {
        
 // MARK: - Methods
-    static func createScreen<Content: Contentable>(withView view: Content,
-                                                   configureBlock: ((Content?) -> ())?) -> UIViewController {
-        
-        guard let view = view as? TestingTabView else { fatalError("view does not comply with protocol") }
+    static func createScreen(configureBlock: ((TestingTabView?) -> ())?) -> UIViewController {
+        let view = TestingTabView()
 
         view.presenter.router = TestingTabRouterImpl()
         
-        configureBlock?(view as? Content)
+        configureBlock?(view)
         
         return UIHostingController<ContainerView<TestingTabView>>(rootView: ContainerView(content: view))
     }
