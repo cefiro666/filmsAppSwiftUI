@@ -12,6 +12,7 @@ import Foundation
 protocol FilmsListRouter: Router {
     
     func pushFilmDetailsScreenForFilm(_ film: Film)
+    func showSortingParameters()
 }
 
 // MARK: - FilmsListRouterImpl
@@ -22,6 +23,10 @@ struct FilmsListRouterImpl: FilmsListRouter {
         self.pushScreenWithHidenTabBar(view: FilmDetailsView.self, title: film.localizedName) { view in
             view?.presenter.setFilm(film)
         }
+    }
+    
+    func showSortingParameters() {
+        self.showPopupScreen(view: FilmDetailsView.self, height: 300.0, configureBlock: nil)
     }
     
 }

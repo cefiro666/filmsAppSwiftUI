@@ -11,12 +11,21 @@
         }
       },
       {
+        "package": "BottomPopup",
+        "repositoryURL": "https://github.com/ergunemr/BottomPopup",
+        "state": {
+          "branch": null,
+          "revision": "4fa8e75440f591c4fb7e8e205cad27335761b0e9",
+          "version": "0.6.0"
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "175eeb4618b0a6ef4d69a7409b6a74ddd235a093",
-          "version": "5.15.0"
+          "revision": "1aa9889e5f7d9d92acda014eea9cdc7338d3d7d6",
+          "version": "5.15.6"
         }
       },
       {

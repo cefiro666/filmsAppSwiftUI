@@ -39,7 +39,12 @@ struct FilmsListView: Contentable {
                 }
             }
         }
-
+        
+        .navigationBarTitle(Text("Фильмы"))
+        .navigationBarItems(trailing: SortButtonView {
+            self.presenter.onClickSortButton()
+        })
+        
         .onAppear {
             self.presenter.viewOnAppear()
         }

@@ -42,6 +42,8 @@
 		9A13B1AC2514B59000889884 /* GenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1AB2514B59000889884 /* GenresView.swift */; };
 		9A13B1AF2515E2F900889884 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1AE2515E2F900889884 /* GenreView.swift */; };
 		9A1E42C9E851828EDD90789A /* PresentingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C8B90F47E7E0B5C428AAE /* PresentingRouter.swift */; };
+		9A491EFF2539B14100F1B055 /* BottomPopup in Frameworks */ = {isa = PBXBuildFile; productRef = 9A491EFE2539B14100F1B055 /* BottomPopup */; };
+		9A491F042539B16B00F1B055 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A491F032539B16B00F1B055 /* PopupController.swift */; };
 		9A4AABD824F9325D009E1817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AABD724F9325D009E1817 /* AppDelegate.swift */; };
 		9A4AABDA24F9325D009E1817 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AABD924F9325D009E1817 /* SceneDelegate.swift */; };
 		9A4AABDE24F93261009E1817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4AABDD24F93261009E1817 /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		9A4AAC1224F94025009E1817 /* FilmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AAC1124F94025009E1817 /* FilmModel.swift */; };
 		9A4C64602509096900D6A67A /* FilmsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C645F2509096900D6A67A /* FilmsListRouter.swift */; };
 		9A52663B251B9FD700C98DF6 /* FilmsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52663A251B9FD700C98DF6 /* FilmsTableView.swift */; };
+		9A561BA72539936300D51F18 /* GetFilmsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */; };
+		9A561BAB25399DD200D51F18 /* SortButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A561BAA25399DD200D51F18 /* SortButtonView.swift */; };
 		9A5FDD36251072E8000BE3D8 /* FilmDetailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FDD35251072E8000BE3D8 /* FilmDetailsData.swift */; };
 		9A5FDD38251075E0000BE3D8 /* FilmDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FDD37251075E0000BE3D8 /* FilmDetailsRouter.swift */; };
 		9A622EEA2536DFC40056FEFB /* TestModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A622EE12536DFC40056FEFB /* TestModulePresenter.swift */; };
@@ -131,6 +135,7 @@
 		9A13B1A52514B26400889884 /* FilmInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmInfoView.swift; sourceTree = "<group>"; };
 		9A13B1AB2514B59000889884 /* GenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresView.swift; sourceTree = "<group>"; };
 		9A13B1AE2515E2F900889884 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
+		9A491F032539B16B00F1B055 /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
 		9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmsAppSUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4AABD724F9325D009E1817 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A4AABD924F9325D009E1817 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +152,8 @@
 		9A4AAC1124F94025009E1817 /* FilmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmModel.swift; sourceTree = "<group>"; };
 		9A4C645F2509096900D6A67A /* FilmsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListRouter.swift; sourceTree = "<group>"; };
 		9A52663A251B9FD700C98DF6 /* FilmsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableView.swift; sourceTree = "<group>"; };
+		9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFilmsUseCaseTests.swift; sourceTree = "<group>"; };
+		9A561BAA25399DD200D51F18 /* SortButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButtonView.swift; sourceTree = "<group>"; };
 		9A5FDD35251072E8000BE3D8 /* FilmDetailsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsData.swift; sourceTree = "<group>"; };
 		9A5FDD37251075E0000BE3D8 /* FilmDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsRouter.swift; sourceTree = "<group>"; };
 		9A622EE12536DFC40056FEFB /* TestModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModulePresenter.swift; sourceTree = "<group>"; };
@@ -188,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A491EFF2539B14100F1B055 /* BottomPopup in Frameworks */,
 				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
 				9A08BD16250744BB00268128 /* Moya in Frameworks */,
 				9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */,
@@ -525,11 +533,28 @@
 		9A48B9A6251D001E00DF5EF8 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				9A561BAA25399DD200D51F18 /* SortButtonView.swift */,
 				9A52663A251B9FD700C98DF6 /* FilmsTableView.swift */,
 				9A08BD1A25075C0B00268128 /* Cells */,
 				9A08BD1B25075C1400268128 /* Headers */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		9A491F022539B15700F1B055 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				9A491F032539B16B00F1B055 /* PopupController.swift */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
+		9A491F092539BD3F00F1B055 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				9A491F022539B15700F1B055 /* Popup */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		9A4AABCB24F9325D009E1817 = {
@@ -578,6 +603,7 @@
 		9A4AABEB24F932A6009E1817 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9A491F092539BD3F00F1B055 /* UIKit */,
 				9A4AABF624F934E8009E1817 /* FilmDetails */,
 				9A4AABF524F934D2009E1817 /* FilmsList */,
 				6F06522E478534BEF8503971 /* TestingTab */,
@@ -700,6 +726,14 @@
 				9A48B9A6251D001E00DF5EF8 /* Subviews */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		9A561BA32539934A00D51F18 /* GetFilmsUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */,
+			);
+			path = GetFilmsUseCase;
 			sourceTree = "<group>";
 		};
 		9A5FDD34251072DA000BE3D8 /* Data */ = {
@@ -854,6 +888,7 @@
 		9AB1223A2519D46500A300D7 /* FilmsAppSUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9A561BA32539934A00D51F18 /* GetFilmsUseCase */,
 				9ACCB72C2539631200F989E9 /* TabBarConfigurator */,
 				9ACCB725253960EA00F989E9 /* TabBarItemImpl */,
 				9A622EDF2536DFC40056FEFB /* TestModule */,
@@ -999,6 +1034,7 @@
 				9A08BCD4250268CE00268128 /* KingfisherSwiftUI */,
 				9A08BD15250744BB00268128 /* Moya */,
 				9ACDE0DF252A031700C4A7F3 /* Lottie */,
+				9A491EFE2539B14100F1B055 /* BottomPopup */,
 			);
 			productName = FilmsAppSUI;
 			productReference = 9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */;
@@ -1054,6 +1090,7 @@
 				9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
 				9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				9A491EFD2539B14100F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
 			projectDirPath = "";
@@ -1126,6 +1163,7 @@
 				9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */,
 				9A4AAC0A24F93DD3009E1817 /* FilmsListView.swift in Sources */,
 				9A08BD1E25075D4C00268128 /* ContainerPresenter.swift in Sources */,
+				9A491F042539B16B00F1B055 /* PopupController.swift in Sources */,
 				9A5FDD36251072E8000BE3D8 /* FilmDetailsData.swift in Sources */,
 				9A08BD192507566F00268128 /* FilmsListData.swift in Sources */,
 				9A741B71252A136D00DD094E /* Array+Extensions.swift in Sources */,
@@ -1138,6 +1176,7 @@
 				7249F7FEA8AECCFC15500E08 /* TestingTabView.swift in Sources */,
 				B01B3FA01F4F3B8BCE395826 /* TestingTabPresenter.swift in Sources */,
 				69B17AFA204C930E84708C4F /* TestingTabRouter.swift in Sources */,
+				9A561BAB25399DD200D51F18 /* SortButtonView.swift in Sources */,
 				33CDD6EEF4359B1ECE3EF27D /* TestingTabConfigurator.swift in Sources */,
 				7A43142D2F7A802175715521 /* TestingTabData.swift in Sources */,
 				9A622F0E2538638C0056FEFB /* FillSpinnerView.swift in Sources */,
@@ -1168,6 +1207,7 @@
 				9ACCB72E2539632B00F989E9 /* TabBarConfiguratorTests.swift in Sources */,
 				9A622EEA2536DFC40056FEFB /* TestModulePresenter.swift in Sources */,
 				9A91A77A252CB333001A249A /* RouterTests.swift in Sources */,
+				9A561BA72539936300D51F18 /* GetFilmsUseCaseTests.swift in Sources */,
 				9A622EED2536DFC40056FEFB /* TestModuleData.swift in Sources */,
 				9A622EEB2536DFC40056FEFB /* TestModuleView.swift in Sources */,
 				9ACCB7272539610E00F989E9 /* TabBarItemImplTests.swift in Sources */,
@@ -1445,6 +1485,14 @@
 				minimumVersion = 14.0.0;
 			};
 		};
+		9A491EFD2539B14100F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ergunemr/BottomPopup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 		9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1465,6 +1513,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		9A491EFE2539B14100F1B055 /* BottomPopup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9A491EFD2539B14100F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */;
+			productName = BottomPopup;
 		};
 		9ACDE0DF252A031700C4A7F3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

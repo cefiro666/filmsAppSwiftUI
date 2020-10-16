@@ -16,6 +16,7 @@ struct ContainerView<Content: Contentable>: View {
     
 // MARK: - Content
     private let content: Content
+    @State var showingDetail = true
     
 // MARK: - Inits
     init(content: Content) {
@@ -23,7 +24,7 @@ struct ContainerView<Content: Contentable>: View {
         self.content.presenter.container = self.presenter
     }
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         ZStack {
             self.content

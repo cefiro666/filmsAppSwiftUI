@@ -23,6 +23,7 @@ protocol FilmsListPresenter: Presenter {
     func viewOnAppear()
     func onClickGenre(_ genre: String)
     func onClickFilmWithId(_ id: String)
+    func onClickSortButton()
 }
 
 // MARK: - FilmsListPresenterImpl
@@ -77,6 +78,10 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
     func onClickFilmWithId(_ id: String) {
         guard let film = self.films.first(where: { $0.id == Int(id) }) else { return }
         self.router?.pushFilmDetailsScreenForFilm(film)
+    }
+    
+    func onClickSortButton() {
+        self.router?.showSortingParameters()
     }
     
     func onClickError() {
