@@ -14,7 +14,7 @@ struct YearHeaderView: View {
 // MARK: - Properties
     var yearString: String
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         VStack {
             Text(self.yearString)
