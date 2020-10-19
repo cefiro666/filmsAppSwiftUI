@@ -11,14 +11,13 @@ jobs:
     name: Build
     env:
       DEVICE: "iPhone 11"
-      DERIVED_DATA_PATH: "DerivedData"
     runs-on: macOS-latest
     steps:
     - name: Checkout project
       uses: actions/checkout@v1
     - name: Build application
       run: |
-        set -o pipefail && xcodebuild clean -destination "platform=iOS Simulator,name=$DEVICE" -derivedDataPath $DERIVED_DATA_PATH build-for-testing | xcpretty --color --simple
+        set -o pipefail && xcodebuild clean -destination "platform=iOS Simulator,name=$DEVICE" build-for-testing | xcpretty --color --simple
     - name: Upload products
       uses: actions/upload-artifact@v1
       with:
@@ -29,7 +28,6 @@ jobs:
     name: Unit test
     env:
       DEVICE: "iPhone 11"
-      DERIVED_DATA_PATH: "DerivedData"
       UNIT_TEST_TARGET: "FilmsAppSUITests"
     runs-on: macOS-latest
     needs: build
@@ -42,7 +40,7 @@ jobs:
         name: Products
     - name: Run unit tests
       run: |
-        set -o pipefail && xcodebuild test-without-building -xctestrun $(find . -type f -name "*.xctestrun") -destination "platform=iOS Simulator,name=$DEVICE" -derivedDataPath $DERIVED_DATA_PATH -enableCodeCoverage YES -only-testing:$UNIT_TEST_TARGET | xcpretty --color --simple
+        set -o pipefail && xcodebuild test-without-building -xctestrun $(find . -type f -name "*.xctestrun") -destination "platform=iOS Simulator,name=$DEVICE" -enableCodeCoverage YES -only-testing:$UNIT_TEST_TARGET | xcpretty --color --simple
     - name: Upload test logs
       uses: actions/upload-artifact@v1
       with:
