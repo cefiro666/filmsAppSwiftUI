@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - TestingTabView
 struct TestingTabView: Contentable {
 
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = TestingTabPresenterImpl()
     static let configurator = TestingTabConfigurator.self
 

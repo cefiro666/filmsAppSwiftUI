@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - PresentingView
 struct PresentingView: Contentable {
 
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = PresentingPresenterImpl()
     static let configurator = PresentingConfigurator.self
 

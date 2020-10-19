@@ -1,5 +1,5 @@
 //
-//  SortButtonView.swift
+//  SortingButtonView.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 16.10.2020.
@@ -9,7 +9,7 @@
 import SwiftUI
 
 // MARK: - SortButtonView
-struct SortButtonView: View {
+struct SortingButtonView: View {
     
 // MARK: - Properties
     var clickHandler: (() -> ())?
@@ -22,13 +22,12 @@ struct SortButtonView: View {
                 self.clickHandler?()
             }
     }
-
 }
 
 // MARK: - PreviewProvider
-struct SortButtonView_Previews: PreviewProvider {
+struct SortingButtonView_Previews: PreviewProvider {
     
     static var previews: some View {
-        SortButtonView()
+        SortingButtonView()
     }
 }

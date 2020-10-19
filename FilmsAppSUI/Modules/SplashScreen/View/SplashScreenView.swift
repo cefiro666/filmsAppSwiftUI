@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - SplashScreenView
 struct SplashScreenView: Contentable {
 
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = SplashScreenPresenterImpl()
     static let configurator = SplashScreenConfigurator.self
 
@@ -19,7 +19,7 @@ struct SplashScreenView: Contentable {
     var body: some View {
         LottieView(name: "loading", loopMode: .loop)
             .frame(width: 300, height: 300)
-            .onAppear() {
+            .onAppear {
                 self.presenter.viewOnAppear()
         }
     }

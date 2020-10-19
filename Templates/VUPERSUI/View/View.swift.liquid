@@ -11,14 +11,14 @@ import SwiftUI
 // MARK: - {{ module_info.name }}View
 struct {{ module_info.name }}View: Contentable {
 
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = {{ module_info.name }}PresenterImpl()
     static let configurator = {{ module_info.name }}Configurator.self
 
 // MARK: - Body
     var body: some View {
         Text("Sequenia. SwiftUI VUPER")
-            .onAppear() {
+            .onAppear {
                 self.presenter.viewOnAppear()
         }
     }

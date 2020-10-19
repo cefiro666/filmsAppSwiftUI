@@ -23,13 +23,13 @@ protocol FilmsListPresenter: Presenter {
     func viewOnAppear()
     func onClickGenre(_ genre: String)
     func onClickFilmWithId(_ id: String)
-    func onClickSortButton()
+    func onClickSortingButton()
 }
 
 // MARK: - FilmsListPresenterImpl
 final class FilmsListPresenterImpl: FilmsListPresenter {
         
-// MARK: - Properties
+// MARK: - Vuper
     var router: FilmsListRouter?
     weak var container: Container?
     
@@ -59,7 +59,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         self.data.selectedGenre = genre
         self.data.isLoadingFilmsWithSelectedGenre = true
         
-        // simulated long downloading films from selected genre
+        // simulated long downloading films from selected genre (for show sample activity view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
      
             self.data.isLoadingFilmsWithSelectedGenre = false
@@ -80,12 +80,11 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         self.router?.pushFilmDetailsScreenForFilm(film)
     }
     
-    func onClickSortButton() {
-        self.router?.showSortingParameters()
-    }
-    
-    func onClickError() {
-        self.getFilms()
+    func onClickSortingButton() {
+        self.router?.showSortingParameters(selectParameter: self.data.selectSortingParameter) { sortingParameter in
+            self.data.selectSortingParameter = sortingParameter
+            self.sortFilmsModelsWithParameter(sortingParameter)
+        }
     }
     
     private func getFilms() {
@@ -93,13 +92,16 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         self.getFilmsUseCase?.execute(completion: { [weak self] (success, films, errorMessage) in
             self?.container?.setLoadingVisible(false)
             if !success {
-                self?.container?.showErrorMessage(errorMessage)
+                self?.container?.showErrorMessage(errorMessage) {
+                    self?.getFilms()
+                }
                 return
             }
             
             self?.films = films
             self?.data.filmsModels = films.map { FilmModel(film: $0) }
             self?.configureGenres()
+            self?.sortFilmsModelsWithParameter(self?.data.selectSortingParameter)
         })
     }
     
@@ -108,6 +110,13 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
         genres.insert(Constants.kAllGenres, at: .zero)
         self.data.genres = genres
         self.data.selectedGenre = Constants.kAllGenres
+    }
+    
+    private func sortFilmsModelsWithParameter(_ parameter: SortingParameter?) {
+        switch parameter ?? .newFirst {
+            case .oldFirst: self.data.filmsModels.sort(by: { ($0.year ?? .zero) < ($1.year ?? .zero) })
+            case .newFirst: self.data.filmsModels.sort(by: { ($0.year ?? .zero) > ($1.year ?? .zero) })
+        }
     }
     
 }

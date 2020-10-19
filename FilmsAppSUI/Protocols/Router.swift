@@ -209,12 +209,13 @@ extension Router {
         popupController.height = height
         
         let viewController = view.configurator.createScreen(configureBlock: configureBlock)
-        viewController.view.frame = popupController.view.bounds
-        
-        popupController.addChild(viewController)
+        viewController.view.frame = CGRect(x: .zero,
+                                           y: .zero,
+                                           width: popupController.view.bounds.width,
+                                           height: height)
+
         popupController.view.addSubview(viewController.view)
-        viewController.didMove(toParent: popupController)
-        
+
         self.rootController?.present(popupController, animated: true, completion: nil)
         
         return popupController

@@ -37,10 +37,10 @@ struct ContainerView<Content: Contentable>: View {
                 VStack {
                     Spacer()
                     
-                    ErrorView(message: self.presenter.errorMessage, clickHandler: {
-                        self.content.presenter.onClickError()
+                    ErrorView(message: self.presenter.errorMessage) {
+                        self.presenter.errorClickHandler?()
                         self.presenter.hasError = false
-                    })
+                    }
                     
                     .animation(.spring())
                 }

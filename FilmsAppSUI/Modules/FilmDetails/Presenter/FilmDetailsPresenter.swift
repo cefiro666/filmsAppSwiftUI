@@ -21,7 +21,7 @@ protocol FilmDetailsPresenter: Presenter {
 // MARK: - FilmDetailsPresenterImpl
 final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
     
-// MARK: - Properties
+// MARK: - Vuper
     var router: FilmDetailsRouter?
     weak var container: Container?
     

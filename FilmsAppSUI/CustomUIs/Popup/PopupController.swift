@@ -27,3 +27,4 @@ class PopupViewController: BottomPopupViewController {
     override var popupShouldDismissInteractivelty: Bool { return self.shouldDismissInteractivelty ?? true }
     override var popupDimmingViewAlpha: CGFloat { return 0.5 }
 }
+

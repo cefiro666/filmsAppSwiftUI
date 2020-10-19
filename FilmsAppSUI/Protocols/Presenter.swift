@@ -12,11 +12,4 @@ import SwiftUI
 protocol Presenter: ObservableObject {
     
     var container: Container? { get set }
-    
-    func onClickError()
-}
-
-extension Presenter {
-    
-    func onClickError() {}
 }

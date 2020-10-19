@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - PushingView
 struct PushingView: Contentable {
 
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = PushingPresenterImpl()
     static let configurator = PushingConfigurator.self
 

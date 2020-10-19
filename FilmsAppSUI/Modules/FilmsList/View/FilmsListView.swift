@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - FilmsListView
 struct FilmsListView: Contentable {
     
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = FilmsListPresenterImpl()
     static let configurator = FilmsListConfigurator.self
     
@@ -21,18 +21,17 @@ struct FilmsListView: Contentable {
             Spacer(minLength: 16.0)
             
             GenresView(genres: self.presenter.data.genres,
-                       selectedGenre: self.presenter.data.selectedGenre,
-                       clickHandler: { genre in
+                       selectedGenre: self.presenter.data.selectedGenre) { genre in
                         
                 withAnimation {
                     self.presenter.onClickGenre(genre)
                 }
-            })
+            }
             
             ZStack {
-                FilmsTableView(sections: self.getSections(), clickHandler: { filmId in
+                FilmsTableView(sections: self.getSections()) { filmId in
                     self.presenter.onClickFilmWithId(filmId)
-                })
+                }
                 
                 if self.presenter.data.isLoadingFilmsWithSelectedGenre {
                     FillSpinnerView()
@@ -41,8 +40,8 @@ struct FilmsListView: Contentable {
         }
         
         .navigationBarTitle(Text("Фильмы"))
-        .navigationBarItems(trailing: SortButtonView {
-            self.presenter.onClickSortButton()
+        .navigationBarItems(trailing: SortingButtonView {
+            self.presenter.onClickSortingButton()
         })
         
         .onAppear {
@@ -53,11 +52,13 @@ struct FilmsListView: Contentable {
 // MARK: - Methods
     private func getSections() -> [SectionModel] {
         var secions = [SectionModel]()
-        let yearsSet = self.presenter.data.filmsModels
-            .compactMap { $0.year }
-            .unique { $0 }
-            .sorted()
-            .reversed()
+        var yearsSet = [Int]()
+        
+        for year in self.presenter.data.filmsModels.compactMap({ $0.year }) {
+            if !yearsSet.contains(year) {
+                yearsSet.append(year)
+            }
+        }
         
         for year in yearsSet {
             let stringYear = String(year)

@@ -304,6 +304,40 @@ class RouterTests: XCTestCase {
         }
     }
     
+    func testPresentedControllerAfterShowPopupEqualByShowedController() {
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
+        
+        let popupController = self.sut.showPopupScreen(view: TestModuleView.self, height: 300.0, configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.presentedController, popupController)
+        }
+    }
+    
+    func testPresentedControllerHeightAfterShowPopupEqualByStatedHeight() {
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
+        
+        self.sut.showPopupScreen(view: TestModuleView.self, height: 300.0, configureBlock: nil)
+
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(self.sut.presentedController?.view.frame.size.height, 300.0)
+        }
+    }
+    
+    func testConfigureBlockWhenShowPopupWorking() {
+        self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
+        
+        var testableView: TestModuleView?
+        self.sut.showPopupScreen(view: TestModuleView.self, height: 300.0) { view in
+            testableView = view
+            view?.presenter.setTestString("Foo")
+        }
+        
+        self.waitCancelAnimationAndCheck() {
+            XCTAssertEqual(testableView?.presenter.data.testString, "Foo")
+        }
+    }
+    
 }
 
 // MARK: - extensions

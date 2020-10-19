@@ -20,7 +20,7 @@ protocol PresentingPresenter: Presenter {
 // MARK: - PresentingPresenterImpl
 final class PresentingPresenterImpl: PresentingPresenter {
     
-// MARK: - Properties
+// MARK: - Vuper
     var router: PresentingRouter?
     weak var container: Container?
     

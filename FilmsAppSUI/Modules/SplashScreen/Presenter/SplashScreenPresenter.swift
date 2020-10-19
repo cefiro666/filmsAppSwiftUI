@@ -20,7 +20,7 @@ protocol SplashScreenPresenter: Presenter {
 // MARK: - SplashScreenPresenterImpl
 final class SplashScreenPresenterImpl: SplashScreenPresenter {
     
-// MARK: - Properties
+// MARK: - Vuper
     var router: SplashScreenRouter?
     weak var container: Container?
     

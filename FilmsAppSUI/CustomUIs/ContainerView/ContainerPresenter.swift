@@ -21,14 +21,17 @@ final class ContainerPresenter: ObservableObject {
     @Published var isLoading = false
     @Published var hasError = false
     @Published var errorMessage = ""
+    
+    var errorClickHandler: (() -> ())?
 }
 
 // MARK: - Container
 extension ContainerPresenter: Container {
     
-    func showErrorMessage(_ message: String?) {
+    func showErrorMessage(_ message: String?, _ completionHandler: (() -> ())?) {
         self.hasError = true
         self.errorMessage = message ?? Constants.kDefaultErrorText
+        self.errorClickHandler = completionHandler
     }
     
     func setLoadingVisible(_ visible: Bool) {

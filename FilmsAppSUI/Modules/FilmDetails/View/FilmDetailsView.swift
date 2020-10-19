@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - FilmDetailsView
 struct FilmDetailsView: Contentable {
     
-// MARK: - Properties
+// MARK: - Vuper
     @ObservedObject var presenter = FilmDetailsPresenterImpl()
     static let configurator = FilmDetailsConfigurator.self
 
@@ -40,7 +40,7 @@ struct FilmDetailsView: Contentable {
 
             .padding(.top, 20.0)
 
-        }.onAppear() {
+        }.onAppear {
             self.presenter.viewOnAppear()
         }
     }

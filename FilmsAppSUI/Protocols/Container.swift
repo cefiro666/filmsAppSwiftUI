@@ -11,6 +11,6 @@ import Foundation
 // MARK: - Container
 protocol Container: class {
     
-    func showErrorMessage(_ message: String?)
+    func showErrorMessage(_ message: String?, _ completionHandler: (() -> ())?)
     func setLoadingVisible(_ visible: Bool)
 }

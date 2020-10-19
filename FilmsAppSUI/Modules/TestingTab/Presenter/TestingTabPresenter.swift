@@ -23,7 +23,7 @@ protocol TestingTabPresenter: Presenter {
 // MARK: - TestingTabPresenterImpl
 final class TestingTabPresenterImpl: TestingTabPresenter {
     
-// MARK: - Properties
+// MARK: - Vuper
     var router: TestingTabRouter?
     weak var container: Container?
     
