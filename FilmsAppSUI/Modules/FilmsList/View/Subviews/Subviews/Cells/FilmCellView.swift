@@ -14,7 +14,7 @@ struct FilmCellView: View {
 // MARK: - Properties
     var filmModel: FilmModel
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         if #available(iOS 14.0, *) {
             self.cell.padding(.horizontal)

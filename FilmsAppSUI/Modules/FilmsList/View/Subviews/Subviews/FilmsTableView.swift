@@ -15,7 +15,7 @@ struct FilmsTableView: View {
     var sections: [SectionModel]
     var clickHandler: ((String) -> ())?
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         ZStack {
             if #available(iOS 14.0, *) {
@@ -35,7 +35,7 @@ struct FilmsTableView: View {
         }
     }
     
-// MARK: - sectionsList
+// MARK: - Sections list
     private var sectionsList: some View {
         ForEach(self.sections) { section in
             Section(header: YearHeaderView(yearString: section.header?.title ?? "")) {

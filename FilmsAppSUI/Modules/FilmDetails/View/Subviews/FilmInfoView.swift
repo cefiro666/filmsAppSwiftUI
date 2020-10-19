@@ -16,7 +16,7 @@ struct FilmInfoView: View {
     var year: Int
     var rating: Float?
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             

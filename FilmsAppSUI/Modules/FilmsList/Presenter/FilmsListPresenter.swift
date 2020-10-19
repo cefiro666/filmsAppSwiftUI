@@ -66,12 +66,15 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
             
             if genre == Constants.kAllGenres {
                 self.data.filmsModels = self.films.map { FilmModel(film: $0) }
+                self.sortFilmsModelsWithParameter(self.data.selectSortingParameter)
                 return
             }
             
             self.data.filmsModels = self.films
                 .map { FilmModel(film: $0) }
                 .filter { $0.genres.contains(genre) }
+            
+            self.sortFilmsModelsWithParameter(self.data.selectSortingParameter)
         }
     }
     

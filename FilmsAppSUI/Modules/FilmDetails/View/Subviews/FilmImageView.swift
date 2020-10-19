@@ -14,7 +14,7 @@ struct FilmImageView: View {
 // MARK: - Properties
     var imageUrl: String
     
-// MARK: - body
+// MARK: - Body
     var body: some View {
         NetworkImage(urlString: self.imageUrl)
             .frame(width: UIScreen.main.bounds.width / 2.5, height: 170, alignment: .center)
