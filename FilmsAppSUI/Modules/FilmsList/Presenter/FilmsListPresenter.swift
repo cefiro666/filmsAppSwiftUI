@@ -39,7 +39,7 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
 // MARK: - Private Data
     private var films: [Film] = []
     
-// MARK: - UseCases
+// MARK: - Use cases
     private var getFilmsUseCase: GetFilmsUseCase?
     
     func setUseCase(_ useCase: Any?) {

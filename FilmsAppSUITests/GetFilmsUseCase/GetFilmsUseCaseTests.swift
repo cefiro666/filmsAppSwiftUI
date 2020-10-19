@@ -15,12 +15,14 @@ class GetFilmsUseCaseTests: XCTestCase {
     var sut: GetFilmsUseCase?
     
     override func setUpWithError() throws {
+        try super.setUpWithError()
         let useCase = GetFilmsUseCaseImpl()
         useCase.provider = MoyaProvider<FilmsProvider>(stubClosure: MoyaProvider.delayedStub(1.0))
         self.sut = useCase
     }
 
     override func tearDownWithError() throws {
+        try super.tearDownWithError()
         self.sut = nil
     }
     

@@ -17,10 +17,12 @@ class RouterTests: XCTestCase {
     
 // MARK: - Setup and tear down
     override func setUpWithError() throws {
+        try super.setUpWithError()
         self.sut = TestModuleRouterImpl()
     }
 
     override func tearDownWithError() throws {
+        try super.tearDownWithError()
         self.sut = nil
     }
     
