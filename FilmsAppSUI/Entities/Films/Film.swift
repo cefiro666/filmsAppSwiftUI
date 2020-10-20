@@ -8,13 +8,6 @@
 
 import Foundation
 
-//MARK: - FilmsResponse
-struct FilmsResponse: Codable {
-    
-//MARK: - Properties
-    var films: [Film]
-}
-
 //MARK: - Film
 struct Film: Codable {
     

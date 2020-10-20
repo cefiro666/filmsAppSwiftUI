@@ -40,14 +40,13 @@ struct FilmCellView: View {
             
             Spacer()
             
-            Text.fromRaiting(self.filmModel.rating)
+            Text.fromRating(self.filmModel.rating)
         }
             
         .padding()
         .background(Color(#colorLiteral(red: 0.7475681534, green: 0.4965922286, blue: 0.7647058964, alpha: 1)))
         .cornerRadius(10.0)
         .shadow(radius: 3.0)
-        
         .eraseToAnyView()
         .padding(.vertical, 2.0)
     }

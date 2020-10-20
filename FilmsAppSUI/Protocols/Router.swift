@@ -198,6 +198,23 @@ extension Router {
         return viewController
     }
     
+    func popScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func dismissScreen(completion: (() -> ())? = nil) {
+        self.presentedController?.dismiss(animated: true, completion: completion)
+    }
+    
+    func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
+        self.tabBarController?.selectedIndex = tab.tabIndex
+    }
+    
+}
+
+// MARK: - ShowPopupScreen
+extension Router {
+    
     @discardableResult func showPopupScreen<Content: Contentable>(
         view: Content.Type,
         height: CGFloat,
@@ -219,18 +236,6 @@ extension Router {
         self.rootController?.present(popupController, animated: true, completion: nil)
         
         return popupController
-    }
-    
-    func popScreen() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func dismissScreen(completion: (() -> ())? = nil) {
-        self.presentedController?.dismiss(animated: true, completion: completion)
-    }
-    
-    func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
-        self.tabBarController?.selectedIndex = tab.tabIndex
     }
     
 }

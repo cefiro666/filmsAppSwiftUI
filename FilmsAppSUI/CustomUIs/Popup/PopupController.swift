@@ -20,7 +20,7 @@ class PopupViewController: BottomPopupViewController {
     var shouldDismissInteractivelty: Bool?
     
 // MARK: - Methods
-    override var popupHeight: CGFloat { return self.height ?? CGFloat(300.0) }
+    override var popupHeight: CGFloat { return self.height ?? CGFloat(280.0) }
     override var popupTopCornerRadius: CGFloat { return self.topCornerRadius ?? CGFloat(15.0) }
     override var popupPresentDuration: Double { return self.presentDuration ?? 0.4 }
     override var popupDismissDuration: Double { return self.dismissDuration ?? 0.3 }

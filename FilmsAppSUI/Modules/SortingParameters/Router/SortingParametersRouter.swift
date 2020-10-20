@@ -21,4 +21,3 @@ struct SortingParametersRouterImpl: SortingParametersRouter {
         self.dismissScreen()
     }
 }
-

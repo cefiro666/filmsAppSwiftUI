@@ -50,8 +50,8 @@ struct SortingParametersView: Contentable {
                         get: { self.presenter.data.selectedParameter.rawValue },
                         set: { self.presenter.onSelectSortingParameter(SortingParameter(rawValue: $0) ?? .newFirst) }),
                    label: EmptyView()) {
-                        ForEach(0..<SortingParameter.allCases.count) {
-                            Text(SortingParameter.allCases[$0].title)
+                        ForEach(0..<SortingParameter.allCases.count) { index in
+                            Text(SortingParameter.allCases[index].title)
                         }
                     }
             

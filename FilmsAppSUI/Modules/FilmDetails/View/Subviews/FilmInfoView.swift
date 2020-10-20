@@ -27,7 +27,7 @@ struct FilmInfoView: View {
             
             HStack(spacing: .zero) {
                 Text("Рейтинг: ")
-                Text.fromRaiting(self.rating)
+                Text.fromRating(self.rating)
             }
         }
     }

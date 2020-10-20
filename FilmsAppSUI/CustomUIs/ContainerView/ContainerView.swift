@@ -16,7 +16,6 @@ struct ContainerView<Content: Contentable>: View {
     
 // MARK: - Content
     private let content: Content
-    @State var showingDetail = true
     
 // MARK: - Inits
     init(content: Content) {
@@ -38,7 +37,7 @@ struct ContainerView<Content: Contentable>: View {
                     Spacer()
                     
                     ErrorView(message: self.presenter.errorMessage) {
-                        self.presenter.errorClickHandler?()
+                        self.presenter.onClickError()
                         self.presenter.hasError = false
                     }
                     

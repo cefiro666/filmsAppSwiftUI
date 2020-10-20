@@ -48,6 +48,18 @@ struct FilmsListView: Contentable {
             self.presenter.viewOnAppear()
         }
     }
+}
+
+// MARK: - PreviewProvider
+struct FilmsListView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        FilmsListView()
+    }
+}
+
+// MARK: - Get sections
+extension FilmsListView {
     
 // MARK: - Methods
     private func getSections() -> [SectionModel] {
@@ -72,12 +84,5 @@ struct FilmsListView: Contentable {
 
         return secions
     }
-}
-
-// MARK: - PreviewProvider
-struct FilmsListView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        FilmsListView()
-    }
+    
 }

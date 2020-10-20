@@ -22,7 +22,12 @@ final class ContainerPresenter: ObservableObject {
     @Published var hasError = false
     @Published var errorMessage = ""
     
-    var errorClickHandler: (() -> ())?
+    private var errorClickHandler: (() -> ())?
+    
+// MARK: - Methods
+    func onClickError() {
+        self.errorClickHandler?()
+    }
 }
 
 // MARK: - Container

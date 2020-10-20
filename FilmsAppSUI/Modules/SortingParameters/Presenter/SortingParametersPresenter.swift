@@ -28,11 +28,11 @@ final class SortingParametersPresenterImpl: SortingParametersPresenter {
     var router: SortingParametersRouter?
     weak var container: Container?
     
-// MARK: - Properties
-    private var changeSortingParameterCompletion: ((SortingParameter) -> ())?
-    
 // MARK: - Published data
     @Published var data = SortingParametersData()
+    
+// MARK: - Properties
+    private var changeSortingParameterCompletion: ((SortingParameter) -> ())?
 
 // MARK: - Methods
     func setSelectParameter(_ parameter: SortingParameter) {

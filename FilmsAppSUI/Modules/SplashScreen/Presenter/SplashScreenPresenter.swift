@@ -29,6 +29,8 @@ final class SplashScreenPresenterImpl: SplashScreenPresenter {
 
 // MARK: - Methods
     func viewOnAppear() {
+        
+        // MARK: - Preloading simulating
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
             self.router?.showMainScreen()
         }
