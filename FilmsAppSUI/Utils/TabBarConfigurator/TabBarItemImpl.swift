@@ -14,6 +14,7 @@ enum TabBarItemImpl: Int {
     
     case films
     case testing
+    case iaps
 }
 
 // MARK: - TabBarItem
@@ -27,6 +28,7 @@ extension TabBarItemImpl: TabBarItem {
         switch self {
         case .films: return "Фильмы"
         case .testing: return "Testing"
+        case .iaps: return "IAP Test"
         }
     }
     
@@ -34,6 +36,7 @@ extension TabBarItemImpl: TabBarItem {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
         case .testing: return UIImage(systemName: "square.and.pencil")
+        case .iaps: return UIImage(systemName: "purchased")
         }
     }
     
@@ -41,6 +44,7 @@ extension TabBarItemImpl: TabBarItem {
         switch self {
         case .films: return UIImage(systemName: "list.dash")
         case .testing: return UIImage(systemName: "square.and.pencil")
+        case .iaps: return UIImage(systemName: "purchased")
         }
     }
     
@@ -55,6 +59,12 @@ extension TabBarItemImpl: TabBarItem {
         case .testing:
             let viewController = TestingTabConfigurator.createScreen(configureBlock: nil)
             viewController.title = "Testing"
+            let navigationController = UINavigationController(rootViewController: viewController)
+            return navigationController
+        
+        case .iaps:
+            let viewController = IAPTestConfigurator.createScreen(configureBlock: nil)
+            viewController.title = "Встроенные покупки"
             let navigationController = UINavigationController(rootViewController: viewController)
             return navigationController
         }

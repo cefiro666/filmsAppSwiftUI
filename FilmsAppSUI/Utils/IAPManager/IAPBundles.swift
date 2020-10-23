@@ -1,17 +1,14 @@
 //
-//  InAppManager.swift
+//  IAppBundles.swift
 //  FilmsAppSUI
 //
 //  Created by Виталий Баник on 23.10.2020.
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import SQStoreKit
 import Foundation
+import SQStoreKit
 
-// MARK: - IAPBundles
-class IAPManager {
-    
 // MARK: - IAPBundles
     enum IAPBundles: String, CaseIterable, ProductIdentifier {
 
@@ -25,12 +22,3 @@ class IAPManager {
             return IAPBundles.allCases.map { Bundle.main.bundleIdentifier?.appending(".\($0.rawValue)") ?? "" }
         }
     }
-    
-// MARK: - Shared
-    static var shared = IAPManager()
-    
-// MARK: - Private init
-    private init() {
-        SQStoreKit.shared.initWithProductsEnum(IAPBundles.self)
-    }
-}
