@@ -87,6 +87,9 @@
 		9A92B3052531806A0018C68E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3042531806A0018C68E /* Router.swift */; };
 		9A92B309253180850018C68E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B308253180850018C68E /* TabBarItem.swift */; };
 		9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92B3352531C3400018C68E /* TabBarItemImpl.swift */; };
+		9AB4ED1025429EE8002B4904 /* SQStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9AB4ED0F25429EE8002B4904 /* SQStoreKit */; };
+		9AB4ED172542A081002B4904 /* IAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB4ED162542A081002B4904 /* IAppManager.swift */; };
+		9AB4ED552542C252002B4904 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB4ED542542C252002B4904 /* StoreKit.framework */; };
 		9ACCB7272539610E00F989E9 /* TabBarItemImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */; };
 		9ACCB72E2539632B00F989E9 /* TabBarConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */; };
 		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
@@ -186,6 +189,8 @@
 		9A92B3352531C3400018C68E /* TabBarItemImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemImpl.swift; sourceTree = "<group>"; };
 		9AB122392519D46500A300D7 /* FilmsAppSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmsAppSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB1223D2519D46500A300D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AB4ED162542A081002B4904 /* IAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAppManager.swift; sourceTree = "<group>"; };
+		9AB4ED542542C252002B4904 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemImplTests.swift; sourceTree = "<group>"; };
 		9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfiguratorTests.swift; sourceTree = "<group>"; };
 		9ACDE0E4252A032500C4A7F3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -208,7 +213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A491F2B253B39A800F1B055 /* BottomPopup in Frameworks */,
+				9AB4ED1025429EE8002B4904 /* SQStoreKit in Frameworks */,
 				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
+				9AB4ED552542C252002B4904 /* StoreKit.framework in Frameworks */,
 				9A08BD16250744BB00268128 /* Moya in Frameworks */,
 				9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */,
 			);
@@ -600,6 +607,7 @@
 				9A4AABD624F9325D009E1817 /* FilmsAppSUI */,
 				9AB1223A2519D46500A300D7 /* FilmsAppSUITests */,
 				9A4AABD524F9325D009E1817 /* Products */,
+				9AB4ED532542C252002B4904 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -663,6 +671,7 @@
 		9A4AABEE24F932BF009E1817 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9AB4ED152542A068002B4904 /* IAppManager */,
 				9A08BCFC250660FC00268128 /* TabBarConfigurator */,
 				9A08BCC025024FA100268128 /* Network */,
 			);
@@ -936,6 +945,22 @@
 			path = FilmsAppSUITests;
 			sourceTree = "<group>";
 		};
+		9AB4ED152542A068002B4904 /* IAppManager */ = {
+			isa = PBXGroup;
+			children = (
+				9AB4ED162542A081002B4904 /* IAppManager.swift */,
+			);
+			path = IAppManager;
+			sourceTree = "<group>";
+		};
+		9AB4ED532542C252002B4904 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AB4ED542542C252002B4904 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9ACCB725253960EA00F989E9 /* TabBarItemImpl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,6 +1118,7 @@
 				9A08BD15250744BB00268128 /* Moya */,
 				9ACDE0DF252A031700C4A7F3 /* Lottie */,
 				9A491F2A253B39A800F1B055 /* BottomPopup */,
+				9AB4ED0F25429EE8002B4904 /* SQStoreKit */,
 			);
 			productName = FilmsAppSUI;
 			productReference = 9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */;
@@ -1149,6 +1175,7 @@
 				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
 				9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				9A491F29253B39A800F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */,
+				9AB4ED0E25429EE8002B4904 /* XCRemoteSwiftPackageReference "SQStoreKit" */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
 			projectDirPath = "";
@@ -1227,6 +1254,7 @@
 				9A741B71252A136D00DD094E /* Array+Extensions.swift in Sources */,
 				9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */,
 				9A08BCCE2502585D00268128 /* ListModels.swift in Sources */,
+				9AB4ED172542A081002B4904 /* IAppManager.swift in Sources */,
 				9A4AAC0324F9397D009E1817 /* Film.swift in Sources */,
 				9A92B2F9253180110018C68E /* Presenter.swift in Sources */,
 				9A92B2F525317FEA0018C68E /* Presentable.swift in Sources */,
@@ -1431,7 +1459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = myApps.FilmsAppSUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myApps.FilmsAppSUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1454,7 +1482,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = myApps.FilmsAppSUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myApps.FilmsAppSUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1569,6 +1597,14 @@
 				minimumVersion = 0.6.0;
 			};
 		};
+		9AB4ED0E25429EE8002B4904 /* XCRemoteSwiftPackageReference "SQStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cefiro666/SQStoreKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1594,6 +1630,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A491F29253B39A800F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */;
 			productName = BottomPopup;
+		};
+		9AB4ED0F25429EE8002B4904 /* SQStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9AB4ED0E25429EE8002B4904 /* XCRemoteSwiftPackageReference "SQStoreKit" */;
+			productName = SQStoreKit;
 		};
 		9ACDE0DF252A031700C4A7F3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

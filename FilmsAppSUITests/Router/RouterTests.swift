@@ -159,7 +159,7 @@ class RouterTests: XCTestCase {
     }
     
     func testNavigationControllerAfterSetRootScreenWithNavBarNotEqualByNil() throws {
-        let controller = self.sut.setRootScreen(view: TestModuleView.self, configureBlock: nil)
+        let controller = self.sut.setRootScreenWithNavBar(view: TestModuleView.self, title: "Foo", configureBlock: nil)
         
         XCTAssertNotNil(controller)
     }

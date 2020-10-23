@@ -207,7 +207,7 @@ extension Router {
     }
     
     func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
-        self.tabBarController?.selectedIndex = tab.tabIndex
+//        self.tabBarController?.selectedIndex = tab.tabIndex
     }
     
 }
