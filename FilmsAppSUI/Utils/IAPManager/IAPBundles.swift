@@ -10,7 +10,7 @@ import Foundation
 import SQStoreKit
 
 // MARK: - IAPBundles
-    enum IAPBundles: String, CaseIterable, ProductIdentifier {
+    enum TestIAPBundle: String, CaseIterable, IAPBundle {
 
         case oneScreenshootProtocol
 
@@ -18,7 +18,7 @@ import SQStoreKit
             return Bundle.main.bundleIdentifier?.appending(".\(self.rawValue)") ?? ""
         }
         
-        static func allIDs() -> [String] {
-            return IAPBundles.allCases.map { Bundle.main.bundleIdentifier?.appending(".\($0.rawValue)") ?? "" }
+        static func allIds() -> [String] {
+            return TestIAPBundle.allCases.map { Bundle.main.bundleIdentifier?.appending(".\($0.rawValue)") ?? "" }
         }
     }

@@ -31,11 +31,10 @@ final class IAPTestPresenterImpl: IAPTestPresenter {
 // MARK: - Methods
     func viewOnAppear() {
         self.data.productsModels = IAPManager.shared.getAllProducts()
-            .compactMap { ProductModel(withSKProduct: $0) }
     }
     
     func onClickProductWithId(_ id: String) {
-        IAPManager.shared.buyOneScreenshootProtocol()
+        IAPManager.shared.buyProductWithIdentifier(id)
     }
     
 }

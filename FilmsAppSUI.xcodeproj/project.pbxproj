@@ -96,6 +96,7 @@
 		9AB4ED5D2542D3C9002B4904 /* IAPBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB4ED5C2542D3C9002B4904 /* IAPBundles.swift */; };
 		9AC192E72542DA4500B4B705 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192E62542DA4500B4B705 /* ProductModel.swift */; };
 		9AC192F12542DFDA00B4B705 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192F02542DFDA00B4B705 /* ProductCell.swift */; };
+		9AC192FB2542F6A400B4B705 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192FA2542F6A400B4B705 /* ActivityView.swift */; };
 		9ACCB7272539610E00F989E9 /* TabBarItemImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */; };
 		9ACCB72E2539632B00F989E9 /* TabBarConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */; };
 		9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9ACDE0DF252A031700C4A7F3 /* Lottie */; };
@@ -207,6 +208,7 @@
 		9AB4ED5C2542D3C9002B4904 /* IAPBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPBundles.swift; sourceTree = "<group>"; };
 		9AC192E62542DA4500B4B705 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		9AC192F02542DFDA00B4B705 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		9AC192FA2542F6A400B4B705 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		9ACCB7262539610E00F989E9 /* TabBarItemImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemImplTests.swift; sourceTree = "<group>"; };
 		9ACCB72D2539632B00F989E9 /* TabBarConfiguratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfiguratorTests.swift; sourceTree = "<group>"; };
 		9ACDE0E4252A032500C4A7F3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				9A08BD17250745FF00268128 /* ContainerView */,
 				9ACDE0EC252A034700C4A7F3 /* LottieView */,
 				9A622F13253863B60056FEFB /* FillSpinnerView */,
+				9AC192FE2542F6AE00B4B705 /* ActivityView */,
 			);
 			path = CustomUIs;
 			sourceTree = "<group>";
@@ -1033,6 +1036,14 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		9AC192FE2542F6AE00B4B705 /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				9AC192FA2542F6A400B4B705 /* ActivityView.swift */,
+			);
+			path = ActivityView;
+			sourceTree = "<group>";
+		};
 		9ACCB725253960EA00F989E9 /* TabBarItemImpl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1343,6 +1354,7 @@
 				9A741B71252A136D00DD094E /* Array+Extensions.swift in Sources */,
 				9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */,
 				9A08BCCE2502585D00268128 /* ListModels.swift in Sources */,
+				9AC192FB2542F6A400B4B705 /* ActivityView.swift in Sources */,
 				9AB4ED172542A081002B4904 /* IAPManager.swift in Sources */,
 				9AC192F12542DFDA00B4B705 /* ProductCell.swift in Sources */,
 				9A4AAC0324F9397D009E1817 /* Film.swift in Sources */,
