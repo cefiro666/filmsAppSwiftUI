@@ -18,6 +18,10 @@ struct IAPTestView: Contentable {
 // MARK: - Body
     var body: some View {
         ZStack {
+            if self.presenter.data.productsModels.isEmpty {
+                SpinnerView(style: .large)
+            }
+            
             if #available(iOS 14.0, *) {
                 ScrollView {
                     LazyVStack() {

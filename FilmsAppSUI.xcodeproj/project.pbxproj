@@ -64,6 +64,9 @@
 		9A4AAC0F24F93E2F009E1817 /* YearHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AAC0E24F93E2F009E1817 /* YearHeaderView.swift */; };
 		9A4AAC1224F94025009E1817 /* FilmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AAC1124F94025009E1817 /* FilmModel.swift */; };
 		9A4C64602509096900D6A67A /* FilmsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C645F2509096900D6A67A /* FilmsListRouter.swift */; };
+		9A4F8AA32546A33200815479 /* IAPManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F8AA22546A33200815479 /* IAPManagerDelegate.swift */; };
+		9A4F8AA82546A6EC00815479 /* NetworkDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F8AA72546A6EC00815479 /* NetworkDevice.swift */; };
+		9A4F8AB72546E1F300815479 /* GetIAPProductsInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F8AB62546E1F300815479 /* GetIAPProductsInfoUseCase.swift */; };
 		9A52663B251B9FD700C98DF6 /* FilmsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52663A251B9FD700C98DF6 /* FilmsTableView.swift */; };
 		9A561BA72539936300D51F18 /* GetFilmsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */; };
 		9A561BAB25399DD200D51F18 /* SortingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A561BAA25399DD200D51F18 /* SortingButtonView.swift */; };
@@ -93,7 +96,6 @@
 		9AB4ED1025429EE8002B4904 /* SQStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9AB4ED0F25429EE8002B4904 /* SQStoreKit */; };
 		9AB4ED172542A081002B4904 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB4ED162542A081002B4904 /* IAPManager.swift */; };
 		9AB4ED552542C252002B4904 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB4ED542542C252002B4904 /* StoreKit.framework */; };
-		9AB4ED5D2542D3C9002B4904 /* IAPBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB4ED5C2542D3C9002B4904 /* IAPBundles.swift */; };
 		9AC192E72542DA4500B4B705 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192E62542DA4500B4B705 /* ProductModel.swift */; };
 		9AC192F12542DFDA00B4B705 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192F02542DFDA00B4B705 /* ProductCell.swift */; };
 		9AC192FB2542F6A400B4B705 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC192FA2542F6A400B4B705 /* ActivityView.swift */; };
@@ -176,6 +178,9 @@
 		9A4AAC0E24F93E2F009E1817 /* YearHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearHeaderView.swift; sourceTree = "<group>"; };
 		9A4AAC1124F94025009E1817 /* FilmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmModel.swift; sourceTree = "<group>"; };
 		9A4C645F2509096900D6A67A /* FilmsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListRouter.swift; sourceTree = "<group>"; };
+		9A4F8AA22546A33200815479 /* IAPManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManagerDelegate.swift; sourceTree = "<group>"; };
+		9A4F8AA72546A6EC00815479 /* NetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevice.swift; sourceTree = "<group>"; };
+		9A4F8AB62546E1F300815479 /* GetIAPProductsInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetIAPProductsInfoUseCase.swift; sourceTree = "<group>"; };
 		9A52663A251B9FD700C98DF6 /* FilmsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableView.swift; sourceTree = "<group>"; };
 		9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFilmsUseCaseTests.swift; sourceTree = "<group>"; };
 		9A561BAA25399DD200D51F18 /* SortingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingButtonView.swift; sourceTree = "<group>"; };
@@ -205,7 +210,6 @@
 		9AB1223D2519D46500A300D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AB4ED162542A081002B4904 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		9AB4ED542542C252002B4904 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		9AB4ED5C2542D3C9002B4904 /* IAPBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPBundles.swift; sourceTree = "<group>"; };
 		9AC192E62542DA4500B4B705 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		9AC192F02542DFDA00B4B705 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		9AC192FA2542F6A400B4B705 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
@@ -445,6 +449,7 @@
 		9A08BCC025024FA100268128 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9A4F8AA62546A6CB00815479 /* NetworkDevice */,
 				9A68FDD62532EB5900AD7B22 /* Requests */,
 				9A68FDD72532EB6600AD7B22 /* NetworkHelper */,
 			);
@@ -561,6 +566,7 @@
 		9A08BD0C2507438900268128 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				9A4F8AB52546E1D100815479 /* GetIAPProductsInfoUseCase */,
 				9A968AE1252209E600218122 /* GetFilmsUseCase */,
 			);
 			path = UseCases;
@@ -824,6 +830,22 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		9A4F8AA62546A6CB00815479 /* NetworkDevice */ = {
+			isa = PBXGroup;
+			children = (
+				9A4F8AA72546A6EC00815479 /* NetworkDevice.swift */,
+			);
+			path = NetworkDevice;
+			sourceTree = "<group>";
+		};
+		9A4F8AB52546E1D100815479 /* GetIAPProductsInfoUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				9A4F8AB62546E1F300815479 /* GetIAPProductsInfoUseCase.swift */,
+			);
+			path = GetIAPProductsInfoUseCase;
+			sourceTree = "<group>";
+		};
 		9A526642251B9FE400C98DF6 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1007,7 +1029,7 @@
 			isa = PBXGroup;
 			children = (
 				9AB4ED162542A081002B4904 /* IAPManager.swift */,
-				9AB4ED5C2542D3C9002B4904 /* IAPBundles.swift */,
+				9A4F8AA22546A33200815479 /* IAPManagerDelegate.swift */,
 			);
 			path = IAPManager;
 			sourceTree = "<group>";
@@ -1342,14 +1364,15 @@
 				9A13B1AF2515E2F900889884 /* GenreView.swift in Sources */,
 				9A08BCD0250266A600268128 /* FilmDetailsView.swift in Sources */,
 				9A08BD272507644000268128 /* FilmDetailsPresenter.swift in Sources */,
+				9A4F8AB72546E1F300815479 /* GetIAPProductsInfoUseCase.swift in Sources */,
 				9A08BD092506688200268128 /* FilmsListPresenter.swift in Sources */,
 				9A4AABDA24F9325D009E1817 /* SceneDelegate.swift in Sources */,
 				9A92B3362531C3400018C68E /* TabBarItemImpl.swift in Sources */,
 				9A4AAC0A24F93DD3009E1817 /* FilmsListView.swift in Sources */,
-				9AB4ED5D2542D3C9002B4904 /* IAPBundles.swift in Sources */,
 				9A08BD1E25075D4C00268128 /* ContainerPresenter.swift in Sources */,
 				9A491F042539B16B00F1B055 /* PopupController.swift in Sources */,
 				9A5FDD36251072E8000BE3D8 /* FilmDetailsData.swift in Sources */,
+				9A4F8AA82546A6EC00815479 /* NetworkDevice.swift in Sources */,
 				9A08BD192507566F00268128 /* FilmsListData.swift in Sources */,
 				9A741B71252A136D00DD094E /* Array+Extensions.swift in Sources */,
 				9A08BD12250743F300268128 /* NetworkHelper.swift in Sources */,
@@ -1370,6 +1393,7 @@
 				9A622F0E2538638C0056FEFB /* FillSpinnerView.swift in Sources */,
 				B98BC6C77C49FAEF705D1112 /* PresentingView.swift in Sources */,
 				6A0CAE158AAF6AF057202C38 /* PresentingPresenter.swift in Sources */,
+				9A4F8AA32546A33200815479 /* IAPManagerDelegate.swift in Sources */,
 				9A1E42C9E851828EDD90789A /* PresentingRouter.swift in Sources */,
 				79BC03966361B1914FF0C021 /* PresentingConfigurator.swift in Sources */,
 				9AC192E72542DA4500B4B705 /* ProductModel.swift in Sources */,

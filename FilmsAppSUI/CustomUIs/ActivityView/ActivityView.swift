@@ -13,6 +13,10 @@ class ActivityView: UIView {
     
 // MARK: - Create
     static func create(on controller: UIViewController) -> ActivityView {
+        if let activityView = controller.view.subviews.first(where: { $0 is ActivityView }) as? ActivityView {
+            return activityView
+        }
+        
         let activityView = ActivityView()
         activityView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         activityView.frame = controller.view.bounds

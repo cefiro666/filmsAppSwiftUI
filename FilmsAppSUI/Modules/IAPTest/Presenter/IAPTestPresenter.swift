@@ -30,11 +30,33 @@ final class IAPTestPresenterImpl: IAPTestPresenter {
 
 // MARK: - Methods
     func viewOnAppear() {
+        IAPManager.shared.addDelegate(self)
         self.data.productsModels = IAPManager.shared.getAllProducts()
     }
     
     func onClickProductWithId(_ id: String) {
         IAPManager.shared.buyProductWithIdentifier(id)
+    }
+    
+    deinit {
+        IAPManager.shared.removeDelegate(self)
+    }
+    
+}
+
+// MARK: - IAPManagerDelegate
+extension IAPTestPresenterImpl: IAPManagerDelegate {
+    
+    func didPurchaseProduct(_ productModel: ProductModel) {
+        
+    }
+    
+    func didRestoreProduct(_ productModel: ProductModel) {
+        
+    }
+    
+    func didUpdateProductsList(_ productsModels: [ProductModel]) {
+        self.data.productsModels = productsModels
     }
     
 }
