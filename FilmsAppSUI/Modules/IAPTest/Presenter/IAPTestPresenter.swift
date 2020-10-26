@@ -38,6 +38,7 @@ final class IAPTestPresenterImpl: IAPTestPresenter {
         IAPManager.shared.buyProductWithIdentifier(id)
     }
     
+// MARK: - Deinit
     deinit {
         IAPManager.shared.removeDelegate(self)
     }
