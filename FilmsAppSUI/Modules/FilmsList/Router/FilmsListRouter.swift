@@ -12,7 +12,6 @@ import Foundation
 protocol FilmsListRouter: Router {
     
     func pushFilmDetailsScreenForFilm(_ film: Film)
-    func showSortingParameters(selectParameter: SortingParameter, _ completion: ((SortingParameter) -> ())?)
 }
 
 // MARK: - FilmsListRouterImpl
@@ -22,13 +21,6 @@ struct FilmsListRouterImpl: FilmsListRouter {
     func pushFilmDetailsScreenForFilm(_ film: Film) {
         self.pushScreenWithHidenTabBar(view: FilmDetailsView.self, title: film.localizedName) { view in
             view?.presenter.setFilm(film)
-        }
-    }
-    
-    func showSortingParameters(selectParameter: SortingParameter, _ completion: ((SortingParameter) -> ())?) {
-        self.showPopupScreen(view: SortingParametersView.self, height: 160.0) { view in
-            view?.presenter.setSelectParameter(selectParameter)
-            view?.presenter.setChangeSortingParameterCompletion(completion)
         }
     }
     

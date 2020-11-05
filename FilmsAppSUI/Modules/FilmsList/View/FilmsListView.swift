@@ -39,11 +39,6 @@ struct FilmsListView: Contentable {
             }
         }
         
-        .navigationBarTitle(Text("Фильмы"))
-        .navigationBarItems(trailing: SortingButtonView {
-            self.presenter.onClickSortingButton()
-        })
-        
         .onAppear {
             self.presenter.viewOnAppear()
         }
@@ -64,18 +59,12 @@ extension FilmsListView {
 // MARK: - Methods
     private func getSections() -> [SectionModel] {
         var secions = [SectionModel]()
-        var yearsSet = [Int]()
+        let years = self.presenter.data.filmsModels.compactMap({ $0.year }).unique { $0 }
         
-        for year in self.presenter.data.filmsModels.compactMap({ $0.year }) {
-            if !yearsSet.contains(year) {
-                yearsSet.append(year)
-            }
-        }
-        
-        for year in yearsSet {
-            let stringYear = String(year)
-            let sameYearsSection = SectionModel(id: stringYear)
-            sameYearsSection.header = HeaderModel(id: stringYear, title: stringYear)
+        for year in years {
+            let yearString = String(year)
+            let sameYearsSection = SectionModel(id: yearString)
+            sameYearsSection.header = HeaderModel(id: yearString, title: yearString)
             sameYearsSection.elements = self.presenter.data.filmsModels
                 .filter { $0.year == year }
 

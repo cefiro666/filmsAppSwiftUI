@@ -6,8 +6,6 @@
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import Foundation
-
 // MARK: - Configurable
 protocol Configurable {
     associatedtype ConfiguratorType: Configurator
