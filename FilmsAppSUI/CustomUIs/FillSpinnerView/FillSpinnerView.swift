@@ -25,6 +25,7 @@ struct FillSpinnerView: View {
             SpinnerView(style: .large, color: .white)
         }
     }
+    
 }
 
 // MARK: - PreviewProvider

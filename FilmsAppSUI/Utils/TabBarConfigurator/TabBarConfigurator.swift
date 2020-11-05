@@ -11,7 +11,7 @@ import UIKit
 // MARK: - TabBarConfigurator
 class TabBarConfigurator {
     
-    static public func getTabBarFromTabBarItemType<Item: TabBarItem & CaseIterable>(
+    static public func getTabBarFromTabBarItemType<Item: TabBarItem>(
         _ tabType: Item.Type,
         creatingControllersCompletion: (([UIViewController]) -> ())? = nil
     ) -> UITabBarController {

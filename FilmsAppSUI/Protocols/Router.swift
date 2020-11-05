@@ -65,12 +65,6 @@ protocol Router {
         configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
     ) -> UIViewController?
     
-    @discardableResult func showPopupScreen<Content: Contentable>(
-        view: Content.Type,
-        height: CGFloat,
-        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
-    ) -> UIViewController?
-    
     func popScreen()
     func dismissScreen(completion: (() -> ())?)
     func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item)
@@ -208,34 +202,6 @@ extension Router {
     
     func setTab<Item: TabBarItem & CaseIterable>(_ tab: Item) {
         self.tabBarController?.selectedIndex = tab.tabIndex
-    }
-    
-}
-
-// MARK: - ShowPopupScreen
-extension Router {
-    
-    @discardableResult func showPopupScreen<Content: Contentable>(
-        view: Content.Type,
-        height: CGFloat,
-        configureBlock: ((Content.ConfiguratorType.Content?) -> ())?
-    ) -> UIViewController? {
-        
-        let popupController = PopupViewController()
-        popupController.view.backgroundColor = UIColor.systemBackground
-        popupController.height = height
-        
-        let viewController = view.configurator.createScreen(configureBlock: configureBlock)
-        viewController.view.frame = CGRect(x: .zero,
-                                           y: .zero,
-                                           width: popupController.view.bounds.width,
-                                           height: height)
-
-        popupController.view.addSubview(viewController.view)
-
-        self.rootController?.present(popupController, animated: true, completion: nil)
-        
-        return popupController
     }
     
 }

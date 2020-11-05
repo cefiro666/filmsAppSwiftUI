@@ -6,7 +6,6 @@
 //  Copyright © 2020 Виталий Баник. All rights reserved.
 //
 
-import SwiftUI
 import UIKit
 
 // MARK: - Configurator

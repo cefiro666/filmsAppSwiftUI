@@ -16,5 +16,4 @@ struct FilmsListData {
     var selectedGenre: String = ""
     var filmsModels: [FilmModel] = []
     var isLoadingFilmsWithSelectedGenre = false
-    var selectSortingParameter: SortingParameter = .newFirst
 }
