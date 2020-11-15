@@ -27,11 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
-        self.configureUIPreferences()
+        self.configureUISystemPreferences()
         self.setInitialScreen()
     }
     
-    private func configureUIPreferences() {
+    private func configureUISystemPreferences() {
         UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().allowsSelection = false

@@ -42,7 +42,6 @@
 		9A13B1AC2514B59000889884 /* GenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1AB2514B59000889884 /* GenresView.swift */; };
 		9A13B1AF2515E2F900889884 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1AE2515E2F900889884 /* GenreView.swift */; };
 		9A1E42C9E851828EDD90789A /* PresentingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C8B90F47E7E0B5C428AAE /* PresentingRouter.swift */; };
-		9A491F2B253B39A800F1B055 /* BottomPopup in Frameworks */ = {isa = PBXBuildFile; productRef = 9A491F2A253B39A800F1B055 /* BottomPopup */; };
 		9A4AABD824F9325D009E1817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AABD724F9325D009E1817 /* AppDelegate.swift */; };
 		9A4AABDA24F9325D009E1817 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AABD924F9325D009E1817 /* SceneDelegate.swift */; };
 		9A4AABDE24F93261009E1817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4AABDD24F93261009E1817 /* Assets.xcassets */; };
@@ -193,7 +192,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A491F2B253B39A800F1B055 /* BottomPopup in Frameworks */,
 				9A08BCD5250268CE00268128 /* KingfisherSwiftUI in Frameworks */,
 				9A08BD16250744BB00268128 /* Moya in Frameworks */,
 				9ACDE0E0252A031700C4A7F3 /* Lottie in Frameworks */,
@@ -1015,7 +1013,6 @@
 				9A08BCD4250268CE00268128 /* KingfisherSwiftUI */,
 				9A08BD15250744BB00268128 /* Moya */,
 				9ACDE0DF252A031700C4A7F3 /* Lottie */,
-				9A491F2A253B39A800F1B055 /* BottomPopup */,
 			);
 			productName = FilmsAppSUI;
 			productReference = 9A4AABD424F9325D009E1817 /* FilmsAppSUI.app */;
@@ -1071,7 +1068,6 @@
 				9A08BCD3250268CE00268128 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */,
 				9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				9A491F29253B39A800F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */,
 			);
 			productRefGroup = 9A4AABD524F9325D009E1817 /* Products */;
 			projectDirPath = "";
@@ -1477,14 +1473,6 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		9A491F29253B39A800F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ergunemr/BottomPopup";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.0;
-			};
-		};
 		9ACDE0DE252A031700C4A7F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1505,11 +1493,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A08BD14250744BB00268128 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
-		};
-		9A491F2A253B39A800F1B055 /* BottomPopup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9A491F29253B39A800F1B055 /* XCRemoteSwiftPackageReference "BottomPopup" */;
-			productName = BottomPopup;
 		};
 		9ACDE0DF252A031700C4A7F3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
