@@ -18,7 +18,7 @@ fileprivate struct Constants {
 protocol FilmsListPresenter: Presenter {
 
     var router: FilmsListRouter? { get set }
-    var publicData: FilmsListData { get }
+    var publicData: FilmsListPublicData { get }
     
     func viewOnAppear()
     func onClickGenre(_ genre: String)
@@ -32,8 +32,8 @@ final class FilmsListPresenterImpl {
     var router: FilmsListRouter?
     weak var container: Container?
     
-// MARK: - Published Data
-    @Published var publicData = FilmsListData()
+// MARK: - Publiс Data
+    @Published var publicData = FilmsListPublicData()
     
 // MARK: - Private Data
     private var privateData = FilmsListPrivateData()

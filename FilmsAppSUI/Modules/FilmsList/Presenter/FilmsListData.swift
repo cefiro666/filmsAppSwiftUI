@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - FilmsListData
-struct FilmsListData {
+struct FilmsListPublicData {
     
 // MARK: - Properties
     var genres: [String] = []
