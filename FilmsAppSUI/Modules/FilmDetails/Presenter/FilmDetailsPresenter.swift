@@ -12,33 +12,36 @@ import Foundation
 protocol FilmDetailsPresenter: Presenter {
     
     var router: FilmDetailsRouter? { get set }
-    var data: FilmDetailsData { get }
+    var publicData: FilmDetailsPublicData { get }
     
     func setFilm(_ film: Film?)
     func viewOnAppear()
 }
 
 // MARK: - FilmDetailsPresenterImpl
-final class FilmDetailsPresenterImpl: FilmDetailsPresenter {
+final class FilmDetailsPresenterImpl {
     
 // MARK: - Vuper
     var router: FilmDetailsRouter?
     weak var container: Container?
     
-// MARK: - Published data
-    @Published var data = FilmDetailsData()
+// MARK: - Public data
+    @Published var publicData = FilmDetailsPublicData()
     
 // MARK: - Private data
-    private var film: Film?
-        
+    private var privateData = FilmDetailsPrivateData()
+}
+
+// MARK: - FilmDetailsPresenter
+extension FilmDetailsPresenterImpl: FilmDetailsPresenter {
+    
 // MARK: - Methods
     func setFilm(_ film: Film?) {
-        self.film = film
-        self.data.filmModel = FilmModel(film: film ?? Film.placeholder)
+        self.privateData.film = film
+        self.publicData.filmModel = FilmModel(film: film ?? Film.placeholder)
     }
     
     func viewOnAppear() {
-        self.data.filmModel = FilmModel(film: self.film ?? Film.placeholder)
+        self.publicData.filmModel = FilmModel(film: self.privateData.film ?? Film.placeholder)
     }
-    
 }

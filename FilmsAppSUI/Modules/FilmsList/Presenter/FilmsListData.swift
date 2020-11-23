@@ -17,3 +17,10 @@ struct FilmsListData {
     var filmsModels: [FilmModel] = []
     var isLoadingFilmsWithSelectedGenre = false
 }
+
+// MARK: - FilmsListPrivateData
+struct FilmsListPrivateData {
+    
+// MARK: - Properties
+    var films: [Film] = []
+}

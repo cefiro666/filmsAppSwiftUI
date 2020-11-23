@@ -12,12 +12,11 @@ code_files:
 
 # Presenter layer
 - {name: Presenter/Presenter.swift, path: Presenter/Presenter.swift.liquid}
+- {name: Presenter/Data.swift, path: Presenter/Data.swift.liquid}
+- {name: Presenter/UseCases.swift, path: Presenter/UseCases.swift.liquid}
 
 # Router layer
 - {name: Router/Router.swift, path: Router/Router.swift.liquid}
 
 # Configurator
 - {name: Configurator/Configurator.swift, path: Configurator/Configurator.swift.liquid}
-
-# Data
-- {name: Data/Data.swift, path: Data/Data.swift.liquid}

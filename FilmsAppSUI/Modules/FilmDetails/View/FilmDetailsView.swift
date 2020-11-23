@@ -20,20 +20,20 @@ struct FilmDetailsView: Contentable {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(spacing: 20.0) {
-                    FilmImageView(imageUrl: self.presenter.data.filmModel.imageURL ?? "").id(UUID().uuidString)
+                    FilmImageView(imageUrl: self.presenter.publicData.filmModel.imageURL ?? "").id(UUID().uuidString)
 
-                    FilmInfoView(name: self.presenter.data.filmModel.name ?? "",
-                                 year: self.presenter.data.filmModel.year ?? 0,
-                                 rating: self.presenter.data.filmModel.rating)
+                    FilmInfoView(name: self.presenter.publicData.filmModel.name ?? "",
+                                 year: self.presenter.publicData.filmModel.year ?? 0,
+                                 rating: self.presenter.publicData.filmModel.rating)
                 }
 
                 .padding(.horizontal)
                 .frame(minWidth: UIScreen.main.bounds.width, alignment: .leading)
 
-                GenresView(genres: self.presenter.data.filmModel.genres)
+                GenresView(genres: self.presenter.publicData.filmModel.genres)
                     .padding(.vertical, 10.0)
 
-                Text(self.presenter.data.filmModel.filmDescription ?? "Описание отсутствует")
+                Text(self.presenter.publicData.filmModel.filmDescription ?? "Описание отсутствует")
                     .padding(.horizontal)
                     .padding(.bottom)
             }

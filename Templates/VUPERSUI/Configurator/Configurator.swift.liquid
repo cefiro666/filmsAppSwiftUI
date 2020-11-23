@@ -17,6 +17,7 @@ struct {{ module_info.name }}Configurator: Configurator {
         let view = {{ module_info.name }}View()
 
         view.presenter.router = {{ module_info.name }}RouterImpl()
+        view.presenter.useCases = {{ module_info.name }}UseCases()
         
         configureBlock?(view)
         

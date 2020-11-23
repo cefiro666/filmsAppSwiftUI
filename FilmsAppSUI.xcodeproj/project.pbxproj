@@ -37,6 +37,7 @@
 		9A08BD1E25075D4C00268128 /* ContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD1D25075D4C00268128 /* ContainerPresenter.swift */; };
 		9A08BD23250763DE00268128 /* FilmDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD22250763DE00268128 /* FilmDetailsConfigurator.swift */; };
 		9A08BD272507644000268128 /* FilmDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08BD262507644000268128 /* FilmDetailsPresenter.swift */; };
+		9A08E31A2568FE2F006254FD /* FilmsListUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08E3192568FE2F006254FD /* FilmsListUseCases.swift */; };
 		9A13B1A42514B19200889884 /* FilmImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1A32514B19200889884 /* FilmImageView.swift */; };
 		9A13B1A62514B26400889884 /* FilmInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1A52514B26400889884 /* FilmInfoView.swift */; };
 		9A13B1AC2514B59000889884 /* GenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13B1AB2514B59000889884 /* GenresView.swift */; };
@@ -129,6 +130,7 @@
 		9A08BD1D25075D4C00268128 /* ContainerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPresenter.swift; sourceTree = "<group>"; };
 		9A08BD22250763DE00268128 /* FilmDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsConfigurator.swift; sourceTree = "<group>"; };
 		9A08BD262507644000268128 /* FilmDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsPresenter.swift; sourceTree = "<group>"; };
+		9A08E3192568FE2F006254FD /* FilmsListUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListUseCases.swift; sourceTree = "<group>"; };
 		9A13B1A32514B19200889884 /* FilmImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmImageView.swift; sourceTree = "<group>"; };
 		9A13B1A52514B26400889884 /* FilmInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmInfoView.swift; sourceTree = "<group>"; };
 		9A13B1AB2514B59000889884 /* GenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresView.swift; sourceTree = "<group>"; };
@@ -216,14 +218,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		092291EF415EF4A0692ECEC4 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				90DC9551965756F9C90ACF5C /* SplashScreenData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		163FE8A9B2F934AC4248A847 /* Pushing */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +225,6 @@
 				D11D715FD530359FF2D0ECCF /* Presenter */,
 				400E0CFD2A0AC74622650A3B /* Router */,
 				4DD56330BA5C55985EE45681 /* Configurator */,
-				A8BEAF4050ED061AA1A691EC /* Data */,
 			);
 			path = Pushing;
 			sourceTree = "<group>";
@@ -275,17 +268,8 @@
 				D8F2779EC8F61BEF109C3B76 /* Presenter */,
 				719FBDCBF0F9C202D1C2EB45 /* Router */,
 				79152388F201F9941594788E /* Configurator */,
-				62CBA2812B646DD6C88687B2 /* Data */,
 			);
 			path = Presenting;
-			sourceTree = "<group>";
-		};
-		62CBA2812B646DD6C88687B2 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				88B49D20A835F9488E480EF6 /* PresentingData.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		633F956B4F79DAE81ED6621B /* Router */ = {
@@ -303,7 +287,6 @@
 				DE76A9EA3880E47FA50E9155 /* Presenter */,
 				633F956B4F79DAE81ED6621B /* Router */,
 				4235387B0A57E97BA56EB9B9 /* Configurator */,
-				FB131D2C8519857001C21AB9 /* Data */,
 			);
 			path = TestingTab;
 			sourceTree = "<group>";
@@ -327,6 +310,7 @@
 		7B869F657B92CEEB8BF38A2A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				90DC9551965756F9C90ACF5C /* SplashScreenData.swift */,
 				14C8C10984D148CB925E34C3 /* SplashScreenPresenter.swift */,
 			);
 			path = Presenter;
@@ -408,6 +392,7 @@
 		9A08BCFE2506625100268128 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9A5FDD35251072E8000BE3D8 /* FilmDetailsData.swift */,
 				9A08BD262507644000268128 /* FilmDetailsPresenter.swift */,
 			);
 			path = Presenter;
@@ -424,7 +409,9 @@
 		9A08BD012506626F00268128 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9A08BD182507566F00268128 /* FilmsListData.swift */,
 				9A08BD082506688200268128 /* FilmsListPresenter.swift */,
+				9A08E3192568FE2F006254FD /* FilmsListUseCases.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -634,7 +621,6 @@
 		9A4AABF524F934D2009E1817 /* FilmsList */ = {
 			isa = PBXGroup;
 			children = (
-				9A4C645E250905E700D6A67A /* Data */,
 				9A08BD022506627600268128 /* Router */,
 				9A08BD032506627E00268128 /* Configurator */,
 				9A08BD012506626F00268128 /* Presenter */,
@@ -646,7 +632,6 @@
 		9A4AABF624F934E8009E1817 /* FilmDetails */ = {
 			isa = PBXGroup;
 			children = (
-				9A5FDD34251072DA000BE3D8 /* Data */,
 				9A08BCFF2506625900268128 /* Router */,
 				9A08BCFE2506625100268128 /* Presenter */,
 				9A08BCFD2506624800268128 /* Configurator */,
@@ -690,14 +675,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		9A4C645E250905E700D6A67A /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				9A08BD182507566F00268128 /* FilmsListData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		9A526642251B9FE400C98DF6 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,14 +689,6 @@
 				9A561BA62539936300D51F18 /* GetFilmsUseCaseTests.swift */,
 			);
 			path = GetFilmsUseCase;
-			sourceTree = "<group>";
-		};
-		9A5FDD34251072DA000BE3D8 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				9A5FDD35251072E8000BE3D8 /* FilmDetailsData.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		9A5FDD4A25112986000BE3D8 /* Films */ = {
@@ -909,14 +878,6 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		A8BEAF4050ED061AA1A691EC /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				BE30E0AA3FDBB4022A65A5D8 /* PushingData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		ACA7369C1F80F632B459463E /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,6 +905,7 @@
 		D11D715FD530359FF2D0ECCF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				BE30E0AA3FDBB4022A65A5D8 /* PushingData.swift */,
 				43F3D449EC16F46841D45E3F /* PushingPresenter.swift */,
 			);
 			path = Presenter;
@@ -952,6 +914,7 @@
 		D8F2779EC8F61BEF109C3B76 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				88B49D20A835F9488E480EF6 /* PresentingData.swift */,
 				781392EE213215D5D2C8F236 /* PresentingPresenter.swift */,
 			);
 			path = Presenter;
@@ -960,6 +923,7 @@
 		DE76A9EA3880E47FA50E9155 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				782F23E198D6A7928F599AA2 /* TestingTabData.swift */,
 				14D83F3E2C4B79FCDF8EB28B /* TestingTabPresenter.swift */,
 			);
 			path = Presenter;
@@ -980,17 +944,8 @@
 				7B869F657B92CEEB8BF38A2A /* Presenter */,
 				2CFE4B506E3F83C1EEE818D4 /* Router */,
 				ACA7369C1F80F632B459463E /* Configurator */,
-				092291EF415EF4A0692ECEC4 /* Data */,
 			);
 			path = SplashScreen;
-			sourceTree = "<group>";
-		};
-		FB131D2C8519857001C21AB9 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				782F23E198D6A7928F599AA2 /* TestingTabData.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1106,6 +1061,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A08E31A2568FE2F006254FD /* FilmsListUseCases.swift in Sources */,
 				9A4AAC0F24F93E2F009E1817 /* YearHeaderView.swift in Sources */,
 				9A92B309253180850018C68E /* TabBarItem.swift in Sources */,
 				9A4C64602509096900D6A67A /* FilmsListRouter.swift in Sources */,

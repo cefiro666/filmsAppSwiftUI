@@ -18,7 +18,7 @@ struct FilmsListConfigurator: Configurator {
         
         view.presenter.router = FilmsListRouterImpl()
 
-        view.presenter.setUseCase(GetFilmsUseCaseImpl())
+        view.presenter.useCases = FilmsListUseCases(getFilms: GetFilmsUseCaseImpl())
         
         configureBlock?(view)
         

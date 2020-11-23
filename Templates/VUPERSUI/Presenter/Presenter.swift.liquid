@@ -12,24 +12,37 @@ import Foundation
 protocol {{ module_info.name }}Presenter: Presenter {
 
     var router: {{ module_info.name }}Router? { get set }
-    var data: {{ module_info.name }}Data { get }
+    var publicData: {{ module_info.name }}PublicData { get }
 
     func viewOnAppear()
 }
 
 // MARK: - {{ module_info.name }}PresenterImpl
-final class {{ module_info.name }}PresenterImpl: {{ module_info.name }}Presenter {
-    
+final class {{ module_info.name }}PresenterImpl {
+
 // MARK: - Vuper
-    var router: {{ module_info.name }}Router?
+    var router: SexRouter?
     weak var container: Container?
+
+// MARK: - Public data
+    @Published var publicData = {{ module_info.name }}PublicData()
+
+// MARK: - Private data
+    private var privateData = {{ module_info.name }}PrivateData()
+
+// MARK: - Use cases
+    var useCases: {{ module_info.name }}UseCases?
+
+// MARK: - Methods
     
-// MARK: - Published data
-    @Published var data = {{ module_info.name }}Data()
+}
+
+// MARK: - {{ module_info.name }}Presenter
+extension {{ module_info.name }}PresenterImpl: {{ module_info.name }}Presenter {
 
 // MARK: - Methods
     func viewOnAppear() {
         
     }
-    
+
 }

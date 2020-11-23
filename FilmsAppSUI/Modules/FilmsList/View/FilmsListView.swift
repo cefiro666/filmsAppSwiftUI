@@ -20,8 +20,8 @@ struct FilmsListView: Contentable {
         VStack {
             Spacer(minLength: 16.0)
             
-            GenresView(genres: self.presenter.data.genres,
-                       selectedGenre: self.presenter.data.selectedGenre) { genre in
+            GenresView(genres: self.presenter.publicData.genres,
+                       selectedGenre: self.presenter.publicData.selectedGenre) { genre in
                         
                 withAnimation {
                     self.presenter.onClickGenre(genre)
@@ -33,7 +33,7 @@ struct FilmsListView: Contentable {
                     self.presenter.onClickFilmWithId(filmId)
                 }
                 
-                if self.presenter.data.isLoadingFilmsWithSelectedGenre {
+                if self.presenter.publicData.isLoadingFilmsWithSelectedGenre {
                     FillSpinnerView()
                 }
             }
@@ -59,13 +59,13 @@ extension FilmsListView {
 // MARK: - Methods
     private func getSections() -> [SectionModel] {
         var secions = [SectionModel]()
-        let years = self.presenter.data.filmsModels.compactMap({ $0.year }).unique { $0 }
+        let years = self.presenter.publicData.filmsModels.compactMap({ $0.year }).unique { $0 }
         
         for year in years {
             let yearString = String(year)
             let sameYearsSection = SectionModel(id: yearString)
             sameYearsSection.header = HeaderModel(id: yearString, title: yearString)
-            sameYearsSection.elements = self.presenter.data.filmsModels
+            sameYearsSection.elements = self.presenter.publicData.filmsModels
                 .filter { $0.year == year }
 
             secions.append(sameYearsSection)

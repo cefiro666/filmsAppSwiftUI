@@ -18,7 +18,7 @@ fileprivate struct Constants {
 protocol FilmsListPresenter: Presenter {
 
     var router: FilmsListRouter? { get set }
-    var data: FilmsListData { get }
+    var publicData: FilmsListData { get }
     
     func viewOnAppear()
     func onClickGenre(_ genre: String)
@@ -26,62 +26,25 @@ protocol FilmsListPresenter: Presenter {
 }
 
 // MARK: - FilmsListPresenterImpl
-final class FilmsListPresenterImpl: FilmsListPresenter {
+final class FilmsListPresenterImpl {
         
 // MARK: - Vuper
     var router: FilmsListRouter?
     weak var container: Container?
     
 // MARK: - Published Data
-    @Published var data = FilmsListData()
+    @Published var publicData = FilmsListData()
     
 // MARK: - Private Data
-    private var films: [Film] = []
+    private var privateData = FilmsListPrivateData()
     
 // MARK: - Use cases
-    private var getFilmsUseCase: GetFilmsUseCase?
-    
-    func setUseCase(_ useCase: Any?) {
-        if let getFilmsUseCase = useCase as? GetFilmsUseCase {
-            self.getFilmsUseCase = getFilmsUseCase
-        }
-    }
+    var useCases: FilmsListUseCases?
     
 // MARK: - Methods
-    func viewOnAppear() {
-        if self.films.isEmpty {
-            self.getFilms()
-        }
-    }
-    
-    func onClickGenre(_ genre: String) {
-        self.data.selectedGenre = genre
-        self.data.isLoadingFilmsWithSelectedGenre = true
-        
-        // simulated long downloading films from selected genre (for show sample activity view)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-     
-            self.data.isLoadingFilmsWithSelectedGenre = false
-            
-            if genre == Constants.kAllGenres {
-                self.data.filmsModels = self.films.map { FilmModel(film: $0) }
-                return
-            }
-            
-            self.data.filmsModels = self.films
-                .map { FilmModel(film: $0) }
-                .filter { $0.genres.contains(genre) }
-        }
-    }
-    
-    func onClickFilmWithId(_ id: String) {
-        guard let film = self.films.first(where: { $0.id == Int(id) }) else { return }
-        self.router?.pushFilmDetailsScreenForFilm(film)
-    }
-    
     private func getFilms() {
         self.container?.setLoadingVisible(true)
-        self.getFilmsUseCase?.execute(completion: { [weak self] (success, films, errorMessage) in
+        self.useCases?.getFilms.execute(completion: { [weak self] (success, films, errorMessage) in
             self?.container?.setLoadingVisible(false)
             if !success {
                 self?.container?.showErrorMessage(errorMessage) {
@@ -90,20 +53,56 @@ final class FilmsListPresenterImpl: FilmsListPresenter {
                 return
             }
             
-            self?.films = films
-            self?.data.filmsModels = films.map { FilmModel(film: $0) }
+            self?.privateData.films = films
+            self?.publicData.filmsModels = films.map { FilmModel(film: $0) }
             self?.configureGenres()
         })
     }
     
     private func configureGenres() {
-        var genres = self.films.flatMap { $0.genres }
+        var genres = self.privateData.films.flatMap { $0.genres }
             .unique { $0 }
             .sorted()
 
         genres.insert(Constants.kAllGenres, at: .zero)
-        self.data.genres = genres
-        self.data.selectedGenre = Constants.kAllGenres
+        self.publicData.genres = genres
+        self.publicData.selectedGenre = Constants.kAllGenres
     }
     
+}
+
+// MARK: - FilmsListPresenter
+extension FilmsListPresenterImpl: FilmsListPresenter {
+    
+// MARK: - Methods
+    func viewOnAppear() {
+        if self.privateData.films.isEmpty {
+            self.getFilms()
+        }
+    }
+    
+    func onClickGenre(_ genre: String) {
+        self.publicData.selectedGenre = genre
+        self.publicData.isLoadingFilmsWithSelectedGenre = true
+        
+        // simulated long downloading films from selected genre (for show sample activity view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+     
+            self.publicData.isLoadingFilmsWithSelectedGenre = false
+            
+            if genre == Constants.kAllGenres {
+                self.publicData.filmsModels = self.privateData.films.map { FilmModel(film: $0) }
+                return
+            }
+            
+            self.publicData.filmsModels = self.privateData.films
+                .map { FilmModel(film: $0) }
+                .filter { $0.genres.contains(genre) }
+        }
+    }
+    
+    func onClickFilmWithId(_ id: String) {
+        guard let film = self.privateData.films.first(where: { $0.id == Int(id) }) else { return }
+        self.router?.pushFilmDetailsScreenForFilm(film)
+    }
 }

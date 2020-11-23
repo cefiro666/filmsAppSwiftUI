@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "BottomPopup",
-        "repositoryURL": "https://github.com/ergunemr/BottomPopup",
-        "state": {
-          "branch": null,
-          "revision": "4fa8e75440f591c4fb7e8e205cad27335761b0e9",
-          "version": "0.6.0"
-        }
-      },
-      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {

@@ -8,9 +8,16 @@
 
 import Foundation
 
-// MARK: - FilmDetailsData
-struct FilmDetailsData {
+// MARK: - FilmDetailsPublicData
+struct FilmDetailsPublicData {
     
 // MARK: - Published
     var filmModel = FilmModel.placeholder
+}
+
+// MARK: - FilmDetailsPrivateData
+struct FilmDetailsPrivateData {
+    
+// MARK: - Properties
+    var film: Film?
 }
